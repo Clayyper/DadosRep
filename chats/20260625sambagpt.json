@@ -1,0 +1,123 @@
+# Compartilhamento Samba entre dois Linux
+
+## Instalação (Servidor)
+
+sudo apt update
+sudo apt install samba caja-share
+
+## Cliente
+
+sudo apt install cifs-utils smbclient gvfs gvfs-backends gvfs-fuse
+
+## Criar pasta
+
+mkdir -p ~/cmp
+chmod 777 ~/cmp
+
+## Arquivo de configuração
+
+sudo nano /etc/samba/smb.conf
+
+Adicionar:
+
+[cmpnew]
+path = /home/clayyper/Documentos/Cmp
+browseable = yes
+writable = yes
+read only = no
+guest ok = yes
+guest only = yes
+force user = clayyper
+create mask = 0777
+directory mask = 0777
+
+No [global]:
+
+map to guest = Bad User
+guest account = nobody
+usershare allow guests = yes
+
+## Testar configuração
+
+testparm
+
+Resultado esperado:
+
+Loaded services file OK.
+
+## Reiniciar Samba
+
+sudo systemctl restart smbd
+sudo systemctl restart nmbd
+
+## Verificar serviço
+
+sudo systemctl status smbd
+sudo systemctl status nmbd
+
+## Restaurar smb.conf padrão
+
+sudo cp /usr/share/samba/smb.conf /etc/samba/smb.conf
+
+ou
+
+sudo cp /usr/share/doc/samba/examples/smb.conf.default /etc/samba/smb.conf
+
+## Descobrir hostname
+
+hostname
+
+## Testar resolução de nome
+
+ping hostname.local
+
+## Instalar Avahi
+
+sudo apt install avahi-daemon
+sudo systemctl enable avahi-daemon
+sudo systemctl start avahi-daemon
+
+## Listar compartilhamentos
+
+smbclient -L //hostname -N
+
+## Acessar pelo gerenciador de arquivos
+
+smb://hostname.local/cmpnew
+
+Conectar anonimamente.
+
+## Montagem via terminal
+
+sudo mkdir -p /mnt/CMP
+
+sudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest
+
+Se necessário:
+
+sudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest,vers=3.0
+
+ou
+
+sudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest,vers=2.1
+
+## Verificar conteúdo
+
+ls /mnt/CMP
+
+## Desmontar
+
+sudo umount /mnt/CMP
+
+## Problemas encontrados
+
+- smb.conf corrompido.
+- testparm retornando "Error loading services".
+- Recuperação do smb.conf padrão.
+- smbd e nmbd não iniciavam até corrigir a configuração.
+- Compartilhamento passou a aparecer na rede.
+- Cliente pedia autenticação.
+- Configurado guest ok, guest only e map to guest.
+- PCManFM/LXQt apresentou erro ao montar compartilhamento.
+- Logs mostraram problemas relacionados ao FUSE/GVFS.
+- Teste via smbclient e mount -t cifs recomendado por ser mais confiável.
