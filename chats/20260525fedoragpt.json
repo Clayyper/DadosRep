@@ -1,0 +1,95 @@
+PROJETO FEDORA 44 + KDE PLASMA 6 (TERMUX/PROOT)
+
+Objetivo:
+Estabilizar o KDE Plasma 6 no Fedora 44 rodando via proot-distro + Termux:X11 no Galaxy S22, reproduzindo a instalação que funcionou no S10.
+
+STATUS ATUAL
+- Plasma 6.7.0 funcionando.
+- kwin_x11 estável.
+- plasmashell funcionando.
+- Dolphin, Konsole, Discover e System Settings funcionando.
+- Datasul abriu normalmente.
+- Troca de temas sem travar.
+- Locale ativo:
+  LANG=pt_BR.UTF-8
+  LANGUAGE=pt_BR
+  LC_ALL=pt_BR.UTF-8
+
+SCRIPT UTILIZADO
+- dbus-run-session
+- kwin_x11 --replace
+- plasmashell --no-respawn
+- QT_QUICK_BACKEND=software
+- LIBGL_ALWAYS_SOFTWARE=1
+- MESA_LOADER_DRIVER_OVERRIDE=llvmpipe
+- XDG_SESSION_TYPE=x11
+- KDE_FULL_SESSION=true
+
+PACOTES CONFIRMADOS
+- plasma-desktop
+- plasma-workspace
+- plasma-workspace-x11
+- plasma-systemsettings
+- plasma-discover
+- kdeplasma-addons
+- KF6 completo
+
+IDIOMA
+Instalado:
+- langpacks-pt
+- langpacks-core-pt
+- glibc-langpack-pt
+- kde-l10n-pt_BR
+- kde-i18n-Brazil
+
+Mesmo assim:
+- Menu continua mostrando Favorites / All Applications / System Tools.
+- Região, moeda e data aparecem corretamente em português.
+
+CONCLUSÕES
+- Não é problema de LANG.
+- Não é problema do script.
+- Não é problema de locale.
+- Não é falta do Plasma.
+- localectl não funciona porque o Fedora roda em proot sem systemd.
+- fedora-release-identity-kde-desktop entra em conflito com fedora-release-identity-container. NÃO instalar.
+
+DNF5
+- groupinstall não existe.
+- group reinstall também não.
+- usa "dnf group install".
+- "dnf group install KDE Plasma Workspaces" retornou "Nenhuma correspondência".
+
+DESCOBERTA MAIS IMPORTANTE
+Comparando com o S10:
+- O S22 possui MUITO MENOS aplicativos no menu.
+- A instalação parece mais enxuta.
+- A hipótese principal passou a ser que o S22 NÃO recebeu exatamente o mesmo conjunto de pacotes do S10.
+
+PRÓXIMO PASSO
+Parar de investigar idioma.
+Comparar os pacotes instalados entre S10 e S22 ou descobrir exatamente qual grupo/metapacote foi instalado no S10 para reproduzir a instalação completa no S22.
+
+COMANDOS IMPORTANTES UTILIZADOS
+
+plasmashell --version
+
+locale
+
+echo $LANG
+echo $LANGUAGE
+
+rpm -qa | grep -i plasma
+
+rpm -qa | grep -i kf6
+
+rpm -qa | grep -i workspace
+
+dnf search pt_BR
+
+dnf search plasma
+
+dnf search kde
+
+OBSERVAÇÃO FINAL
+A maior descoberta da conversa foi que o problema provavelmente NÃO é tradução. O foco passou a ser reproduzir a instalação completa do KDE que foi feita anteriormente no S10, pois o S22 apresenta uma instalação visualmente menor, com menos aplicativos e componentes disponíveis no menu.
