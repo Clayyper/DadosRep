@@ -1,0 +1,65 @@
+USE [NG_ESTOQUE]
+GO
+
+select a.descricaoitem,b.siglaunidademedida,j.descricaosituacaomercadoria [Grupo Mercadoria],a.codigoitem,d.descricaofamilia,e.pesobruto,e.pesoliquido
+,h.descricaocategoriamercadoria as [Grupo Materiais],'F' as [Tipo Preço],a.precovenda,i.descricaotipomercadoria,f.ncm,g.descricaoorigemmercadoria
+ from 
+(SELECT [iditem]
+      ,[est_iditem]
+      ,[idtipoitem]
+      ,[iddepartamento]
+      ,[idfamilia]
+      ,[idclasse]
+      ,[idgrupo]
+      ,[idsubgrupo]
+      ,[idcategoria]
+      ,[idunidademedida]
+      ,[idindexadoreconomicofinanceiro]
+      ,[idcontagerencialcompra]
+      ,[idcontagerencialvenda]
+      ,[idcontagerencialusoconsumo]
+      ,[idtipometaunica]
+      ,[codigoitem]
+      ,[descricaoitem]
+      ,[descricaocompleta]
+      ,[precovenda]
+      ,[percentualcomissao]
+      ,[percentualmargemlucro]
+      ,[percentualdescontomaximo]
+      ,[indregistroimportado]
+      ,[codigomercadoriaexterno]
+      ,[datacadastroitem]
+      ,[indutilizadescricaocomplementar]
+      ,[datadesativacao]
+      ,[motivodesativacao]
+      ,[valormetaunica]
+      ,[indativo]
+      ,[idowner]
+      ,[idusuariolog]
+      ,[datahoralog]
+      ,[idorigemregistro]
+      ,[idembalagem]
+  FROM [dbo].[est_item]
+  where idowner =19218 and indativo=1) as a
+  left join
+  (select * from NG_ESTOQUE..est_unidademedida) as b on a.idunidademedida=b.idunidademedida
+  left join
+  (select * from NG_ESTOQUE..est_grupo) as c on a.idgrupo=c.idgrupo
+  left join
+  (select * from NG_ESTOQUE..est_familia) as d on a.idfamilia=d.idfamilia
+  left join
+  (select * from NG_ESTOQUE..est_itemmaterial) as e on a.iditem=e.iditem
+  left join
+  (select * from NG_ESTOQUE..est_itemdadosfiscais) as f on a.iditem=f.iditem
+  left join
+  (select * from NG_DOMINIO..dom_origemmercadoria) as g on f.idorigemmercadoria=g.idorigemmercadoria
+  left join
+  (select * from NG_DOMINIO..dom_categoriamercadoria) as h on f.idcategoriamercadoria=h.idcategoriamercadoria
+  left join
+  (select * from NG_DOMINIO..dom_tipomercadoria) as i on f.idtipomercadoria=i.idtipomercadoria
+  left join
+  (select * from NG_DOMINIO..dom_situacaomercadoria) as j on f.idsituacaomercadoria=j.idsituacaomercadoria
+  
+GO	
+
+

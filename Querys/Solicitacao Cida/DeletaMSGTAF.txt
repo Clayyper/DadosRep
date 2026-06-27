@@ -1,0 +1,6 @@
+UPDATE [TAF_VD].[dbo].[TAFST2]
+   SET [D_E_L_E_T_] = '*'
+      ,[R_E_C_D_E_L_] = R_E_C_N_O_
+      
+WHERE TAFKEY = 5850
+GO     

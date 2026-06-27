@@ -1,0 +1,16 @@
+OUTPUT TO VALUE('C:\TEMP\FUNC.TXT').
+    FOR EACH funcionario NO-LOCK
+/*     WHERE num_pessoa_fisic=3232 */
+/*     AND cdn_estab>'400':        */
+        WHERE cdn_estab>'400':
+
+    FOR EACH rh_pessoa_fisic NO-LOCK
+           WHERE  rh_pessoa_fisic.num_pessoa_fisic=funcionario.num_pessoa_fisic:
+           PUT UNFORMATTED funcionario.cdn_funcionario ";"
+                           rh_pessoa_fisic.dat_nascimento ";"
+                           rh_pessoa_fisic.cod_id_feder ";"
+                           funcionario.cdn_estab SKIP.
+    END.
+    
+END.
+OUTPUT CLOSE.

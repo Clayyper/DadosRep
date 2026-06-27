@@ -1,0 +1,80 @@
+FOR EACH func_ptoelet WHERE func_ptoelet.log_consid_calc_ptoelet = YES 
+                        AND cdn_funcionario =465
+                        AND can-find(first par_marcac_ptoelet of func_ptoelet where                                                
+                     par_marcac_ptoelet.dat_proces_mpe >= 08/21/2017 and       
+                      par_marcac_ptoelet.dat_proces_mpe <= 09/20/2017):
+    DISP func_ptoelet WITH 1 COLUMN WIDTH 320.
+END.
+
+
+
+FOR EACH func_ptoelet WHERE func_ptoelet.log_consid_calc_ptoelet = YES 
+                        AND cdn_funcionario = 465
+                        AND can-find(first par_marcac_ptoelet of func_ptoelet where                                                
+                     par_marcac_ptoelet.dat_proces_mpe >= 08/21/2017 and       
+                      par_marcac_ptoelet.dat_proces_mpe <= 09/20/2017):
+/*     DISP func_ptoelet WITH 1 COLUMN WIDTH 320. */
+    for each marcac_ptoelet of func_ptoelet no-lock where
+             marcac_ptoelet.dat_proces_mpe =09/20/2017
+            break by marcac_ptoelet.dat_proces_mpe
+                  by marcac_ptoelet.num_horar_proces_mpe:
+        DISP marcac_ptoelet WITH 1 COLUMN WIDTH 320.
+    END.
+END.
+
+
+
+
+
+*/correcoes no banco de conferencia de PONTO X FOLHA HORAS EXTRAS/*
+
+SELECT [Indice]
+      ,[Matricula]
+      ,[Mat_Ant]
+      ,[Data]
+      ,[Periodo]
+      ,[Inicio]
+      ,[Fim]
+      ,[tipo]
+      ,[horaextra]
+      ,[quantidade]
+      ,[convertido]
+      , CONVERT(varchar(11),(fim - inicio),114)
+      ,CAST(LTRIM(DATEDIFF(MINUTE, 0, [horaextra])) AS INT)
+      ,CAST(quantidade as numeric(18,3))/60
+  FROM [LEP].[dbo].[HORASEXTRAS2]
+GO
+
+
+update a
+set a.matricula = b.[Mat_Ant]
+from (SELECT * FROM dbo.HORASEXTRAS2) as a
+inner join dbo.HORASEXTRAS2 as b on b.indice = a.indice -1 and a.Matricula = 0
+
+
+update a
+set a.matricula = b.Matricula
+from (SELECT * FROM dbo.HORASEXTRAS2 where Matricula is null) as a
+inner join dbo.HORASEXTRAS2 as b on b.indice = a.indice -1 
+
+
+update dbo.HORASEXTRAS2
+set horaextra = CONVERT(varchar(11),(fim - inicio),114)
+
+
+update dbo.HORASEXTRAS2
+set quantidade = CAST(LTRIM(DATEDIFF(MINUTE, 0, [horaextra])) AS INT)
+
+update dbo.HORASEXTRAS2
+set convertido = CAST(quantidade as numeric(18,3))/60
+
+
+
+update a
+set a.HorasTotalPonto=b.totalhoras
+from
+dbo.HORAPAGAS2 as a
+inner join
+(SELECT matricula, sum([convertido])as totalhoras 
+  FROM [LEP].[dbo].[HORASEXTRAS3]  
+  group by Matricula) as b on a.matricula=b.matricula

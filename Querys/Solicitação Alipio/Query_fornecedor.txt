@@ -1,0 +1,32 @@
+USE [NG]
+GO
+
+select b.nomepessoa,c.logradouro,c.numeroendereco,c.bairro,c.cep,d.nomemunicipio,e.nomeuf,f.nomepais,
+g.descricaotipocontato,J.descricaotipocontato ,H.descricaotipocontato,i.cnpj,i.inscricaoestadual,i.inscricaomunicipal
+from
+(SELECT [iddadosfornecedor] ,[idpessoa] FROM [dbo].[bpm_dadosfornecedor]
+  where idowner=19218 and indativo = 1) as a
+  inner join
+(select * from ng..bpm_pessoa) as b on a.idpessoa=b.idpessoa
+left join
+(select * from ng..bpm_pessoaendereco where indprincipal=1) as c on a.idpessoa=c.idpessoa
+left join
+(select * from NG_DOMINIO..dom_municipio) as d on c.idmunicipio=d.idmunicipio
+left join
+(select * from NG_DOMINIO..dom_uf) as e on d.iduf=e.iduf
+left join
+(select * from NG_DOMINIO..dom_pais) as f on e.idpais=f.idpais
+left join
+(select * from ng..bpm_pessoatipocontato where idtipocontato=2 and indcontatoprincipal=1) as g on a.idpessoa=g.idpessoa
+left join
+(select * from ng..bpm_pessoatipocontato where idtipocontato=3 ) as h on a.idpessoa=h.idpessoa
+left join 
+(select * from ng..bpm_dadospessoajuridica) as i on a.idpessoa=i.idpessoa
+left join
+(select * from ng..bpm_pessoatipocontato where idtipocontato=4 ) as J on a.idpessoa=J.idpessoa
+
+
+
+GO
+
+

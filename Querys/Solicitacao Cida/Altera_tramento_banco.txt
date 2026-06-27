@@ -1,0 +1,60 @@
+for each bco_hrs_compens_func exclusive-lock
+where cdn_estab="201"
+and cdn_funcionario=1291:
+display idi_tratam_lancto_bco_hrs
+
+ for each bco_hrs_compens_func exclusive-lock
+where cdn_estab="201"
+and cdn_funcionario=1291:
+ASSIGN idi_tratam_lancto_bco_hrs=2.
+
+ for each bco_hrs_compens_func exclusive-lock
+where cdn_estab="201"
+and idi_tratam_lancto_bco_hrs=1:
+ASSIGN idi_tratam_lancto_bco_hrs=2.
+
+
+### solucao 
+
+ for each bco_hrs_compens_func exclusive-lock
+where cdn_estab="201"
+and idi_tratam_lancto_bco_hrs=2:
+ASSIGN idi_tratam_lancto_bco_hrs=1.
+
+eliminar todo fechando de banco no pe4300
+
+FOR EACH bco_hrs_compens_func EXCLUSIVE-LOCK
+    WHERE cdn_estab="201"
+    AND   cdn_funcionario=46
+    AND  dat_atualiz_bco_hora>=09/21/2013:
+    DISPLAY  bco_hrs_compens_func WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH bco_hrs_compens_func EXCLUSIVE-LOCK
+    WHERE cdn_estab="201"
+    AND   cdn_funcionario=46
+    AND  dat_atualiz_bco_hora>=09/21/2013
+    AND  dat_atualiz_bco_hora<=12/20/2013
+    AND idi_hrs_posit=2:
+    DISPLAY  bco_hrs_compens_func WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH bco_hrs_compens_func EXCLUSIVE-LOCK
+    WHERE cdn_estab="201"
+    AND   cdn_funcionario=46
+    AND  dat_atualiz_bco_hora>=09/21/2013
+    AND  dat_atualiz_bco_hora<=12/20/2013
+    AND idi_hrs_posit=1
+    ASSIGN idi_hrs_posit=5.
+END.
+
+FOR EACH bco_hrs_compens_func EXCLUSIVE-LOCK
+    WHERE cdn_estab="201"
+    AND   cdn_funcionario=46
+    AND  dat_atualiz_bco_hora>=09/21/2013
+    AND  dat_atualiz_bco_hora<=12/20/2013
+    AND idi_hrs_posit=2:
+    ASSIGN idi_hrs_posit=6.
+END.
+
+1;2;201;46;003:03;-  layout de importacao de batida

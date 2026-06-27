@@ -1,0 +1,190 @@
+DEF VAR qt-etiq AS INT.    
+    
+   FOR EACH doc-fiscal NO-LOCK
+        WHERE nr-doc-fis = "0002523"
+        AND serie = "1"
+        AND cod-emitente = 13175 :
+        FOR EACH it-doc-fisc OF doc-fiscal NO-LOCK :
+            FOR EACH item-doc-est  NO-LOCK WHERE item-doc-est.it-codigo  EQ it-doc-fisc.it-codigo
+                                             AND item-doc-est.nro-docto  EQ it-doc-fisc.nr-doc-fis :
+    
+                FIND ITEM WHERE ITEM.it-codigo EQ it-doc-fisc.it-codigo NO-ERROR.
+                FIND item-caixa WHERE item-caixa.it-codigo EQ it-doc-fisc.it-codigo NO-ERROR.
+                FIND embalag WHERE embalag.sigla-emb EQ item-caixa.sigla-emb NO-ERROR.
+                FIND emitente WHERE emitente.cod-emitente EQ it-doc-fisc.cod-emitente NO-ERROR.
+
+                IF it-doc-fisc.quantidade MOD item-caixa.qt-item = 0  THEN DO:
+                    qt-etiq = it-doc-fisc.quantidade / item-caixa.qt-item .
+                END.
+                ELSE DO:
+                     qt-etiq = (it-doc-fisc.quantidade / item-caixa.qt-item) + 1 .
+                END.
+    
+                DISP  it-doc-fisc.nr-doc-fis it-doc-fisc.serie it-doc-fisc.cod-emitente doc-fiscal.dt-docto
+                it-doc-fisc.it-codigo it-doc-fisc.quantidade item-doc-est.lote item-doc-est.un ITEM.desc-item 
+                item-caixa.sigla-emb item-caixa.qt-item embalag.descricao emitente.nome-emit qt-etiq WITH 1 COLUMN WIDTH 320 .
+            END.
+        
+        END.
+        
+    END.
+    
+versao exportando txt
+
+	
+	OUTPUT TO VALUE('C:\TEMP\ETIQ.TXT').
+DEF VAR qt-etiq AS INT.
+DEF VAR qt-un-etiq AS INT.
+
+ASSIGN qt-un-etiq =0.
+    
+   FOR EACH doc-fiscal NO-LOCK
+        WHERE nr-doc-fis = "0002523"
+        AND serie = "1"
+        AND cod-emitente = 13175 :
+        FOR EACH it-doc-fisc OF doc-fiscal NO-LOCK :
+            FOR EACH item-doc-est  NO-LOCK WHERE item-doc-est.it-codigo  EQ it-doc-fisc.it-codigo
+                                             AND item-doc-est.nro-docto  EQ it-doc-fisc.nr-doc-fis :
+    
+                FIND ITEM WHERE ITEM.it-codigo EQ it-doc-fisc.it-codigo NO-ERROR.
+                FIND item-caixa WHERE item-caixa.it-codigo EQ it-doc-fisc.it-codigo NO-ERROR.
+                FIND embalag WHERE embalag.sigla-emb EQ item-caixa.sigla-emb NO-ERROR.
+                FIND emitente WHERE emitente.cod-emitente EQ it-doc-fisc.cod-emitente NO-ERROR.
+
+                IF it-doc-fisc.quantidade MOD item-caixa.qt-item = 0  THEN DO:
+                    qt-etiq = it-doc-fisc.quantidade / item-caixa.qt-item .
+                END.
+                ELSE DO:
+                     qt-etiq = (it-doc-fisc.quantidade / item-caixa.qt-item) + 1 .
+                END.
+
+                DO WHILE (qt-un-etiq + item-caixa.qt-item ) < it-doc-fisc.quantidade :
+                    qt-un-etiq = qt-un-etiq + item-caixa.qt-item.
+                   put unformatted   it-doc-fisc.nr-doc-fis ";" it-doc-fisc.serie ";" it-doc-fisc.cod-emitente ";" doc-fiscal.dt-docto ";"
+                    it-doc-fisc.it-codigo ";" it-doc-fisc.quantidade ";" item-doc-est.lote ";" item-doc-est.un ";" ITEM.desc-item ";"
+                    item-caixa.sigla-emb ";" item-caixa.qt-item ";" embalag.descricao ";" emitente.nome-emit ";" qt-etiq ";"  item-caixa.qt-item skip.
+                END.
+
+                put unformatted   it-doc-fisc.nr-doc-fis ";" it-doc-fisc.serie ";" it-doc-fisc.cod-emitente ";" doc-fiscal.dt-docto ";"
+                    it-doc-fisc.it-codigo ";" it-doc-fisc.quantidade ";" item-doc-est.lote ";" item-doc-est.un ";" ITEM.desc-item ";"
+                    item-caixa.sigla-emb ";" item-caixa.qt-item ";" embalag.descricao ";" emitente.nome-emit ";" qt-etiq ";" (it-doc-fisc.quantidade - qt-un-etiq) skip.
+
+                OUTPUT CLOSE.
+            END.
+        
+        END.
+        
+    END.
+    
+versao 3
+
+/*******************************************************************************
+ * Programa : ES0097F.P
+ * Descricao: IMPRESSÃO DE ETIQUETAS DE MATERIA PRIMA
+ * Autor    : CLAYSON OLIVEIRA
+ * Data     :FEVEREIRO/2014
+ * Versao   : 1.00.000 - Versao Inicial 
+ ******************************************************************************/
+/*-------------- Parametros  -----------------------------------------------*/
+
+/* DEFINE INPUT PARAMETER c-cod-emitente LIKE doc-fiscal.cod-emitent NO-UNDO . */
+/* DEFINE INPUT PARAMETER c-serie        LIKE doc-fiscal.serie       NO-UNDO . */
+/* DEFINE INPUT PARAMETER c-nr-nota      LIKE doc-fiscal.nr-doc-fis  NO-UNDO . */
+
+DEFINE VARIABLE chexcelapplication AS COM-HANDLE NO-UNDO .
+DEFINE VARIABLE chworkbook         AS COM-HANDLE NO-UNDO .
+DEFINE VARIABLE chworksheet        AS COM-HANDLE NO-UNDO .
+DEFINE VARIABLE c-linha            AS CHAR NO-UNDO .
+DEFINE VARIABLE c-nome-plan        AS CHARACTER FORMAT "x(256)"  NO-UNDO .
+
+OUTPUT TO VALUE('C:\TEMP\ETIQ.csv').
+DEF VAR qt-etiq AS INT.
+DEF VAR qt-un-etiq AS INT.
+
+ASSIGN qt-un-etiq =0.
+    
+   FOR EACH doc-fiscal NO-LOCK
+        WHERE nr-doc-fis = "0002523"
+        AND serie = "1"
+        AND cod-emitente = 13175 :
+        FOR EACH it-doc-fisc OF doc-fiscal NO-LOCK :
+            FOR EACH item-doc-est  NO-LOCK WHERE item-doc-est.it-codigo  EQ it-doc-fisc.it-codigo
+                                             AND item-doc-est.nro-docto  EQ it-doc-fisc.nr-doc-fis :
+    
+                FIND ITEM WHERE ITEM.it-codigo             EQ it-doc-fisc.it-codigo NO-ERROR.
+                FIND item-caixa WHERE item-caixa.it-codigo EQ it-doc-fisc.it-codigo NO-ERROR.
+                IF NOT AVAIL item-caixa THEN do:
+                    MESSAGE "Item: " it-doc-fisc.it-codigo " Sem cadastro de embalagem! " VIEW-AS ALERT-BOX.
+                    RETURN ERROR.
+                END.
+
+                FIND embalag  WHERE embalag.sigla-emb     EQ item-caixa.sigla-emb NO-ERROR.
+                FIND emitente WHERE emitente.cod-emitente EQ it-doc-fisc.cod-emitente NO-ERROR.
+
+                IF it-doc-fisc.quantidade MOD item-caixa.qt-item = 0  THEN DO:
+                    qt-etiq = it-doc-fisc.quantidade / item-caixa.qt-item .
+                END.
+                ELSE DO:
+                     qt-etiq = (it-doc-fisc.quantidade / item-caixa.qt-item) + 1 .
+                END.
+                
+
+                CREATE  "excel.application" chexcelapplication.
+                ASSIGN c-linha = PROPATH .
+                IF c-linha MATCHES ("*des206b*")  THEN chworkbook  = chexcelapplication:workbooks:OPEN("T:\esp206b\Doc\ETIQ_MP.xlsx") .
+                ELSE chworkbook  = chexcelapplication:workbooks:OPEN("T:\esp206b\Doc\ETIQ_MP.xlsx") .
+                chworksheet = chexcelapplication:Sheets("Plan1") .                      
+    
+                ASSIGN c-nome-plan = SESSION:TEMP-DIRECTORY + "ETIQ_MP.xlsx"  .
+                
+                chworksheet:range("Q5"):VALUE  = TRIM( item-doc-est.lote ).
+                chworksheet:range("o11"):VALUE  =  doc-fiscal.dt-docto.
+                chworksheet:range("c8"):VALUE  = TRIM( ITEM.desc-item ).
+                chworksheet:range("b11"):VALUE  = TRIM( it-doc-fisc.it-codigo ).
+                chworksheet:range("ac18"):VALUE  = TRIM( it-doc-fisc.it-codigo ).
+                chworksheet:range("b14"):VALUE  = TRIM( it-doc-fisc.serie ).
+                chworksheet:range("e14"):VALUE  = TRIM(it-doc-fisc.nr-doc-fis ).
+                chworksheet:range("h17"):VALUE  = TRIM(item-doc-est.un ).
+                chworksheet:range("b20"):VALUE  = TRIM(item-caixa.sigla-emb ).
+                chworksheet:range("h20"):VALUE  = TRIM(embalag.descricao ).
+                chworksheet:range("b23"):VALUE  = it-doc-fisc.cod-emitente.
+                chworksheet:range("h23"):VALUE  = TRIM(emitente.nome-abrev ).
+                
+
+                DO WHILE (qt-un-etiq + item-caixa.qt-item ) < it-doc-fisc.quantidade :
+                    qt-un-etiq = qt-un-etiq + item-caixa.qt-item.
+                   put unformatted   it-doc-fisc.nr-doc-fis ";" it-doc-fisc.serie ";" it-doc-fisc.cod-emitente ";" doc-fiscal.dt-docto ";"
+                    it-doc-fisc.it-codigo ";" it-doc-fisc.quantidade ";" item-doc-est.lote ";" item-doc-est.un ";" ITEM.desc-item ";"
+                    item-caixa.sigla-emb ";" item-caixa.qt-item ";" embalag.descricao ";" emitente.nome-emit ";" qt-etiq ";"  item-caixa.qt-item skip.
+                   chworksheet:range("b17"):VALUE  =  item-caixa.qt-item . 
+                   chworksheet:PrintOut(YES). 
+                END.
+
+                put unformatted   it-doc-fisc.nr-doc-fis ";" it-doc-fisc.serie ";" it-doc-fisc.cod-emitente ";" doc-fiscal.dt-docto ";"
+                    it-doc-fisc.it-codigo ";" it-doc-fisc.quantidade ";" item-doc-est.lote ";" item-doc-est.un ";" ITEM.desc-item ";"
+                    item-caixa.sigla-emb ";" item-caixa.qt-item ";" embalag.descricao ";" emitente.nome-emit ";" qt-etiq ";" 
+                    IF (it-doc-fisc.quantidade - qt-un-etiq) > 0 THEN (it-doc-fisc.quantidade - qt-un-etiq) ELSE it-doc-fisc.quantidade skip.
+                    IF (it-doc-fisc.quantidade - qt-un-etiq) > 0 THEN DO:
+                        chworksheet:range("b17"):VALUE  =  (it-doc-fisc.quantidade - qt-un-etiq).
+                    END.
+                    ELSE DO:
+                        chworksheet:range("b17"):VALUE  =  it-doc-fisc.quantidade.
+                    END.
+                    
+
+                chworksheet:PrintOut(YES).          
+                OS-DELETE VALUE ( c-nome-plan ) NO-ERROR .  
+                chworksheet:SaveAs(c-nome-plan).
+                chworkbook:CLOSE(YES).
+                RELEASE OBJECT chexcelapplication   .
+                RELEASE OBJECT chworkbook           .
+                RELEASE OBJECT chworksheet          .
+                END.
+        
+        END.
+        
+    END.
+    OUTPUT CLOSE.
+    
+
+

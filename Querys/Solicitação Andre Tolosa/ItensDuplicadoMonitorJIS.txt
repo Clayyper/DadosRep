@@ -1,0 +1,7 @@
+SELECT count(1),[SEQNUM], [ORDNUM],[CODFIAT]      
+  FROM [JIS].[dbo].[seqjis]
+  
+  where ID >= 1434391
+  group by [SEQNUM], [ORDNUM],[CODFIAT] 
+  
+GO

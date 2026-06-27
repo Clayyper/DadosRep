@@ -1,0 +1,36 @@
+for each es-ext-ped-item exclusive-lock
+where nr-pedcli="4":
+display es-ext-ped-item with 1 column width 320.
+
+
+update a
+set a.num-pedido-cliente=b.num-pedido-cliente
+from es-ext-ped-item as a 
+	inner join es-ext-ped-item as b 
+	on b.nr-pedcli=4 
+	and a.it-codigo=b.it-codigo 
+	and a.nr-pedcli=109
+	
+	
+	select a.nr-pedcli,a.num-pedido-cliente,b.nr-pedcli,b  .num-pedido-cliente 
+from es-ext-ped-item  a 
+	inner join es-ext-ped-item  b 
+	on b.nr-pedcli="4" 
+	and a.it-codigo=b.it-codigo 
+	and a.nr-pedcli="109" 
+	
+	""Update com inner join progress""
+	DEFINE BUFFER b-es-ext-ped-item       FOR es-ext-ped-item .
+FOR EACH es-ext-ped-item OF ped-venda NO-LOCK :
+    for each b-es-ext-ped-item where b-es-ext-ped-item.it-codigo EQ es-ext-ped-item.it-codigo
+                                     AND b-es-ext-ped-item.nr-pedcli EQ "4"
+                                     AND es-ext-ped-item.nr-pedcli EQ "112":
+        assign es-ext-ped-item.num-pedido-cliente = b-es-ext-ped-item.num-pedido-cliente.
+    end.
+
+end. 
+
+for each es-ext-ped-item exclusive-lock
+
+    where nr-pedcli="109":
+    assign nr-pedcli="112".

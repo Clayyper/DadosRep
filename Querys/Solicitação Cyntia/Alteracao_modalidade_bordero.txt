@@ -1,0 +1,4 @@
+FOR EACH bord-cr EXCLUSIVE-LOCK
+    WHERE nr-bordero=1091401:
+    DISPLAY bord-cr WITH 1 COLUMN WIDTH 320.
+END.

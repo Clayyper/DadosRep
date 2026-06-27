@@ -1,0 +1,32 @@
+FOR EACH ped-item WHERE nr-pedcli = "219":
+/*     DISP  nome-abrev  nr-sequencia  it-codigo nr-pedcli 1. */
+    CREATE es-ext-ped-item.
+        ASSIGN   es-ext-ped-item.nome-abrev          = ped-item.nome-abrev 
+                 es-ext-ped-item.nr-sequencia        = ped-item.nr-sequencia
+                 es-ext-ped-item.it-codigo           = ped-item.it-codigo
+                 es-ext-ped-item.nr-pedcli           = "219"
+                 es-ext-ped-item.num-pedido-cliente  = "1".
+END.
+
+
+
+
+DEFINE TEMP-TABLE temp-es-ex LIKE es-ext-ped-item.
+
+
+FOR EACH es-ext-ped-item WHERE es-ext-ped-item.nr-pedcli = "115" NO-LOCK:
+   CREATE temp-es-ex.
+   BUFFER-COPY es-ext-ped-item TO temp-es-ex.
+END.
+
+FOR EACH es-ext-ped-item WHERE   es-ext-ped-item.nr-pedcli = "219":
+   FIND temp-es-ex WHERE temp-es-ex.it-codigo     EQ es-ext-ped-item.it-codigo
+                     AND temp-es-ex.nr-sequencia  EQ es-ext-ped-item.nr-sequencia.
+
+   IF AVAIL temp-es-ex THEN DO:
+       ASSIGN es-ext-ped-item.num-pedido-cliente = temp-es-ex.num-pedido-cliente.
+   END.
+   ELSE DO:
+       MESSAGE es-ext-ped-item.it-codigo es-ext-ped-item.nr-sequencia VIEW-AS ALERT-BOX.
+   END.
+END.

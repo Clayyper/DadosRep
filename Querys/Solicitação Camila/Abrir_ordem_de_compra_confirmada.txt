@@ -1,0 +1,34 @@
+FOR EACH ordem-compra EXCLUSIVE-LOCK
+    WHERE numero-ordem=4637:
+    UPDATE nr-contrato.
+END.
+
+FOR EACH ordem-compra EXCLUSIVE-LOCK
+    WHERE numero-ordem=4637:
+    DISP numero-ordem                
+it-codigo                   
+natureza                    
+situacao                    
+origem                      
+op-codigo                   
+data-emissao                
+ct-codigo                   
+sc-codigo                   
+requisitante                
+dep-almoxar                 
+ordem-servic                
+cod-comprado                
+narrativa                   
+num-pedido                  
+data-pedido                 
+cod-emitente                
+data-cotacao                
+preco-orig                  
+preco-unit                  
+qtd-recbda-fut     WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH ordem-compra EXCLUSIVE-LOCK
+    WHERE numero-ordem=4842:
+    ASSIGN situacao=1.
+END.

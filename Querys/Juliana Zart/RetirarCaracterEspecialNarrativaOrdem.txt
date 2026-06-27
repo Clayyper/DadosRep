@@ -1,0 +1,4 @@
+FOR EACH ordem-compra WHERE numero-ordem >= 24327500
+                        AND numero-ordem <= 24332300:
+    ASSIGN narrativa = REPLACE(narrativa , "|","-").
+END.

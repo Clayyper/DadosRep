@@ -1,0 +1,5 @@
+FOR EACH ped-item EXCLUSIVE-LOCK
+    WHERE   nr-pedcli = '934501'
+    AND it-codigo = '94757285' :
+    UPDATE  aliquota-ipi.
+END.                

@@ -1,0 +1,20 @@
+DEFINE TEMP-TABLE tt-itens LIKE es-entr-forn .
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+FOR EACH tt-itens:
+    CREATE  es-entr-forn.
+    BUFFER-COPY  tt-itens TO es-entr-forn.
+END.

@@ -1,0 +1,179 @@
+for each item-doc-est WHERE  nro-docto = "0007764"
+AND cod-emitente=10280:
+    DISP item-doc-est.cod-emitente WITH 1 COLUMN WIDTH 320.
+END.
+
+IF SUBSTRING(nota-fisc-adc.cod-livre-2,1,60) = "" THEN
+                        ASSIGN OVERLAY(nota-fisc-adc.cod-livre-2,1,60) = nota-fiscal.cod-chave-aces-nf-eletro
+						
+						
+						FOR EACH docum-est WHERE    nro-docto = "0007764" AND cod-emitente = 10280:
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+    DISP cod-docto-referado cod-nota-fisc SUBSTRING(nota-fisc-adc.cod-livre-2,1,60).
+        END.
+END.
+
+
+
+**************
+FOR EACH docum-est WHERE    nro-docto    EQ "0007764" 
+                        AND cod-emitente EQ 10280
+                        AND serie-docto  EQ "1"   :
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+        DISP cod-docto-referado cod-ser-docto-referado cod-serie cod-nota-fisc SUBSTRING(nota-fisc-adc.cod-livre-2,1,60).
+        FIND nota-fiscal WHERE nota-fiscal.nr-nota-fis EQ nota-fisc-adc.cod-docto-referado
+                            AND nota-fiscal.serie      EQ nota-fisc-adc.cod-ser-docto-referado NO-ERROR.
+
+        IF AVAIL nota-fiscal THEN DO:
+            DISP nota-fiscal.nr-nota-fis.
+        END.
+    END.
+END.
+**********************************************************
+
+
+OUTPUT TO VALUE('C:\TEMP\7764.TXT').
+
+FOR EACH docum-est WHERE    nro-docto    EQ "0007764" 
+                        AND cod-emitente EQ 10280
+                        AND serie-docto  EQ "1"   :
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+        
+        FIND ret-nf-eletro WHERE ret-nf-eletro.nr-nota-fis  EQ nota-fisc-adc.cod-docto-referado
+                                AND ret-nf-eletro.cod-serie EQ nota-fisc-adc.cod-ser-docto-referado NO-ERROR.
+
+        IF AVAIL ret-nf-eletro THEN DO:
+            
+            put unformatted "cod-estabel                 :"ret-nf-eletro.cod-estabel       skip.
+            put unformatted "cod-serie                   :"ret-nf-eletro.cod-serie         skip.
+            put unformatted "nr-nota-fis                 :"ret-nf-eletro.nr-nota-fis       skip.
+            put unformatted "idi-orig-solicit            :"ret-nf-eletro.idi-orig-solicit  skip.
+            put unformatted "cod-msg                     :"ret-nf-eletro.cod-msg           skip.
+            put unformatted "dat-ret                     :"ret-nf-eletro.dat-ret           skip.
+            put unformatted "hra-ret                     :"ret-nf-eletro.hra-ret           skip.
+            put unformatted "log-ativo                   :"ret-nf-eletro.log-ativo         skip.
+            put unformatted "cod-livre-1                 :"ret-nf-eletro.cod-livre-1       skip.
+            put unformatted "cod-livre-2                 :"ret-nf-eletro.cod-livre-2       skip.
+            put unformatted "log-livre-1                 :"ret-nf-eletro.log-livre-1       skip.
+            put unformatted "log-livre-2                 :"ret-nf-eletro.log-livre-2       skip.
+            put unformatted "num-livre-1                 :"ret-nf-eletro.num-livre-1       skip.
+            put unformatted "num-livre-2                 :"ret-nf-eletro.num-livre-2       skip.
+            put unformatted "val-livre-1                 :"ret-nf-eletro.val-livre-1       skip.
+            put unformatted "val-livre-2                 :"ret-nf-eletro.val-livre-2       skip.
+            put unformatted "dat-livre-1                 :"ret-nf-eletro.dat-livre-1       skip.
+            put unformatted "dat-livre-2                 :"ret-nf-eletro.dat-livre-2       skip.
+        
+        END.
+            
+        
+    END.
+END.
+OUTPUT CLOSE.
+
+
+***************************
+
+
+OUTPUT TO VALUE('C:\TEMP\7764.TXT').
+
+FOR EACH docum-est WHERE    nro-docto    EQ "0007764" 
+                        AND cod-emitente EQ 10280
+                        AND serie-docto  EQ "1"   :
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+        
+       FIND nota-fiscal WHERE nota-fiscal.nr-nota-fis EQ nota-fisc-adc.cod-docto-referado
+                            AND nota-fiscal.serie      EQ nota-fisc-adc.cod-ser-docto-referado NO-ERROR.
+
+        IF AVAIL nota-fiscal THEN DO:
+            IF SUBSTRING(nota-fisc-adc.cod-livre-2,1,60) = "" THEN DO:
+               ASSIGN OVERLAY(nota-fisc-adc.cod-livre-2,1,60) = substring(nota-fiscal.char-2,2,45).
+            END.
+                        
+        END.
+                        
+        
+        
+            
+        
+    END.
+END.
+OUTPUT CLOSE.
+
+
+*********************************************************************
+FOR EACH docum-est WHERE    dt-atualiza >= 01/01/2017
+                            AND dt-atualiza <= 01/31/2017   :
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+        
+       FIND nota-fiscal WHERE nota-fiscal.nr-nota-fis EQ nota-fisc-adc.cod-docto-referado
+                            AND nota-fiscal.serie      EQ nota-fisc-adc.cod-ser-docto-referado NO-ERROR.
+
+        IF AVAIL nota-fiscal THEN DO:
+            IF SUBSTRING(nota-fisc-adc.cod-livre-2,1,60) = "" THEN DO:
+               ASSIGN OVERLAY(nota-fisc-adc.cod-livre-2,1,60) = substring(nota-fiscal.char-2,2,45).
+            END.
+                        
+        END.
+                        
+        
+        
+            
+        
+    END.
+END.
+
+
+
+**************************************************************************
+FOR EACH docum-est WHERE    dt-atualiza >= 01/27/2017
+                            AND dt-atualiza <= 01/31/2017   
+                            AND cod-estabel = "402":
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = docum-est.cod-emitente
+        AND cod-nota-fisc = docum-est.nro-docto
+        :
+       IF SUBSTRING(nota-fisc-adc.cod-livre-2,1,60) = "" THEN DO: 
+            FIND nota-fiscal WHERE nota-fiscal.nr-nota-fis EQ nota-fisc-adc.cod-docto-referado
+                            AND nota-fiscal.serie      EQ nota-fisc-adc.cod-ser-docto-referado NO-ERROR.
+
+            IF AVAIL nota-fiscal THEN DO:
+               ASSIGN OVERLAY(nota-fisc-adc.cod-livre-2,1,60) = substring(nota-fiscal.char-2,2,45).
+            END.
+                        
+        END.
+        
+    END.
+END.
+
+****************************************************************************
+FOR EACH nota-fiscal WHERE    dt-emis-nota >= 01/01/2017
+                            AND dt-emis-nota <= 01/31/2017   
+                            AND cod-estabel = "403"
+                            :
+   
+    FOR EACH nota-fisc-adc WHERE nota-fisc-adc.cdn-emitente = nota-fiscal.cod-emitente
+        AND cod-nota-fisc = nota-fiscal.nr-nota-fis
+        :
+       IF SUBSTRING(nota-fisc-adc.cod-livre-2,1,60) = "" THEN DO:
+           FIND docum-est WHERE docum-est.nro-docto    EQ nota-fisc-adc.cod-docto-referado
+                            AND docum-est.serie        EQ nota-fisc-adc.cod-ser-docto-referado
+                            AND docum-est.cod-emitente EQ nota-fisc-adc.cdn-emitente NO-ERROR.
+
+            IF AVAIL docum-est THEN DO:
+               ASSIGN OVERLAY(nota-fisc-adc.cod-livre-2,1,60) = SUBSTRING(docum-est.char-1,93,44).
+/*                 MESSAGE SUBSTRING(docum-est.char-1,93,44) VIEW-AS ALERT-BOX. */
+            END.
+
+        END.
+
+    END.
+END.

@@ -1,0 +1,16 @@
+OUTPUT TO VALUE ('c:\temp\asnforn3.csv').
+PUT UNFORMATTED "Nota" ";" "Serie" ";" "Data Nfe" ";" "CNPJ" ";" "Cod Emitente" ";" "Nome Abrev" ";" "Item" ";" "Num Pedido" SKIP.
+FOR EACH es-entr-forn NO-LOCK
+    WHERE  au-data-nfe >= 04/01/2015:
+    FIND emitente WHERE emitente.cgc  EQ es-entr-forn.c-cnpj-transmissor NO-ERROR.
+
+    PUT UNFORMATTED es-entr-forn.au-num-nfe ";"
+                    es-entr-forn.au-serie   ";"
+                    es-entr-forn.au-data-nfe ";"
+                 "'"es-entr-forn.c-cnpj-transmissor ";"
+                    emitente.cod-emitente ";"
+                    emitente.nome-abrev ";"
+                    es-entr-forn.ad-cod-item ";"
+                     es-entr-forn.ad-num-ped SKIP.
+END.
+OUTPUT CLOSE.

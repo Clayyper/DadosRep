@@ -1,0 +1,183 @@
+Requisitante nao cadastrados
+
+OUTPUT TO VALUE('C:\TEMP\Requisitantes.TXT').
+FOR EACH ordem-compra WHERE numero-ordem EQ 71000:
+    FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.requisitante NO-LOCK NO-ERROR.
+    IF NOT AVAIL usuar_mestre THEN DO:
+        PUT UNFORMATTED ordem-compra.numero-ordem ";" ordem-compra.dat-ordem ";" ordem-compra.requisitante SKIP.
+        DISP ordem-compra.requisitante WITH 1 COLUMN WIDTH 320.
+    END.
+END.
+OUTPUT CLOSE.
+
+
+
+OUTPUT TO VALUE('C:\TEMP\Requisitantes.TXT').
+FOR EACH ordem-compra WHERE dat-ordem <= 12/31/2002 AND situacao NE 4 AND situacao NE 6:
+/*     DISP ordem-compra.situacao WITH 1 COLUMN WIDTH 320. */
+    FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.requisitante NO-LOCK NO-ERROR.
+    IF NOT AVAIL usuar_mestre THEN DO:
+        PUT UNFORMATTED ordem-compra.numero-ordem ";" ordem-compra.dat-ordem ";" ordem-compra.requisitante SKIP.
+        
+    END.
+END.
+OUTPUT CLOSE.
+
+
+OUTPUT TO VALUE('C:\TEMP\Requisitantes2003.TXT').
+FOR EACH ordem-compra WHERE dat-ordem >= 01/01/2003 
+                        AND dat-ordem <= 12/31/2003    
+                        AND situacao NE 4 AND situacao NE 6:
+/*     DISP ordem-compra.situacao WITH 1 COLUMN WIDTH 320. */
+    FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.requisitante NO-LOCK NO-ERROR.
+    IF NOT AVAIL usuar_mestre THEN DO:
+        PUT UNFORMATTED ordem-compra.cod-estabel ";" ordem-compra.numero-ordem ";" ordem-compra.dat-ordem ";" ordem-compra.requisitante SKIP.
+        ASSIGN ordem-compra.requisitante = "eula.g".
+        
+    END.
+END.
+OUTPUT CLOSE.
+
+Comprador Inexistente
+
+
+OUTPUT TO VALUE('C:\TEMP\Comprador2002.TXT').
+FOR EACH ordem-compra WHERE dat-ordem >= 01/01/2002 
+                        AND dat-ordem <= 12/31/2002    
+                        AND situacao NE 4 AND situacao NE 6:
+/*     DISP ordem-compra.situacao WITH 1 COLUMN WIDTH 320. */
+    FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.cod-comprado NO-LOCK NO-ERROR.
+    IF NOT AVAIL usuar_mestre THEN DO:
+        PUT UNFORMATTED ordem-compra.cod-estabel ";" ordem-compra.numero-ordem ";" ordem-compra.dat-ordem ";" ordem-compra.cod-comprado SKIP.
+        ASSIGN ordem-compra.cod-comprado = "eula.g".
+        
+    END.
+END.
+OUTPUT CLOSE.
+
+
+
+
+
+Responsavel nao cadastrado
+
+OUTPUT TO VALUE('C:\TEMP\Responsavel2002.TXT').
+FOR EACH pedido-compr WHERE data-pedido >= 01/01/2002
+                         AND data-pedido <= 12/31/2002
+                         AND situacao NE 4 AND situacao NE 6 
+                            :
+    FIND usuar_mestre WHERE cod_usuario EQ pedido-compr.responsavel NO-LOCK NO-ERROR.
+    IF NOT AVAIL usuar_mestre THEN DO:
+        PUT UNFORMATTED pedido-compr.cod-estabel ";" pedido-compr.num-pedido ";" pedido-compr.data-pedido ";" pedido-compr.responsavel SKIP.
+        ASSIGN pedido-compr.responsavel = "eula.g".
+        
+    END.
+
+END.                
+
+OUTPUT CLOSE.
+
+
+Data deve ser maior ou igual a Data de Implantação do Pedido
+
+OUTPUT TO VALUE('C:\TEMP\DataPrazo2005.TXT').
+FOR EACH ordem-compra WHERE dat-ordem >= 01/01/2005 
+                        AND dat-ordem <= 12/31/2005    
+                        AND situacao NE 4 AND situacao NE 6 NO-LOCK:
+/*     DISP ordem-compra.situacao WITH 1 COLUMN WIDTH 320. */
+
+find pedido-compr of ordem-compra no-lock no-error.
+
+    FOR EACH prazo-compr  WHERE prazo-compr.numero-ordem EQ ordem-compra.numero-ordem
+                             AND prazo-compr.situacao NE 4 AND prazo-compr.situacao NE 6
+                             AND prazo-compr.data-entrega <= pedido-compr.data-pedido :
+        DISP pedido-compr.num-pedido ";" pedido-compr.data-pedido ";" prazo-compr.numero-ordem ";" data-entrega ";" parcela.
+        ASSIGN prazo-compr.data-entrega = 12/31/2018.
+    END.
+    
+END.
+OUTPUT CLOSE.
+
+
+
+
+
+
+Centro de Custo deve ser informado(a)
+
+OUTPUT TO VALUE('C:\TEMP\Subconta.TXT').
+FOR EACH ordem-compra WHERE dat-ordem >= 01/01/2002 
+                        AND dat-ordem <= 12/31/2017    
+                        AND situacao NE 4 AND situacao NE 6
+                        AND sc-codigo EQ "" 
+                        AND ct-codigo EQ "13205001" NO-LOCK:
+/*     DISP ordem-compra.situacao WITH 1 COLUMN WIDTH 320. */
+
+
+DISP ordem-compra.num-pedido ";" ordem-compra.numero-ordem ";" ordem-compra.dat-ordem ";" ct-codigo ";" sc-codigo. 
+ASSIGN ct-codigo ="63180000"
+       sc-codigo = "11070".
+   
+    
+END.
+OUTPUT CLOSE
+
+
+Ordem status recebida porem com saldo de fornecedor.
+
+OUTPUT TO VALUE('C:\TEMP\CompradorRequisitanteRecebida.TXT').
+PUT UNFORMATTED "PEDIDO" ";" "ORDEM"  ";" "COMRPADOR" ";" "REQUISITANTE" ";" "DATA ORDEM" ";" "CONTA CONTABIL" ";" "CENTRO CUSTO" SKIP.
+FOR EACH prazo-compr WHERE (prazo-compr.situacao EQ 6)
+                        AND qtd-sal-forn > 0:
+
+    FIND ordem-compra OF prazo-compr WHERE dat-ordem >= 01/01/2002 
+                                        AND dat-ordem <= 12/31/2017 
+                                        NO-ERROR.
+    IF AVAIL ordem-compra THEN DO:
+        FIND pedido-compr OF ordem-compra NO-ERROR.
+        FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.cod-comprado NO-LOCK NO-ERROR.
+        IF NOT AVAIL usuar_mestre THEN DO:
+            PUT UNFORMATTED pedido-compr.num-pedido ";" prazo-compr.numero-ordem  ";" ordem-compra.cod-comprado ";" ordem-compra.requisitante ";" ordem-compra.dat-ordem ";" ordem-compra.ct-codigo ";" ordem-compra.sc-codigo SKIP.
+            ASSIGN ordem-compra.cod-comprado = "eula.g".
+        END.
+        FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.requisitante NO-LOCK NO-ERROR.
+        IF NOT AVAIL usuar_mestre THEN DO:
+            PUT UNFORMATTED pedido-compr.num-pedido ";" prazo-compr.numero-ordem  ";" ordem-compra.cod-comprado ";" ordem-compra.requisitante ";" ordem-compra.dat-ordem ";" ordem-compra.ct-codigo ";" ordem-compra.sc-codigo SKIP.
+            ASSIGN ordem-compra.requisitante = "eula.g".
+        END.
+        IF ordem-compra.ct-codigo EQ "" THEN DO:
+            PUT UNFORMATTED pedido-compr.num-pedido ";" prazo-compr.numero-ordem  ";" ordem-compra.cod-comprado ";" ordem-compra.requisitante ";" ordem-compra.dat-ordem ";" ordem-compra.ct-codigo ";" ordem-compra.sc-codigo SKIP.
+            ASSIGN ct-codigo ="63180000"
+                   sc-codigo = "11070".
+        END.
+        
+    END.
+
+END.
+OUTPUT CLOSE.
+
+
+CORRIGINDO ERRO DE DEPOSITO INEXISTENTE
+
+OUTPUT TO VALUE('C:\TEMP\DEPOSITO.TXT').
+PUT UNFORMATTED "PEDIDO" ";" "ORDEM"  ";" "COMRPADOR" ";" "REQUISITANTE" ";" "DATA ORDEM" ";" "CONTA CONTABIL" ";" "CENTRO CUSTO" SKIP.
+FOR EACH prazo-compr WHERE (prazo-compr.situacao NE 4)
+                        AND qtd-sal-forn > 0:
+
+    FIND ordem-compra OF prazo-compr WHERE dat-ordem >= 01/01/2002 
+                                        AND dat-ordem <= 12/31/2017 
+                                        NO-ERROR.
+    IF AVAIL ordem-compra THEN DO:
+        FIND pedido-compr OF ordem-compra NO-ERROR.
+        FIND usuar_mestre WHERE cod_usuario EQ ordem-compra.cod-comprado NO-LOCK NO-ERROR.
+        
+        IF ordem-compra.dep-almoxar EQ "" THEN DO:
+            PUT UNFORMATTED pedido-compr.num-pedido ";" prazo-compr.numero-ordem  ";" ordem-compra.cod-comprado ";" ordem-compra.requisitante ";" ordem-compra.dat-ordem ";" ordem-compra.dep-almoxar SKIP.
+            ASSIGN ordem-compra.dep-almoxar ="ALM".
+        
+        END.
+        
+    END.
+
+END.
+OUTPUT CLOSE.

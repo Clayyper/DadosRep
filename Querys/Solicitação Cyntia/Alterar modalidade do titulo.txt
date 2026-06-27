@@ -1,0 +1,58 @@
+FOR EACH titulo EXCLUSIVE-LOCK
+    WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0038237"
+    AND titulo.num-id-titulo-cr=00676298:
+    UPDATE titulo.modalidade WITH 2 COLUMN WIDTH 320.
+END.
+
+update titulo
+set titulo.modalidade=2
+WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0038237"
+    AND titulo.num-id-titulo-cr=00676298
+	
+update titulo
+set titulo.modalidade=2
+WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0037680"
+    AND titulo.num-id-titulo-cr=00675672
+
+	
+	update titulo
+set titulo.modalidade=2
+WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0038123"
+    AND titulo.num-id-titulo-cr=00676129
+	
+	
+CD0709
+CR0640
+CR0501
+CR0504
+
+00676093
+
+update titulo
+set titulo.modalidade=2
+WHERE titulo.cod-estabel="201"
+AND titulo.nr-docto="0038080"
+    AND titulo.serie="121"
+    AND titulo.num-id-titulo-cr=00676093
+	
+FOR EACH titulo EXCLUSIVE-LOCK
+    WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0039118"
+    :
+    DISPLAY  titulo.modalidade num-id-titulo-cr vl-original.
+END.
+
+FOR EACH titulo EXCLUSIVE-LOCK
+    WHERE titulo.cod-estabel="201"
+    AND titulo.nr-docto="0039118"
+    AND titulo.num-id-titulo-cr=00677006:
+    ASSIGN  titulo.modalidade=2.
+END.
+
+mod-baixa
+-baixa
+00677082

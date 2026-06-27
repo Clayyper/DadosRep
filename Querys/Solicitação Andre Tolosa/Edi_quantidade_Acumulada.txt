@@ -1,0 +1,57 @@
+D3BBA01688AB
+
+
+FOR EACH it-nota-fisc EXCLUSIVE-LOCK
+    WHERE  it-nota-fisc.it-codigo EQ "D3BBA01688AB" :
+    DISPLAY it-nota-fisc.qt-faturada[1] qt-faturada[2] dt-emis-nota it-codigo it-nota-fisc.nr-nota-fis  WITH 2 COLUMN WIDTH 320.
+END.
+
+
+OUTPUT TO VALUE('C:\TEMP\EMB.TXT').
+
+FOR EACH it-nota-fisc EXCLUSIVE-LOCK
+    WHERE  it-nota-fisc.it-codigo EQ "D3BBA01688AB".
+PUT unformatted it-nota-fisc.qt-faturada[1] qt-faturada[2] dt-emis-nota it-codigo it-nota-fisc.nr-nota-fis  skip. 
+END.
+
+OUTPUT CLOSE.
+
+
+OUTPUT TO VALUE('C:\TEMP\EMB.TXT').
+
+FOR EACH it-nota-fisc EXCLUSIVE-LOCK
+    WHERE  it-nota-fisc.it-codigo EQ "D3BBA01688AB"
+	AND  it-nota-fisc.dt-emis     GE 01/01/2011
+    AND  it-nota-fisc.dt-cancela  EQ ? 
+    AND   it-nota-fisc.emite-dup   EQ YES.
+PUT unformatted it-nota-fisc.qt-faturada[1] "    ;    " dt-emis-nota ";   " it-codigo ";   " it-nota-fisc.nr-nota-fis  skip. 
+END.
+
+OUTPUT CLOSE.
+
+ASSIGN de-qt-entrega = 0 .
+FOR EACH it-nota-fisc EXCLUSIVE-LOCK
+    WHERE  it-nota-fisc.it-codigo EQ "D3BBA01688AB"
+	AND  it-nota-fisc.dt-emis     GE 01/01/2011
+    AND  it-nota-fisc.dt-cancela  EQ ? 
+    AND   it-nota-fisc.emite-dup   EQ YES
+	
+ASSIGN de-qt-entrega = de-qt-entrega + it-nota-fisc.qt-faturada[1] .
+display de-qt-entrega.
+
+            END.
+			
+			
+			
+OUTPUT TO VALUE('C:\TEMP\EMB.TXT').
+
+FOR EACH it-nota-fisc EXCLUSIVE-LOCK
+    WHERE  it-nota-fisc.it-codigo EQ "D3BBA01688AB"
+	AND  it-nota-fisc.dt-emis     GE 01/01/2011
+    AND  it-nota-fisc.dt-cancela  EQ ? 
+    AND   it-nota-fisc.emite-dup   EQ YES
+    AND it-nota-fisc.nr-tabpre="00112".
+PUT unformatted it-nota-fisc.qt-faturada[1] "    ;    " dt-emis-nota ";   " it-codigo ";   " it-nota-fisc.nr-nota-fis "; " it-nota-fisc.nat-operacao skip. 
+END.
+
+OUTPUT CLOSE.

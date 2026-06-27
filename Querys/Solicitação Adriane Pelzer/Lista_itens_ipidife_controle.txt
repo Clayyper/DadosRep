@@ -1,0 +1,7 @@
+OUTPUT TO VALUE('C:\TEMP\item.TXT').
+FOR EACH ITEM NO-LOCK
+    WHERE ind-ipi-dife=YES
+    OR tipo-contr <> 2:
+    PUT UNFORMATTED it-codigo ";"  desc-item ";" ind-ipi-dife ";" tipo-contr SKIP.
+END.
+OUTPUT CLOSE.

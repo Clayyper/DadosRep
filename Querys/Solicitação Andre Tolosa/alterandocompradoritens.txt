@@ -1,0 +1,45 @@
+FOR EACH item-uni-estab NO-LOCK
+    WHERE cod-comprado = "aoliveira":
+    DISP it-codigo cod-estabel.
+END.
+
+Alteração de comprador do item
+
+FOR EACH item EXCLUSIVE-LOCK
+    WHERE cod-comprado = "aoliveira"
+    AND it-codigo ="2030240":
+    UPDATE it-codigo cod-estabel cod-comprado.
+END.
+
+
+FOR EACH fam-uni-estab :
+    ASSIGN cod-comprado = "alexandre.s"
+END.
+
+*************compradores de EDI
+
+FOR EACH item-uni-estab where cod-estabel EQ "402"
+						 and ( it-codigo   EQ "315000030"
+						 or   it-codigo   EQ "GN15A31148APIA06"
+						 or   it-codigo   EQ "GN15A31148APIA15"
+						 or   it-codigo   EQ "GN15A31148APIA16"
+						 or   it-codigo   EQ "GN15A31148APIA17"
+						 or   it-codigo   EQ "GN15A31149APIA15"
+						 or   it-codigo   EQ "GN15A31149APIA16"
+						 or   it-codigo   EQ "GN15A31149APIA17"
+						 or   it-codigo   EQ "CN1525262AA"
+						 or   it-codigo   EQ "2N15N16C266AA"
+						 or   it-codigo   EQ "2S65A16C266BA"
+						 or   it-codigo   EQ "2S65A24344AA"
+						 or   it-codigo   EQ "2S6517008AA35B8"
+						 or   it-codigo   EQ "85GGA01691AA"
+						 or   it-codigo   EQ "CN1517005AC"
+						 or   it-codigo   EQ "KN1517005AB"
+						 or   it-codigo   EQ "CN15N16E560BA"
+						 or   it-codigo   EQ "CN15N16E561BA"
+						 or   it-codigo   EQ "CN15N01492AA"
+						 or   it-codigo   EQ "2S65B13014AB"
+						 or   it-codigo   EQ "2S65B13014BA"):						 
+    assign cod-comprado = "patricia.s".
+    
+END.

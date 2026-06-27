@@ -1,0 +1,1 @@
+robocopy y:\ F:\totvs\datasul\dts-0\ERP\ /e /r:1 /w:1 /log:C:\log.txt /tee

@@ -1,0 +1,27 @@
+1 - nenhum
+2 - pendente - erro integridade
+3 - cancelado - manual
+4 - pendente - erro mov exclusão
+5 - cancelado -automatico
+6 - pendente - gerar xml
+7 - pendente - pronto para envio
+8 - pendente - erro xml
+9 - enviado - aguardando processamento TAF
+10- enviado - processado TAF
+11- rejeitado - erro conexao envio
+12- rejeitado - TAF
+13- Rejeitado - governo
+14- rejeitado - erro conexao retorno
+
+
+
+
+
+for each sped_movto_msg where val_seq_msg_sped EQ 624:
+assign idi_motiv_bloq_msg = 9 .
+end.         
+
+
+for each sped_movto_msg where val_seq_msg_sped EQ 10038:
+DISP  val_seq_msg_sped  cdn_estab val_msg_predec  .
+end.    

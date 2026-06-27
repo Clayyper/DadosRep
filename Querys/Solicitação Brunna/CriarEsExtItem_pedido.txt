@@ -1,0 +1,14 @@
+DEFINE BUFFER temp-ext-item FOR es-ext-ped-item.
+ FOR EACH temp-ext-item WHERE nr-pedcli EQ "219":
+    CREATE es-ext-ped-item.
+    ASSIGN es-ext-ped-item.nome-abrev         =  temp-ext-item.nome-abrev        
+           es-ext-ped-item.nr-pedcli          =  "319"         
+           es-ext-ped-item.nr-sequencia       =  temp-ext-item.nr-sequencia      
+           es-ext-ped-item.it-codigo          =  temp-ext-item.it-codigo         
+           es-ext-ped-item.cod-refer          =  temp-ext-item.cod-refer         
+           es-ext-ped-item.nr-seq-item-cli    =  temp-ext-item.nr-seq-item-cli   
+           es-ext-ped-item.num-pedido-cliente =  temp-ext-item.num-pedido-cliente
+.
+
+
+END.

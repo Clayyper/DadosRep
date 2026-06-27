@@ -1,0 +1,15 @@
+FOR EACH es-transf-cq WHERE es-transf-cq.cod-estabel EQ "403"
+                      AND dt-criacao = 06/25/2015:
+/*     DISP es-transf-cq WITH 1 COLUMN WIDTH 320. */
+/*     ASSIGN es-transf-cq.enviado = NO.          */
+    FIND movto-estoq WHERE RECID(movto-estoq) EQ es-transf-cq.id-movto-estoq NO-ERROR .
+    IF NOT AVAIL( movto-estoq ) THEN NEXT .
+    DISP movto-estoq.cod-depos.
+END.
+
+
+FOR EACH movto-estoq NO-LOCK
+    WHERE movto-estoq.cod-depos = "RCQ"
+    AND dt-criacao > 06/24/2015:
+    DISP        dt-criacao RECID(movto-estoq) WITH 2 COLUMN WIDTH 320.
+END.

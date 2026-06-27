@@ -1,0 +1,49 @@
+FOR EACH it-requisicao WHERE it-requisicao.nr-requisicao EQ 216486
+                        AND  it-requisicao.sequencia  EQ 270:
+    DISP it-requisicao WITH 1 COLUMN WIDTH 320.
+    ASSIGN situacao = 2.
+    FIND requisicao OF it-requisicao NO-LOCK NO-ERROR .
+
+    IF requisicao.situacao EQ 1 THEN DO:
+        MESSAGE "Aberta" VIEW-AS ALERT-BOX.
+        ASSIGN requisicao.situacao = 2.
+    END.
+END.
+
+
+
+
+DEF TEMP-TABLE tt-req
+        FIELD nr-requisicao  LIKE it-requisicao.nr-requisicao
+        FIELD sequencia      LIKE it-requisicao.sequencia.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-req.
+     IMPORT DELIMITER ";" tt-req.
+END.
+INPUT CLOSE.
+    
+MESSAGE "CAN-FIND(FIRST tt-req): " CAN-FIND(FIRST tt-req) VIEW-AS ALERT-BOX.        
+            
+FOR EACH tt-req
+
+    FOR EACH it-requisicao WHERE it-requisicao.nr-requisicao EQ tt-req.nr-requisicao
+                        AND  it-requisicao.sequencia  EQ tt-req.sequencia:
+        DISP it-requisicao WITH 1 COLUMN WIDTH 320.
+        ASSIGN situacao = 2.
+        FIND requisicao OF it-requisicao  NO-ERROR .
+    
+        IF requisicao.situacao EQ 1 THEN DO:
+            MESSAGE "Aberta" VIEW-AS ALERT-BOX.
+            ASSIGN requisicao.situacao = 2.
+        END.
+    END.
+
+END.
+
