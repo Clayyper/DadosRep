@@ -17,13 +17,15 @@
     "indexDefaultBranch": "main",
     "manifestPath": "avdc-index/manifest.json",
     "catalogPath": "avdc-index/catalog.json",
-    "searchIndexPath": "avdc-index/search-index.json"
+    "searchIndexPath": "avdc-index/search-index.json",
+    "extractionReportPath": "avdc-index/extraction-report.txt"
   },
   "run": {
-    "id": "local-1782578992582-40044b",
+    "id": "local-1782584045692-4f0a9c",
     "sortMode": "alpha",
-    "filesCount": 264,
-    "searchableFilesCount": 213,
-    "createdAt": "2026-06-27T16:49:52.791Z"
+    "filesCount": 107,
+    "searchableFilesCount": 100,
+    "extractionReportEnabled": true,
+    "createdAt": "2026-06-27T18:14:05.870Z"
   }
 }
