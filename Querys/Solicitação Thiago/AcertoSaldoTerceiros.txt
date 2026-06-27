@@ -1,0 +1,28 @@
+Acerto de saldo de terceiros
+
+FOR EACH saldo-terc WHERE     cod-emitente = 1 AND it-codigo="97970040" AND nro-docto="0196888":
+    DISP saldo-terc WITH 1 COLUMN WIDTH 320.
+END.
+
+
+FOR EACH componente WHERE cod-emitente = 1 AND  it-codigo = "97970040" AND nro-docto ="0196888":
+    DISP componente WITH 1 COLUMN WIDTH 320.
+END.                              
+
+
+FOR EACH componente WHERE cod-emitente = 1 AND  it-codigo = "97970040" AND dt-retorno=05/05/2016:
+    DISP componente WITH 1 COLUMN WIDTH 320.
+END.                              
+
+FOR EACH componente WHERE cod-emitente = 1 AND  it-codigo = "97970040" AND nro-comp = "0196888":
+    DISP componente WITH 1 COLUMN WIDTH 320.
+END.                      
+
+
+FOR EACH componente WHERE cod-emitente = 1 AND  it-codigo = "97970040" AND nro-comp = "0196888":
+    UPDATE  quantidade.
+END.                     
+
+FOR EACH saldo-terc WHERE     cod-emitente = 1 AND it-codigo="97970040" AND nro-docto="0196888":
+ UPDATE    quantidade qtd-ini.
+END.

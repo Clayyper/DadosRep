@@ -1,0 +1,20 @@
+OUTPUT TO VALUE('C:\TEMP\doc.TXT').
+FOR EACH usuar_mestre WHERE dat_valid_senha >= TODAY AND dat_fim_valid > TODAY:
+    FOR EACH usuar-mater WHERE usuar-mater.cod-usuario EQ usuar_mestre.cod_usuario:
+       put unformatted  cod-usuario ";" nome-usuar ";" usuar-aprovador ";" usuar-comprador ";" usuar-requis ";" usuar-solic ";" SUBSTRING(char-1,2,8) ";" sc-codigo SKIP.
+
+    END.  
+END.
+
+OUTPUT CLOSE.
+
+
+OUTPUT TO VALUE('C:\TEMP\doc.TXT').
+FOR EACH usuar_mestre WHERE dat_valid_senha >= TODAY AND dat_fim_valid > TODAY:
+    FOR EACH usuar-mater WHERE usuar-mater.cod-usuario EQ usuar_mestre.cod_usuario:
+       put unformatted  cod-usuario ";" nome-usuar ";" usuar-aprovador ";" usuar-comprador ";" usuar-requis ";" usuar-solic ";" cod-lotacao ";" sc-codigo SKIP.
+
+    END.  
+END.
+
+OUTPUT CLOSE.

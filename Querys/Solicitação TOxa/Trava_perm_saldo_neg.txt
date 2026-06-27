@@ -1,0 +1,45 @@
+def var i-permissao as int no-undo initial 1. /*1=nao, 3=sim*/
+
+for each  item exclusive-lock
+    where item.it-codigo = "20100001":
+
+    assign item.perm-saldo-neg = i-permissao.
+
+    for each  item-mat-estab exclusive-lock
+        where item-mat-estab.it-codigo = item.it-codigo:
+        assign item-mat-estab.perm-saldo-neg = i-permissao.
+    end.
+
+    for each  item-uni-estab exclusive-lock
+        where item-uni-estab.it-codigo = item.it-codigo:
+        assign item-uni-estab.perm-saldo-neg = i-permissao.
+    end.
+
+    for each  mnt-item no-lock
+        where mnt-item.it-codigo = item.it-codigo:
+        assign mnt-item.perm-saldo-neg = i-permissao.
+    end.
+
+end.
+
+
+def var lg-permissao as log no-undo initial no.
+
+for each item no-lock
+    where item.it-codigo = "20100001":
+
+    for each item-dist exclusive-lock
+        where item-dist.it-codigo = item.it-codigo:
+
+        assign item-dist.log-aloc-neg = lg-permissao.
+
+    end.
+
+    for each item-uni-estab exclusive-lock
+        where item-uni-estab.it-codigo = item.it-codigo:
+
+        assign item-uni-estab.log-aloc-neg = lg-permissao.
+
+    end.
+
+end.

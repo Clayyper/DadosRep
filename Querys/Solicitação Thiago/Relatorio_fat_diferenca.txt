@@ -1,0 +1,66 @@
+Numero Nota Fiscal | nota-fiscal/nr-nota-fis
+Serie 			   | nota-fiscal/serie
+Data Emissão Nota  | nota-fiscal.dt-atualiza  		 | periodo 01/01/2014 a 20/01/2104
+Código Cliente     | nota-fiscal.cod-emitente
+Razão Social       | emscad.cliente.nom_pessoa
+Código Item        | it-nota-fisc.it-codigo
+Descrição Item     | mgcad.item.desc-item
+Valor Unitário     | it-nota-fisc.vl-preuni
+Quantidade         | it-nota-fisc.qt-faturada[1]
+Valor Total			 it-nota-fisc.vl-tot-item
+
+Situação 1 da Notas  somente situação AUTORIZADA  | nota-fiscal.idi-sit-nf-eletro=3
+CFOP Validas  5101, 5102, 6101, 6102, 7101 | nota-fiscal.nat-operacao =510101-510106
+																		510201-510206
+																		610101-610103
+																		610201-610203
+																		710101
+
+																		
+																		
+																		
+																		
+ select nr-nota-fis,serie,dt-atualiza,cod-emitente 
+        from nota-fiscal 
+        where idi-sit-nf-eletro=3 
+              and dt-atualiza>=01/01/2014 
+              and dt-atualiza<=01/20/2014 
+              and (
+                    (nat-operacao >= ('510101') and nat-operacao >= ('510106'))
+                    or
+                    (nat-operacao >= ('510201') and nat-operacao >= ('510206'))
+                    or
+                    (nat-operacao >= ('610101') and nat-operacao >= ('610103'))
+                    or
+                    (nat-operacao >= ('610201') and nat-operacao >= ('610203'))
+                    or
+                    nat-operacao=('710101')
+                   )
+				   
+				   
+def var v-nomepessoa    like emscad.cliente.nom_pessoa column-label "Razao-Social".
+
+for each nota-fiscal where nota-fiscal.idi-sit-nf-eletro=3 
+              and dt-atualiza>=01/01/2014 
+              and dt-atualiza<=01/20/2014
+              and (
+                    (nat-operacao >= ('510101') and nat-operacao >= ('510106'))
+                    or
+                    (nat-operacao >= ('510201') and nat-operacao >= ('510206'))
+                    or
+                    (nat-operacao >= ('610101') and nat-operacao >= ('610103'))
+                    or
+                    (nat-operacao >= ('610201') and nat-operacao >= ('610203'))
+                    or
+                    nat-operacao=('710101')
+                   ) no-lock:
+    for each emscad.cliente 
+            where emscad.cliente.cdn_cliente=nota-fiscal.cod-emitente:
+     assign v-nomepessoa=cliente.nom_pessoa.
+    end.
+ 
+ display nota-fiscal.nr-nota-fis v-nomepessoa.          
+ end.
+              
+                 
+  

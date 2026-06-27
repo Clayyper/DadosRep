@@ -1,0 +1,10 @@
+FOR EACH hierarquia-faixa WHERE cod-aprov EQ "MROSSI":
+    DISP hierarquia-faixa WITH 1 COLUMN WIDTH 320.
+    DELETE hierarquia-faixa.
+END.
+
+
+FOR EACH hierarquia-faixa WHERE cod-aprov EQ "flavio.j" AND num-faixa EQ 1:
+    DISP hierarquia-faixa WITH 1 COLUMN WIDTH 320.
+    DELETE hierarquia-faixa.
+END.

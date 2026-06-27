@@ -1,0 +1,91 @@
+QUERY PARA PLANILHA JIT
+
+SELECT [CODIGO],[CODSAP] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0
+
+SELECT [ID]
+      ,[ID_MSG]
+      ,[SENDER]
+      ,[TARGET]
+      ,[DT_RICHIESTA]
+      ,[TD]
+      ,[DISEGNO]
+      ,[PDU]
+      ,[GDD]
+      ,[DT_EVASIONE]
+      ,[MDR]
+      ,[QTA]
+      ,[AREA_COMP]
+      ,[DATAIMPORT]
+      ,[NR]
+  FROM [JIS].[dbo].[seqjit]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  
+  
+  SELECT *
+  FROM [JIS].[dbo].[soliaqcp]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  AND CAST(DESENHO AS INT) IN (SELECT [CODIGO] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0)
+GO
+
+
+select * from (
+SELECT *
+  FROM [JIS].[dbo].[seqjit]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018') as a inner join
+  (SELECT [CODIGO],[CODSAP] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0) as b on cast(a.DISEGNO as int)=cast(b.CODIGO as int)
+GO
+
+
+
+contando a quantidade no PAB do item
+
+SELECT DESENHO , sum(QUANT) AS QTDE_PAB
+  FROM [JIS].[dbo].[soliaqcp]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  AND CAST(DESENHO AS INT) IN (SELECT [CODIGO] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0)
+  group by DESENHO
+  
+ Contando a quantidade no JIT do item
+ 
+ SELECT DISEGNO ,sum(qta) as QTDE_JIT
+  FROM [JIS].[dbo].[seqjit]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  group by DISEGNO
+
+  
+  SUMARIO*********************
+  
+select a.CODIGO,a.CODSAP,c.QTDE_JIT,b.QTDE_PAB from 
+(SELECT [CODIGO],[CODSAP] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0) as a
+inner join
+(SELECT DESENHO , sum(QUANT) AS QTDE_PAB
+  FROM [JIS].[dbo].[soliaqcp]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  AND CAST(DESENHO AS INT) IN (SELECT [CODIGO] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0)
+  group by DESENHO) as b on CAST(a.CODIGO as int) = CAST(b.desenho as int)
+  inner join
+  (SELECT DISEGNO ,sum(qta) as QTDE_JIT
+  FROM [JIS].[dbo].[seqjit]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  group by DISEGNO)as c on CAST(a.codigo as int) = CAST(c.DISEGNO as int)
+  
+  
+  
+  
+ SUMARIO COM PARAMETROS 
+
+select a.CODIGO,a.CODSAP,c.QTDE_JIT,b.QTDE_PAB from 
+(SELECT [CODIGO],[CODSAP] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0) as a
+inner join
+(SELECT DESENHO , sum(QUANT) AS QTDE_PAB
+  FROM [JIS].[dbo].[soliaqcp]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  AND CAST(DESENHO AS INT) IN (SELECT [CODIGO] FROM [JIS].[dbo].[itens] where [COD_GRUPO_SEQ] = 0)
+  group by DESENHO) as b on CAST(a.CODIGO as int) = CAST(b.desenho as int)
+  inner join
+  (SELECT DISEGNO ,sum(qta) as QTDE_JIT
+  FROM [JIS].[dbo].[seqjit]
+  where [DATAIMPORT] >= '10/01/2018' and [DATAIMPORT] <='10/05/2018'
+  group by DISEGNO)as c on CAST(a.codigo as int) = CAST(c.DISEGNO as int) 
+  
+  

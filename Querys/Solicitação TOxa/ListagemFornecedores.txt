@@ -1,0 +1,27 @@
+select b.nomepessoa,f.logradouro,f.numeroendereco,f.bairro,f.cep,g.nomemunicipio,h.nomeuf,
+case f.bairro when 'EX' then i.nomepais else 'Brasil' end as [Estrangeiro], 
+b.codigopessoa,e.cnpj,b.nomepessoa,c.descricaotipocontato as [Telefone],d.descricaotipocontato as [Email] 
+,e.inscricaoestadual,e.inscricaomunicipal
+from
+(SELECT  *
+  FROM [NG].[dbo].[bpm_dadosfornecedor] where idowner=19218) as a
+  inner join
+  (select * from ng..bpm_pessoa) as b on a.idpessoa=b.idpessoa
+  left join
+  (select * from ng..bpm_pessoatipocontato where idtipocontato=2) as c on a.idpessoa=c.idpessoa
+  left join
+  (select * from ng..bpm_pessoatipocontato where idtipocontato=3) as d on a.idpessoa=d.idpessoa
+  left join
+  (select * from ng..bpm_dadospessoajuridica)as e on a.idpessoa=e.idpessoa
+  inner join
+  (select * from ng..bpm_pessoaendereco) as f on a.idpessoa=f.idpessoa
+  left join
+  (select * from ng_dominio..dom_municipio) as g on f.idmunicipio=g.idmunicipio
+  left join
+  (select * from ng_dominio..dom_uf) as h on h.iduf=g.iduf
+  left join
+  (select * from ng_dominio..dom_pais ) as i on i.idpais=f.idpaisestrangeiro
+ 
+GO
+
+

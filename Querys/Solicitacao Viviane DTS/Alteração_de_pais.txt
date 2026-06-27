@@ -1,0 +1,23 @@
+FOR EACH emitente EXCLUSIVE-LOCK
+    WHERE  EMITENTE.identific=2:
+    DISPLAY EMITENTE.identific .
+END.
+
+FOR EACH emitente EXCLUSIVE-LOCK
+    WHERE  EMITENTE.identific=2
+    AND EMITENTE.idi-tributac-pis<>1:
+    ASSIGN EMITENTE.idi-tributac-pis=1 .
+END.
+
+FOR EACH emitente EXCLUSIVE-LOCK
+    WHERE  EMITENTE.identific=2
+    AND EMITENTE.idi-tributac-COFINS<>1:
+    ASSIGN EMITENTE.idi-tributac-COFINS=1 .
+END.
+
+
+FOR EACH MGCAD.CIDADE EXCLUSIVE-LOCK
+    WHERE  CIDADE.PAIS="BRA"
+    :
+    ASSIGN CIDADE.PAIS="BRASIL".
+END.

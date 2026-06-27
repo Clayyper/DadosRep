@@ -1,0 +1,58 @@
+DBF Viewer 2000  Copyright (C) 2001-2007
+HiBase Group
+All rights reserved.
+
+
+                     LICENSE AGREEMENT
+
+You should carefully read the following terms and conditions
+before using this software. Your use of this software
+indicates your acceptance of this license agreement and warranty.
+
+You may not sublicense, rent, lease, modify, translate,
+convert to another programming language, lend, decompile, reverse
+engineer, reengineer or disassemble the software for any purpose.
+
+The Program could be included in CD-ROM, download  areas,
+provided  it  remains  in  its complete and unmodified original
+archive.
+
+The inclusion of the program as part of a software package to be
+distributed always requires a special distribution license
+
+                         EVALUATION
+
+This is not free software. Subject to the terms below, you are hereby
+licensed to use this software for evaluation purposes without charge
+for a period of 30 days.
+
+                    REGISTERD VERSION
+
+Personal license:   $35.95 (USD)
+    Allows you to use DBF Viewer 2000  by one person only
+    (at work or at home).You need as many licenses
+    as there are computers on which our software will be installed.
+
+Business license: (10 users)    $99.95 (USD)
+    Allows you to install DBF Viewer on 10 computers in your company
+
+Multi user license price:  $299 (USD)
+    Allows you to use DBF Viewer 2000 by one company on any number
+    of computers located in one office.
+
+World-wide license $499 with (USD)
+    Allows you to use DBF Viewer 2000 by one company on any number
+    of computers anywhere.
+
+
+
+			Disclaimer of Warranty
+
+THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS IS" AND WITHOUT
+WARRANTIES AS TO PERFORMANCE OR MERCHANTABILITY OR ANY OTHER
+WARRANTIES WHETHER EXPRESSED OR IMPLIED.
+
+Good data processing procedure dictates that any program be
+thoroughly tested with non-critical data before relying on it. The
+user must assume the entire risk of using the program.
+

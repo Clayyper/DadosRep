@@ -1,0 +1,28 @@
+buscando itens duplicados na tabela jis
+select a.*,b.id,b.DATAIMPORT from
+(
+select * from seqjis where DATAIMPORT >= '10/06/2018' and DATAIMPORT <'10/07/2018' and
+SEQNUM IN (12240,
+12241,
+12100,
+12011)) as a inner join
+(select * from seqjis where DATAIMPORT >= '10/07/2018' ) as b on a.SEQNUM= b.SEQNUM and a.ORDNUM=b.ORDNUM and a.CODFIAT=b.CODFIAT
+
+
+
+
+Alteradndo para excluido
+UPDATE [JIS].[dbo].[seqjis]
+   SET [EXCLUIDO] = 1
+ WHERE ID in (4107518
+,4107519)
+
+
+buscando item duplicado
+select ORDNUM from [JIS].[dbo].[control_cis] where FILA_D= 1 And CISNUM = 9428960 AND EXCLUIDO = 0
+	select SEQNUM from [JIS].[dbo].[control_cis] where FILA_D= 1 And CISNUM = 9428960 AND EXCLUIDO = 0
+    select ID from [JIS].[dbo].[seqjis] where ORDNUM= 519190953 and SEQNUM = 12100 and replace(CODFIAT,'E','')='00533392790' AND EXCLUIDO = 0
+    select ID,* from [JIS].[dbo].[seqjis] where ORDNUM= 519190953 and replace(CODFIAT,'E','')='00533392790' AND EXCLUIDO = 0
+	
+	
+

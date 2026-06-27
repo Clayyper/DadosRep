@@ -1,0 +1,13 @@
+for each ped-item exclusive-lock
+where ped-item.nr-pedcli="31"
+and ped-item.it-codigo="25010100"
+and ped-item.nr-sequencia=330:
+display ped-item with 1 column width 320.
+end.
+
+for each ped-item exclusive-lock
+where ped-item.nr-pedcli="31"
+and ped-item.it-codigo="25010100"
+and ped-item.nr-sequencia=330:
+assign ped-item.cod-sit-item=6.
+end.

@@ -1,0 +1,39 @@
+
+create tt-movto.
+assign tt-movto.cod-versao-integracao  = 1
+       tt-movto.ct-codigo       = conta-contab.ct-codigo
+       tt-movto.cod-prog-orig   = "XXX"
+       tt-movto.conta-contabil  = input frame {&frame-name} movto-estoq.conta-contabil
+       tt-movto.dt-trans        = input frame {&frame-name} movto-estoq.dt-trans
+       tt-movto.dt-vali-lote   = input frame {&frame-name} da-dt-vali-lote-ent
+       tt-movto.nro-docto       = input frame {&frame-name} movto-estoq.nro-docto
+       tt-movto.sc-codigo       = conta-contab.sc-codigo
+       tt-movto.serie-docto     = input frame {&frame-name} movto-estoq.serie-docto
+       tt-movto.cod-depos       = input frame {&frame-name} c-cod-depos-ent
+       tt-movto.cod-estabel     = input frame {&frame-name} c-cod-estabel-ent
+       tt-movto.it-codigo       = item.it-codigo
+       tt-movto.cod-refer       = input frame {&frame-name} c-cod-refer-ent
+       tt-movto.cod-localiz     = input frame {&frame-name} c-cod-localiz-ent
+       tt-movto.lote            = input frame {&frame-name} c-lote-ent
+       tt-movto.quantidade      = input frame {&frame-name} movto-estoq.quantidade
+       tt-movto.un              = input frame {&frame-name} movto-estoq.un
+       tt-movto.tipo-trans      = 1
+       tt-movto.esp-docto       = 33
+       tt-movto.usuario         = c-seg-usuario.
+       
+if tt-movto.cod-localiz <> " " then do: 
+   find first localizacao where 
+              localizacao.cod-estabel = tt-movto.cod-estabel  and  
+              localizacao.cod-depos   = tt-movto.cod-depos    and                       
+              localizacao.cod-localiz = tt-movto.cod-localiz no-lock no-error.
+   if not available localizacao then do:                       
+      {utp/ut-table.i mgind localizacao 1}
+      run utp/ut-msgs.p (input "show", input 56, input return-value).
+      return "adm-error":U.
+      apply "entry" to c-cod-localiz-ent in frame {&frame-name}.
+   end.         
+end.
+       
+run cep/ceapi001.p (input-output table tt-movto,
+                    input-output table tt-erro,
+                    input yes).

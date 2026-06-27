@@ -1,0 +1,68 @@
+#01#Grupo
+#02#Cod. Planta
+#03#Nome da Planta
+#04#Tipo Etiqueta
+#05#Código do Cliente
+#06#Nome do Cliente
+#07#Código do Fornecedor
+#08#Nome do Fornecedor
+#09#PartNumber do Material
+#10#Descrição do Material
+#11#Código/Nome Embalagem
+#12#Unidade de Medida
+#13#Quantidade de peças na embalagem
+#14#PartNumber do Cliente
+#15#PartNumber do Fornecedor
+#16#Data emissão etiqueta
+#17#Data Fabricação
+#18#Hora Fabricação
+#19#Código Operador
+#20#Turno
+#21#Nota Fiscal
+#22#Lote
+#23#Estoque
+#24#Endereço Estoque
+#25#Doca
+#26#SkipLote
+#27#Período de Validade
+#28#Código de descarte no meio ambiente
+#29#Scrap
+#30#Tipo de Scrap
+
+
+ETIQUETA DE PRODUTO ACABADO LEP
+#03#Nome da Planta
+#09#PartNumber do Material
+#10#Descrição do Material
+#11#Código/Nome Embalagem
+#17#Data Fabricação
+#18#Hora Fabricação
+#19#Código Operador
+#20#Turno
+#22#Lote
+#27#Período de Validade
+#28#Código de descarte no meio ambiente
+#30#Tipo de Scrap
+
+
+ETIQUETA DA EMBALAGEM
+#09#PartNumber do Material
+#10#Descrição do Material
+#13#Quantidade de peças na embalagem
+#14#PartNumber do Cliente
+#16#Data emissão etiqueta
+#19#Código Operador
+#20#Turno
+#22#Lote
+#27#Período de Validade
+
+
+
+
+
+
+
+
+
+
+
