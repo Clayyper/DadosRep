@@ -1,0 +1,48 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+pkill -9 -f termux-x11 2>/dev/null
+pkill -9 -f pulseaudio 2>/dev/null
+
+if command -v pulseaudio >/dev/null 2>&1; then
+  pulseaudio --start \
+    --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
+    --exit-idle-time=-1 2>/dev/null
+fi
+
+export XDG_RUNTIME_DIR="$TMPDIR"
+
+rm -rf "$TMPDIR/.X11-unix"
+
+termux-x11 :0 -ac &
+sleep 3
+
+am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity >/dev/null 2>&1
+sleep 2
+
+cat > "$TMPDIR/start-cinnamon-fedora-inner.sh" <<'INNER'
+#!/bin/bash
+
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/tmp
+export PULSE_SERVER=127.0.0.1
+
+export LANG=pt_BR.UTF-8
+export LANGUAGE=pt_BR:pt
+export LC_ALL=pt_BR.UTF-8
+export LC_MESSAGES=pt_BR.UTF-8
+export TZ=America/Sao_Paulo
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=X-Cinnamon
+export DESKTOP_SESSION=cinnamon
+
+export LIBGL_ALWAYS_SOFTWARE=1
+export MESA_LOADER_DRIVER_OVERRIDE=llvmpipe
+export NO_AT_BRIDGE=1
+
+exec dbus-launch --exit-with-session cinnamon-session
+INNER
+
+chmod +x "$TMPDIR/start-cinnamon-fedora-inner.sh"
+
+proot-distro login fedora --shared-tmp --user root -- bash /tmp/start-cinnamon-fedora-inner.sh
