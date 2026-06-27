@@ -5,7 +5,7 @@
     "note": "Arquivos gerados pelo AVDC. Não editar manualmente."
   },
   "source": {
-    "dataRepository": "Clayyper/DadosRep",
+    "dataRepository": "Clayyper/LCAUDITT",
     "dataDefaultBranch": "main",
     "ignoredPaths": [
       "avdc-index/",
@@ -21,11 +21,11 @@
     "extractionReportPath": "avdc-index/extraction-report.txt"
   },
   "run": {
-    "id": "local-1782584045692-4f0a9c",
+    "id": "local-1782586132736-c61d2a",
     "sortMode": "alpha",
-    "filesCount": 107,
-    "searchableFilesCount": 100,
+    "filesCount": 630,
+    "searchableFilesCount": 629,
     "extractionReportEnabled": true,
-    "createdAt": "2026-06-27T18:14:05.870Z"
+    "createdAt": "2026-06-27T18:48:52.955Z"
   }
 }
