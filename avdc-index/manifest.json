@@ -20,10 +20,10 @@
     "searchIndexPath": "avdc-index/search-index.json"
   },
   "run": {
-    "id": 12,
+    "id": 13,
     "sortMode": "alpha",
-    "filesCount": 3,
-    "searchableFilesCount": 3,
-    "createdAt": "2026-06-27T11:28:24.497Z"
+    "filesCount": 102,
+    "searchableFilesCount": 100,
+    "createdAt": "2026-06-27T11:29:02.569Z"
   }
 }
