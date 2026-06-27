@@ -1,0 +1,114 @@
+Fica travado assim:
+
+Detalhes técnicos da execução:
+- aparecem recolhidos;
+- só abrem se o usuário clicar;
+- não poluem a tela principal;
+- servem para ver erros/motivos da execução atual.
+
+E o relatório opcional fica assim:
+
+Salvar relatório técnico no GitHub:
+- desmarcado por padrão;
+- se marcar, salva /avdc-index/extraction-report.txt;
+- para consultar depois, acessa direto no GitHub;
+- pela ferramenta, só vendo novamente em nova execução.
+
+Sobre o manifesto, então o próximo passo não precisa mudar o comportamento dos detalhes. A gente só precisa fazer o manifest seguir a mesma filosofia:
+
+Resumo limpo na tela.
+JSON bruto só no GitHub.
+Nada técnico demais aberto por padrão.
+
+Eu faria o manifesto assim:
+
+Manifest da execução
+
+Arquivos encontrados: 264
+Arquivos no catálogo: 213
+Conteúdo extraído: 190
+Sem conteúdo extraído: 23
+Pastas técnicas ignoradas: sim
+Relatório técnico salvo: não
+Última execução: 27/06/2026 14:32
+
+E se existir um botão, seria algo simples:
+
+[Ver resumo técnico]
+
+Não seria para despejar JSON. Só resumo. O manifest.json continuaria no GitHub para quem quiser auditar mais fundo.
+
+Então a regra fica:
+
+Manifesto na ferramenta = resumo legível.
+Manifesto no GitHub = arquivo técnico completo.
+
+A gente pode seguir por esse caminho sem encostar no que já ficou perfeito dos detalhes técnicos.
+
+Cada negociação sobrescreve, para não, não sobrecarregar o meu cliente nem a nossa.
+Mas, se eureceve, se o usuário solicitar, que não, sempre uso o último que tiver lá. Você lembra disso.detalhe, qualquer coisa que eu escrever, ele não mantém. Ele deixa mantido no repositório do cliente.
+Pensou por dois segundos
+
+Sim, Clay, lembro disso. A regra central é exatamente essa:
+
+O AVDC não mantém histórico próprio.
+O AVDC sempre trabalha com o último índice disponível no repositório do cliente.
+Cada nova indexação sobrescreve os arquivos técnicos anteriores.
+
+Ou seja:
+
+/avdc-index/catalog.json
+/avdc-index/search-index.json
+/avdc-index/manifest.json
+/avdc-index/extraction-report.txt
+
+Sempre representam a última execução válida.
+
+Não vamos criar:
+
+/avdc-index/runs/2026-06-27-1430/
+/avdc-index/historico/
+/avdc-index/execucao-001/
+/avdc-index/execucao-002/
+
+Porque isso começa a pesar, confundir e ocupar espaço no repositório do cliente.
+
+A regra fica:
+
+Nova indexação = substitui catálogo, índice, manifest e relatório técnico anterior.
+
+E sobre o que você falou de “qualquer coisa que eu escrever, ele não mantém”: perfeito. O AVDC não deve manter esses dados no banco dele. Ele apenas grava no repositório do cliente aquilo que o próprio usuário pediu para gerar.
+
+Então fica assim:
+
+PostgreSQL:
+- usuário
+- token
+- configuração
+- repositório escolhido
+- estado mínimo de sessão/configuração
+
+GitHub do cliente:
+- catálogo
+- índice
+- manifest
+- relatório técnico opcional
+- notas .vcd
+
+A frase oficial pode ser:
+
+O AVDC não mantém histórico interno de indexações.
+A fonte persistente do índice é sempre o repositório configurado pelo usuário.
+Quando uma nova indexação é executada, os arquivos técnicos atuais são substituídos pelos novos.
+
+E para a interface:
+
+O AVDC usará sempre o último índice disponível no GitHub.
+Ao criar um novo índice, os arquivos técnicos anteriores serão substituídos.
+
+Isso protege dois pontos importantes:
+
+1. Não sobrecarrega o cliente com histórico desnecessário.
+2. Não cria responsabilidade para o AVDC armazenar dados que pertencem ao usuário.
+
+Para mim, essa regra deve entrar no manifesto/princípio técnico da v5.0.
