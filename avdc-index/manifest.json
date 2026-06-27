@@ -1,6 +1,6 @@
 {
   "avdc": {
-    "version": "3.0.2",
+    "version": "3.1.0",
     "reservedDirectory": "avdc-index",
     "note": "Arquivos gerados pelo AVDC. Não editar manualmente."
   },
@@ -16,12 +16,14 @@
     "indexRepository": "Clayyper/DadosRep",
     "indexDefaultBranch": "main",
     "manifestPath": "avdc-index/manifest.json",
-    "catalogPath": "avdc-index/catalog.json"
+    "catalogPath": "avdc-index/catalog.json",
+    "searchIndexPath": "avdc-index/search-index.json"
   },
   "run": {
-    "id": 4,
+    "id": 5,
     "sortMode": "alpha",
     "filesCount": 4,
-    "createdAt": "2026-06-27T05:51:49.422Z"
+    "searchableFilesCount": 4,
+    "createdAt": "2026-06-27T06:16:06.353Z"
   }
 }
