@@ -4,57 +4,21 @@ Este relatório foi salvo no GitHub porque o usuário marcou essa opção antes 
 Para visualizar este relatório novamente, acesse diretamente o repositório de índice no GitHub.
 A ferramenta AVDC não reabre relatórios técnicos salvos; para ver os detalhes novamente pela interface, execute a indexação novamente.
 
-Repositório de dados: Clayyper/DadosRep
+Repositório de dados: Clayyper/LCAUDITT
 Branch dos dados: main
 Repositório de índice: Clayyper/DadosRep
 Branch do índice: main
-Execução: local-1782584045692-4f0a9c
-Gerado em: 2026-06-27T18:14:05.870Z
+Execução: local-1782587084776-39c677
+Gerado em: 2026-06-27T19:04:44.970Z
 
-Arquivos no catálogo: 107
-Conteúdo extraído: 100
-Sem conteúdo extraído: 7
+Arquivos no catálogo: 630
+Conteúdo extraído: 629
+Sem conteúdo extraído: 1
 
 Arquivos sem conteúdo extraído
 --------------------------------
-1. Querys/ImportacaoUsuario.txt
-   Motivo: Conteúdo não retornado como base64.
-   Extensão: txt
+1. node_modules/mime/.npmignore
+   Motivo: Arquivo vazio
+   Extensão: sem extensão
    Tamanho: 0 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/ImportacaoUsuario.txt
-
-2. Querys/Solicitacao Cida/ImpBcoNeg.xls
-   Motivo: Extensão binária conhecida
-   Extensão: xls
-   Tamanho: 36864 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacao%20Cida/ImpBcoNeg.xls
-
-3. Querys/Solicitacoes Luis/Contabilização_AjustesJanaDez2013.xls
-   Motivo: Extensão binária conhecida
-   Extensão: xls
-   Tamanho: 173568 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/Contabiliza%C3%A7%C3%A3o_AjustesJanaDez2013.xls
-
-4. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY00013.xls
-   Motivo: Extensão binária conhecida
-   Extensão: xls
-   Tamanho: 22160 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY00013.xls
-
-5. Querys/Solicitacoes Luis/Lanc2013.xls
-   Motivo: Extensão binária conhecida
-   Extensão: xls
-   Tamanho: 976896 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/Lanc2013.xls
-
-6. Querys/Solicitacoes Luis/PROVISAO_IMPORTAR.xls
-   Motivo: Extensão binária conhecida
-   Extensão: xls
-   Tamanho: 80896 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/PROVISAO_IMPORTAR.xls
-
-7. Querys/Solicitação Aurelio Dts/SPEDDts/Lista-TipodoItem2.txt
-   Motivo: Conteúdo não retornado como base64.
-   Extensão: txt
-   Tamanho: 1064475 bytes
-   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Aurelio%20Dts/SPEDDts/Lista-TipodoItem2.txt
+   GitHub: https://github.com/Clayyper/LCAUDITT/blob/main/node_modules/mime/.npmignore
