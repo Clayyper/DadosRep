@@ -4,21 +4,321 @@ Este relatório foi salvo no GitHub porque o usuário marcou essa opção antes 
 Para visualizar este relatório novamente, acesse diretamente o repositório de índice no GitHub.
 A ferramenta AVDC não reabre relatórios técnicos salvos; para ver os detalhes novamente pela interface, execute a indexação novamente.
 
-Repositório de dados: Clayyper/LCAUDITT
+Repositório de dados: Clayyper/DadosRep
 Branch dos dados: main
 Repositório de índice: Clayyper/DadosRep
 Branch do índice: main
-Execução: local-1782597687906-2b1a76
-Gerado em: 2026-06-27T22:01:28.074Z
+Execução: local-1782597791582-129817
+Gerado em: 2026-06-27T22:03:11.759Z
 
-Arquivos no catálogo: 630
-Conteúdo extraído: 629
-Sem conteúdo extraído: 1
+Arquivos no catálogo: 266
+Conteúdo extraído: 215
+Sem conteúdo extraído: 51
 
 Arquivos sem conteúdo extraído
 --------------------------------
-1. node_modules/mime/.npmignore
-   Motivo: Arquivo vazio
-   Extensão: sem extensão
+1. Querys/ImportacaoUsuario.txt
+   Motivo: Conteúdo não retornado como base64.
+   Extensão: txt
    Tamanho: 0 bytes
-   GitHub: https://github.com/Clayyper/LCAUDITT/blob/main/node_modules/mime/.npmignore
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/ImportacaoUsuario.txt
+
+2. Querys/Solicitacao Cida/DadosFun.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 26073 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacao%20Cida/DadosFun.xlsx
+
+3. Querys/Solicitacao Cida/ImpBcoNeg.xls
+   Motivo: Extensão binária conhecida
+   Extensão: xls
+   Tamanho: 36864 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacao%20Cida/ImpBcoNeg.xls
+
+4. Querys/Solicitacao Cida/MEDICO.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 687149 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacao%20Cida/MEDICO.xlsx
+
+5. Querys/Solicitacao Cida/NOVO_MEDICO.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 189649 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacao%20Cida/NOVO_MEDICO.xlsx
+
+6. Querys/Solicitacoes Luis/Contabilização_AjustesJanaDez2013.xls
+   Motivo: Extensão binária conhecida
+   Extensão: xls
+   Tamanho: 173568 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/Contabiliza%C3%A7%C3%A3o_AjustesJanaDez2013.xls
+
+7. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/DBF Viewer 2000/sample.mdb
+   Motivo: Arquivo parece binário.
+   Extensão: mdb
+   Tamanho: 110592 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/DBF%20Viewer%202000/sample.mdb
+
+8. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/DBF Viewer 2000/sample1.mdb
+   Motivo: Arquivo parece binário.
+   Extensão: mdb
+   Tamanho: 106496 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/DBF%20Viewer%202000/sample1.mdb
+
+9. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/dbf.ico
+   Motivo: Extensão binária conhecida
+   Extensão: ico
+   Tamanho: 160951 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/dbf.ico
+
+10. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/dbview.chm
+   Motivo: Arquivo parece binário.
+   Extensão: chm
+   Tamanho: 32436 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/dbview.chm
+
+11. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/dbview.exe
+   Motivo: Extensão binária conhecida
+   Extensão: exe
+   Tamanho: 517632 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/dbview.exe
+
+12. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/dbview.rar
+   Motivo: Extensão binária conhecida
+   Extensão: rar
+   Tamanho: 223800 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/dbview.rar
+
+13. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/french.dll
+   Motivo: Extensão binária conhecida
+   Extensão: dll
+   Tamanho: 26112 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/french.dll
+
+14. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/german.dll
+   Motivo: Extensão binária conhecida
+   Extensão: dll
+   Tamanho: 23040 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/german.dll
+
+15. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/italian.dll
+   Motivo: Extensão binária conhecida
+   Extensão: dll
+   Tamanho: 26624 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/italian.dll
+
+16. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/portuguese.dll
+   Motivo: Extensão binária conhecida
+   Extensão: dll
+   Tamanho: 28160 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/portuguese.dll
+
+17. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/sample.dbf
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 9617 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/sample.dbf
+
+18. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/spanish.dll
+   Motivo: Extensão binária conhecida
+   Extensão: dll
+   Tamanho: 25600 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/spanish.dll
+
+19. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF Viewer 2000/uninst.exe
+   Motivo: Extensão binária conhecida
+   Extensão: exe
+   Tamanho: 62970 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBF%20Viewer%202000/uninst.exe
+
+20. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBFViewer2000.rar
+   Motivo: Extensão binária conhecida
+   Extensão: rar
+   Tamanho: 694953 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/DBFViewer2000arar(513)/DBFViewer2000.rar
+
+21. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY00012 - Cópia.dbf
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 1448 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY00012%20-%20C%C3%B3pia.dbf
+
+22. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY00012.dbf
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 5588 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY00012.dbf
+
+23. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY00012.rar
+   Motivo: Extensão binária conhecida
+   Extensão: rar
+   Tamanho: 22947 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY00012.rar
+
+24. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY000121.dbf
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 320642 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY000121.dbf
+
+25. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY00112.DBF
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 320643 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY00112.DBF
+
+26. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/DLY001121.dbf
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 320642 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/DLY001121.dbf
+
+27. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY00013.xls
+   Motivo: Extensão binária conhecida
+   Extensão: xls
+   Tamanho: 22160 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY00013.xls
+
+28. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY000131 - Cópia.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 17781 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/FECHAMENTO/DLY000131%20-%20C%C3%B3pia.xlsx
+
+29. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/FOXUSER.DBF
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 857 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/FOXUSER.DBF
+
+30. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/FOXUSER.FPT
+   Motivo: Arquivo parece binário.
+   Extensão: fpt
+   Tamanho: 4608 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/FOXUSER.FPT
+
+31. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/backup/DLY00112.DBF
+   Motivo: Arquivo parece binário.
+   Extensão: dbf
+   Tamanho: 320643 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/backup/DLY00112.DBF
+
+32. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/backup/pack.log
+   Motivo: Arquivo vazio
+   Extensão: log
+   Tamanho: 0 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/backup/pack.log
+
+33. Querys/Solicitacoes Luis/DBFViewer2000arar(513)/NGCONT/pack.log
+   Motivo: Arquivo vazio
+   Extensão: log
+   Tamanho: 0 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/DBFViewer2000arar(513)/NGCONT/pack.log
+
+34. Querys/Solicitacoes Luis/IPI_IMPORTAR.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 17460 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/IPI_IMPORTAR.xlsx
+
+35. Querys/Solicitacoes Luis/Lanc2013.xls
+   Motivo: Extensão binária conhecida
+   Extensão: xls
+   Tamanho: 976896 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/Lanc2013.xls
+
+36. Querys/Solicitacoes Luis/Lanc2013.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 287358 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/Lanc2013.xlsx
+
+37. Querys/Solicitacoes Luis/PROVISAO_IMPORTAR.xls
+   Motivo: Extensão binária conhecida
+   Extensão: xls
+   Tamanho: 80896 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/PROVISAO_IMPORTAR.xls
+
+38. Querys/Solicitacoes Luis/pack.log
+   Motivo: Arquivo vazio
+   Extensão: log
+   Tamanho: 0 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicitacoes%20Luis/pack.log
+
+39. Querys/Solicitação Andrea/pack.log
+   Motivo: Arquivo vazio
+   Extensão: log
+   Tamanho: 0 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Andrea/pack.log
+
+40. Querys/Solicitação Aurelio Dts/SPEDDts/Lista-TipodoItem2.txt
+   Motivo: Conteúdo não retornado como base64.
+   Extensão: txt
+   Tamanho: 1064475 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Aurelio%20Dts/SPEDDts/Lista-TipodoItem2.txt
+
+41. Querys/Solicitação Aurelio Dts/SPEDDts/TipoItem SpedFiscal.rar
+   Motivo: Extensão binária conhecida
+   Extensão: rar
+   Tamanho: 140631 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Aurelio%20Dts/SPEDDts/TipoItem%20SpedFiscal.rar
+
+42. Querys/Solicitação Brunna/GerarTag.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 9731 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Brunna/GerarTag.xlsx
+
+43. Querys/Solicitação Danuza/1/Indic_Custos_Bahia.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 46996 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Danuza/1/Indic_Custos_Bahia.xlsx
+
+44. Querys/Solicitação Danuza/1/Indic_Custos_DDA.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 466320 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Danuza/1/Indic_Custos_DDA.xlsx
+
+45. Querys/Solicitação Danuza/1/Indic_Custos_QRI.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 177834 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Danuza/1/Indic_Custos_QRI.xlsx
+
+46. Querys/Solicitação Danuza/ConferenciaFiscal.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 441480 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Danuza/ConferenciaFiscal.xlsx
+
+47. Querys/Solicitação Marco/Lembrete.exe
+   Motivo: Extensão binária conhecida
+   Extensão: exe
+   Tamanho: 16384 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Marco/Lembrete.exe
+
+48. Querys/Solicitação Thiago/Nfe_diferencas_preco.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 110078 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Thiago/Nfe_diferencas_preco.xlsx
+
+49. Querys/Solicitação Thiago/Nfe_diferencas_preco2.xlsx
+   Motivo: Extensão binária conhecida
+   Extensão: xlsx
+   Tamanho: 266182 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Thiago/Nfe_diferencas_preco2.xlsx
+
+50. Querys/Solicitação Thiago/ad0001.r
+   Motivo: Arquivo parece binário.
+   Extensão: r
+   Tamanho: 30766 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Thiago/ad0001.r
+
+51. Querys/Solicitação Thiago/nota.r
+   Motivo: Arquivo parece binário.
+   Extensão: r
+   Tamanho: 36201 bytes
+   GitHub: https://github.com/Clayyper/DadosRep/blob/main/Querys/Solicita%C3%A7%C3%A3o%20Thiago/nota.r
