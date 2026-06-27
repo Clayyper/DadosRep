@@ -1,6 +1,6 @@
 {
   "avdc": {
-    "version": "3.1.0",
+    "version": "5.0.6",
     "reservedDirectory": "avdc-index",
     "note": "Arquivos gerados pelo AVDC. Não editar manualmente."
   },
@@ -21,11 +21,13 @@
     "extractionReportPath": "avdc-index/extraction-report.txt"
   },
   "run": {
-    "id": "local-1782586132736-c61d2a",
+    "id": "local-1782587084776-39c677",
     "sortMode": "alpha",
     "filesCount": 630,
     "searchableFilesCount": 629,
+    "searchIndexTextLimitPerFile": 12000,
+    "searchIndexTextLimitTotal": 4194304,
     "extractionReportEnabled": true,
-    "createdAt": "2026-06-27T18:48:52.955Z"
+    "createdAt": "2026-06-27T19:04:44.970Z"
   }
 }
