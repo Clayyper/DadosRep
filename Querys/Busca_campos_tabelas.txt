@@ -1,0 +1,9 @@
+for each  mgcad._file no-lock
+   ,each  mgcad._field of _file no-lock          /* of= compara os index das tabelas, usando inner join*/
+    where mgcad._field._field-name = "log-aloc-neg":
+
+    disp _file._file-name column-label "Tabela"
+         _field._field-name column-label "Campo".
+
+
+end.

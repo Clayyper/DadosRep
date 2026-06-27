@@ -1,0 +1,32 @@
+excluisFOR EACH es-nr-gtm  EXCLUSIVE-LOCK
+WHERE es-nr-gtm.cod-estabel = "201"
+    AND es-nr-gtm.cod-emitente = 1729:
+    UPDATE es-nr-gtm.nr-ult-fat.
+	
+	
+	
+	FOR EACH ped-venda EXCLUSIVE-LOCK
+    WHERE ped-venda.cod-emitente=1729
+    AND ped-venda.cod-estabel="201"
+    AND ped-venda.nr-pedcli in ("00CP01DB","00CP01VG"):
+    DISPLAY ped-venda.cod-cond-pag    WITH 2 COLUMN WIDTH 320.
+END.
+
+UPDATE ped-venda
+    SET ped-venda.cod-cond-pag=147
+    WHERE ped-venda.cod-emitente=1729
+    AND ped-venda.cod-estabel="201"
+    AND ped-venda.nr-pedcli in ("00CP01ZZ","00CP01L2","00CP01T7","00CP01T8","00CP01XZ")
+
+	
+FOR EACH ped-item EXCLUSIVE-LOCK
+    WHERE  nr-pedcli="00CP00R8"
+    AND nome-abrev="GMB GUARU":
+   /* DISPLAY PED-ITEM  WITH 1 COLUMN WIDTH 320.*/
+    UPDATE aliquota-ipi.
+END.
+
+udpate ped-item
+	set aliquota-ipi=5
+	where nr-pedcli in ("00CP00R8","00CP01TV","00CP01TW","00CP01VL","00CP01WT","00CP01XL","00CP01XP")
+	and nome-abrev="GMB GUARU"

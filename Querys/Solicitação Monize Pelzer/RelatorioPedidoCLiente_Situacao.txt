@@ -1,0 +1,46 @@
+DEF VAR h-acomp AS HANDLE NO-UNDO.
+def var i-conta as int no-undo.
+
+RUN utp/ut-acomp.p PERSISTENT SET h-acomp.
+
+RUN pi-inicializar IN h-acomp (INPUT "Processando").
+DEF VAR V-SAIDA         AS CHAR.
+DEF TEMP-TABLE tt-exec NO-UNDO
+    FIELD nome-abrev    LIKE ped-venda.nome-abrev  
+    FIELD nr-pedcli     LIKE ped-venda.nr-pedcli   
+    FIELD nr-pedido     LIKE ped-venda.nr-pedido   
+    FIELD cod-emitente  LIKE ped-venda.cod-emitente
+    FIELD cod-sit-ped   LIKE ped-venda.cod-sit-ped. 
+
+    FOR EACH ped-venda NO-LOCK:
+        
+        CREATE tt-exec NO-ERROR.
+        ASSIGN
+        tt-exec.nome-abrev      = ped-venda.nome-abrev   
+        tt-exec.nr-pedcli       = ped-venda.nr-pedcli    
+        tt-exec.nr-pedido       = ped-venda.nr-pedido    
+        tt-exec.cod-emitente    = ped-venda.cod-emitente 
+        tt-exec.cod-sit-ped     = ped-venda.cod-sit-ped. 
+    END.
+ASSIGN V-SAIDA = "c:/temp/PED-CLI" + string(TIME) + ".txt".
+output to value(V-SAIDA).
+put "nome-abrev;nr-pedcli;nr-pedido;cod-emitente;cod-sit-ped" skip.
+
+FOR EACH tt-exec NO-LOCK:
+    
+        PUT tt-exec.nome-abrev  ";"
+        tt-exec.nr-pedcli       ";"
+        tt-exec.nr-pedido       ";"
+        tt-exec.cod-emitente    ";"
+        tt-exec.cod-sit-ped     SKIP.    
+    
+    END.
+    
+ output close.
+ 
+ RUN pi-finalizar IN h-acomp.
+
+
+ 
+/* message "Relat¢rio gerado no c:\temp\nota_entrada.csv " view-as alert-box. */
+os-command silent  value(V-SAIDA) .
