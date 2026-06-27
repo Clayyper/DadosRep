@@ -1,0 +1,96 @@
+OUTPUT TO VALUE('C:\TEMP\boom.csv').
+DEFINE BUFFER b-item FOR ITEM.
+FOR EACH ITEM :
+    FOR EACH estrutura OF ITEM:
+
+        FIND b-item WHERE b-item.it-codigo EQ estrutura.es-codigo NO-ERROR.
+          put unformatted ITEM.it-codigo ";" ITEM.desc-item ";" estrutura.sequencia ";" b-item.it-codigo ";" b-item.desc-item ";" estrutura.qtd-item ";" quant-liquid ";" b-item.un  skip.
+    END.
+
+END.
+ OUTPUT CLOSE.
+ 
+ 
+ 
+ ********************************
+ 
+ OUTPUT TO VALUE('C:\TEMP\boom4.csv').
+DEFINE BUFFER b-item FOR ITEM.
+DEFINE BUFFER s-item FOR ITEM.
+DEFINE BUFFER t-item FOR ITEM.
+DEFINE BUFFER q-item FOR ITEM.
+DEFINE BUFFER a-est for estrutura.
+DEFINE BUFFER b-est for estrutura.
+DEFINE BUFFER c-est for estrutura.
+FOR EACH ITEM  WHERE ge-codigo EQ 25 OR ge-codigo EQ 45:
+    FOR EACH estrutura OF ITEM WHERE estrutura.data-termino >= TODAY:
+
+        FIND b-item WHERE b-item.it-codigo EQ estrutura.es-codigo NO-ERROR.
+        put unformatted ITEM.it-codigo ";" ITEM.desc-item ";" estrutura.sequencia ";" b-item.it-codigo ";" b-item.desc-item ";" estrutura.qtd-item ";" quant-liquid ";" b-item.un ";" "1"  skip.
+		
+		FOR EACH a-est of b-item WHERE a-est.data-termino >= TODAY:
+		/*segundo nivel*/
+			FIND s-item WHERE s-item.it-codigo EQ a-est.es-codigo NO-ERROR.
+			put unformatted b-item.it-codigo ";" b-item.desc-item ";" a-est.sequencia ";" s-item.it-codigo ";" s-item.desc-item ";" a-est.qtd-item ";" a-est.quant-liquid ";" s-item.un ";" "2"  skip.
+			
+			FOR EACH b-est of s-item WHERE b-est.data-termino >= TODAY:
+				/*terceiro nivel*/
+				FIND t-item WHERE t-item.it-codigo EQ b-est.es-codigo NO-ERROR.
+				put unformatted s-item.it-codigo ";" s-item.desc-item ";" b-est.sequencia ";" t-item.it-codigo ";" t-item.desc-item ";" b-est.qtd-item ";" b-est.quant-liquid ";" t-item.un ";" "3"  skip.
+
+                FOR EACH c-est of t-item WHERE c-est.data-termino >= TODAY:
+			    	/*Quarto nivel*/
+				    FIND q-item WHERE q-item.it-codigo EQ c-est.es-codigo NO-ERROR.
+				    put unformatted t-item.it-codigo ";" t-item.desc-item ";" c-est.sequencia ";" q-item.it-codigo ";" q-item.desc-item ";" c-est.qtd-item ";" c-est.quant-liquid ";" q-item.un ";" "4"  skip.
+    			end.
+			end.
+			
+		end.
+    END.
+
+END.
+ OUTPUT CLOSE.
+ 
+ 
+ ***************************************************************************
+ OUTPUT TO VALUE('C:\TEMP\boom4.csv').
+DEFINE BUFFER b-item FOR ITEM.
+DEFINE BUFFER s-item FOR ITEM.
+DEFINE BUFFER t-item FOR ITEM.
+DEFINE BUFFER q-item FOR ITEM.
+DEFINE BUFFER a-est for estrutura.
+DEFINE BUFFER b-est for estrutura.
+DEFINE BUFFER c-est for estrutura.
+FOR EACH ITEM  WHERE ge-codigo EQ 60 OR ge-codigo EQ 50:
+    put unformatted ITEM.it-codigo ";" ITEM.desc-item  skip.
+    FOR EACH estrutura OF ITEM WHERE estrutura.data-termino >= TODAY:
+
+        FIND b-item WHERE b-item.it-codigo EQ estrutura.es-codigo NO-ERROR.
+         put UNFORMATTED ";" ";" ";" estrutura.sequencia ";" b-item.it-codigo ";" b-item.desc-item ";" estrutura.qtd-item ";" quant-liquid ";" b-item.un ";" "1" ";"  b-item.ge-codigo skip.
+		
+		FOR EACH a-est of b-item WHERE a-est.data-termino >= TODAY:
+		/*segundo nivel*/
+			FIND s-item WHERE s-item.it-codigo EQ a-est.es-codigo NO-ERROR.
+		     put UNFORMATTED ";" ";" ";" a-est.sequencia ";" s-item.it-codigo ";" s-item.desc-item ";" a-est.qtd-item ";" a-est.quant-liquid ";" s-item.un ";" "2" ";" s-item.ge-codigo  skip.
+			
+			FOR EACH b-est of s-item WHERE b-est.data-termino >= TODAY:
+				/*terceiro nivel*/
+				FIND t-item WHERE t-item.it-codigo EQ b-est.es-codigo NO-ERROR.
+			     put UNFORMATTED ";" ";" ";" b-est.sequencia ";" t-item.it-codigo ";" t-item.desc-item ";" b-est.qtd-item ";" b-est.quant-liquid ";" t-item.un ";" "3" ";" t-item.ge-codigo  skip.
+
+                FOR EACH c-est of t-item WHERE c-est.data-termino >= TODAY:
+			    	/*Quarto nivel*/
+				    FIND q-item WHERE q-item.it-codigo EQ c-est.es-codigo NO-ERROR.
+				     put UNFORMATTED ";" ";" ";" c-est.sequencia ";" q-item.it-codigo ";" q-item.desc-item ";" c-est.qtd-item ";" c-est.quant-liquid ";" q-item.un ";" "4" ";" q-item.ge-codigo skip.
+    			end.
+			end.
+			
+		end.
+    END.
+
+END.
+ OUTPUT CLOSE.
+
+
+
+

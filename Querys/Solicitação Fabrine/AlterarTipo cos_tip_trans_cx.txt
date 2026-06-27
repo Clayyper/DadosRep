@@ -1,0 +1,6 @@
+FOR EACH movto_cta_corren WHERE dat_movto_cta_corren = 11/24/2015
+    AND cod_cta_corren = "13000088-9"
+    AND (num_seq_movto_cta_corren= 70 OR num_seq_movto_cta_corren= 80):
+UPDATE num_seq_movto_cta_corren cod_tip_trans_cx.                         
+
+END.      

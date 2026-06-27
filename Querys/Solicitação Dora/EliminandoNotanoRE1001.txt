@@ -1,0 +1,86 @@
+FOR EACH nota-fiscal EXCLUSIVE-LOCK
+    WHERE nr-nota-fis="0039444"
+    AND serie = "402":
+   ASSIGN   dt-cancela=02/25/2015.
+END.
+
+database/tgdi/twp/twdi135.p
+
+
+12:47:21 Looking for F:\Datasul\des206b\esp\es0403c.p
+Compiling F:\Datasul\des206b\esp\es0403c.p
+** ADVERTENCIA -- TRANSACTION para um bloco que ja' e' transacao. (214)
+** ADVERTENCIA -- TRANSACTION para um bloco que ja' e' transacao. (214)
+
+Compilation Finished.
+
+
+pi_grava:
+DO  TRANSACTION :
+
+    RUN pi-recebe-tt-embarque  IN h-api ( INPUT TABLE tt-embarque).
+    RUN pi-trata-tt-embarque   IN h-api ( INPUT 'MSG', INPUT NO).
+    RUN pi-devolve-tt-erro     IN h-api ( OUTPUT TABLE tt-erro ) .
+    FIND FIRST tt-erro WHERE tt-erro.cd-erro NE 17640 NO-LOCK NO-ERROR .
+    IF AVAIL tt-erro THEN  DO:
+        RUN cdp/cd0667.w (INPUT TABLE tt-erro ) .
+        UNDO pi_grava, RETURN ERROR .
+    END.
+
+    RUN pi-recebe-tt-ped-ent IN h-api (INPUT TABLE tt-ped-ent).
+    RUN pi-trata-tt-ped-ent  IN h-api (INPUT NO).
+    RUN pi-devolve-tt-erro   IN h-api ( OUTPUT TABLE tt-erro ) .
+    FIND FIRST tt-erro WHERE tt-erro.cd-erro NE 17640 NO-LOCK NO-ERROR .
+    IF AVAIL tt-erro  THEN DO:
+        RUN cdp/cd0667.w (INPUT TABLE tt-erro ) .
+        UNDO pi_grava, RETURN ERROR .
+    END.
+
+    run pi-encerra-embarque IN h-api (NO). 
+    FIND FIRST tt-erro WHERE tt-erro.cd-erro NE 17640 NO-LOCK NO-ERROR .
+    IF AVAIL tt-erro THEN  DO:
+        RUN cdp/cd0667.w (INPUT TABLE tt-erro ) .
+        UNDO pi_grava, RETURN ERROR .
+    END.
+
+    RUN pi-recebe-tt-embarque IN h-api (INPUT TABLE tt-embarque).      
+    RUN pi-encerra-embarque IN h-api (NO ). 
+
+END.
+
+FOR EACH nota-fiscal EXCLUSIVE-LOCK
+    WHERE nr-nota-fis="0039445"
+    AND serie = "402":
+  FIND xs-nfe OF nota-fiscal EXCLUSIVE-LOCK NO-ERROR .
+    IF AVAIL xs-nfe  THEN DO: 
+        ASSIGN xs-nfe.nr-nota-fis ="0039444".
+    END.
+END.
+
+
+ FOR EACH docum-est EXCLUSIVE-LOCK
+    WHERE nro-docto = "0039444"
+    AND serie ="402":
+  ASSIGN cod-observa = 1
+      atual-ft = no
+      sit-docum = 1
+      char-1 = ""
+      log-1= NO
+      log-ft-atual  = no
+      log-consid-ender-nf-saida =  NO .
+
+ END.
+ 
+ DATASUL 11
+ FOR EACH docum-est EXCLUSIVE-LOCK
+    WHERE nro-docto = "0194496"
+    AND serie-docto ="1":
+  ASSIGN cod-observa = 1
+      atual-ft = no
+      sit-docum = 1
+      char-1 = ""
+      log-1= NO
+      log-ft-atual  = no
+      log-consid-ender-nf-saida =  NO .
+
+ END.

@@ -1,0 +1,158 @@
+DEF TEMP-TABLE tt-itens
+    FIELD cod-emitente       LIKE doc-fiscal.cod-emitente
+    FIELD serie              LIKE doc-fiscal.serie
+	FIELD nr-doc-fis		 LIKE doc-fiscal.nr-doc-fis
+	FIELD CHAVE          AS CHAR FORMAT "x(44)".
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+FOR EACH tt-itens.
+	FOR EACH doc-fiscal EXCLUSIVE-LOCK
+		WHERE      doc-fiscal.nr-doc-fis    = tt-itens.nr-doc-fis
+		AND        doc-fiscal.cod-emitente = tt-itens.cod-emitente
+		AND        doc-fiscal.serie  = tt-itens.serie:
+		assign SUBSTRING(doc-fiscal.char-2,155,44) =tt-itens.chave .
+	END.
+END.
+
+
+
+
+
+
+verificar informacao ****************************************************************************************************
+
+DEF TEMP-TABLE tt-itens
+    FIELD cod-emitente       LIKE doc-fiscal.cod-emitente
+    FIELD serie              LIKE doc-fiscal.serie
+	FIELD nr-doc-fis		 LIKE doc-fiscal.nr-doc-fis
+	FIELD CHAVE              AS CHAR FORMAT "x(44)"
+    FIELD data-doc           AS CHAR FORMAT "x(10)"
+    FIELD nome-emit          AS CHAR FORMAT "x(30)".
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+OUTPUT TO VALUE('C:\TEMP\DocError.TXT').
+FOR EACH tt-itens.
+	FIND doc-fiscal EXCLUSIVE-LOCK
+		WHERE      doc-fiscal.nr-doc-fis    = tt-itens.nr-doc-fis
+		AND        doc-fiscal.cod-emitente = tt-itens.cod-emitente
+		AND        doc-fiscal.serie  = tt-itens.serie NO-ERROR.
+/*         assign SUBSTRING(doc-fiscal.char-2,155,44) =tt-itens.chave . */
+
+    IF AVAIL doc-fiscal THEN DO:
+        assign SUBSTRING(doc-fiscal.char-2,155,44) =tt-itens.chave.
+    END.
+    ELSE DO:
+        put unformatted  
+            tt-itens.cod-emitente  ";"
+            tt-itens.serie         ";"
+            tt-itens.nr-doc-fis    ";"
+            tt-itens.CHAVE         ";"
+            tt-itens.data-doc      ";"
+            tt-itens.nome-emit     skip.
+    END.
+	
+END.
+ OUTPUT CLOSE.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Documentos lancandos mais de uma vez *********************************************************************************************
+
+
+DEF TEMP-TABLE tt-itens
+    FIELD cod-emitente       LIKE doc-fiscal.cod-emitente
+    FIELD serie              LIKE doc-fiscal.serie
+	FIELD nr-doc-fis		 LIKE doc-fiscal.nr-doc-fis
+	FIELD CHAVE              AS CHAR FORMAT "x(44)"
+    FIELD data-doc           AS CHAR FORMAT "x(10)"
+    FIELD nome-emit          AS CHAR FORMAT "x(30)".
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+FOR EACH tt-itens.
+    FOR EACH doc-fiscal EXCLUSIVE-LOCK
+		WHERE      doc-fiscal.nr-doc-fis    = tt-itens.nr-doc-fis
+		AND        doc-fiscal.cod-emitente = tt-itens.cod-emitente
+		AND        doc-fiscal.serie  = tt-itens.serie:
+         assign SUBSTRING(doc-fiscal.char-2,155,44) =tt-itens.chave.
+    
+    END.
+	
+END.
+ 
+ 
+Importando chave na parte do recebimento ***********************************************************
+
+FOR EACH docum-est WHERE   nro-docto = "0101768"
+    AND serie ="1"
+    AND cod-emitente = 4162:
+    ASSIGN SUBSTRING(docum-est.char-1,93,44)="35140302666114000109550010001017681002435378".
+END.
+
+
+FOR EACH doc-fiscal 
+		WHERE      doc-fiscal.nr-doc-fis    = "0101768"
+		AND        doc-fiscal.cod-emitente = 4162
+		AND        doc-fiscal.serie  = "1":
+    DISP doc-fiscal.nr-doc-fis  SKIP.
+    DISP    SUBSTRING(doc-fiscal.char-2,155,44) WITH 1 COLUMN WIDTH 320.
+/*         assign SUBSTRING(doc-fiscal.char-2,155,44) ="35140302666114000109550010001017681002435378" . */
+	END.
+
+	
+OUTPUT TO VALUE('C:\TEMP\0011613.TXT').
+FOR EACH docum-est WHERE   nro-docto = "0011613"
+    AND docum-est.serie ="1"
+    AND docum-est.cod-emitente = 86:
+    MESSAGE SUBSTRING(docum-est.char-1,93,44) VIEW-AS ALERT-BOX.
+    ASSIGN cod-chave-aces-nf-eletro = "31161210186957000128550010000116131000116133".
+END.
+OUTPUT CLOSE.
+	
+	

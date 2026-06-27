@@ -1,0 +1,13 @@
+
+
+    FOR EACH item-doc-est WHERE nro-docto = "0012565" AND  cod-emitente = 7748:
+    DISP     it-codigo.
+    UPDATE  class-fiscal.
+END.
+
+
+
+FOR EACH componente WHERE it-codigo = "EMB00018":
+    ASSIGN class-fiscal= "39231090".
+END.
+

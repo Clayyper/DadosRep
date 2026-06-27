@@ -1,0 +1,37 @@
+cynthia.araujo@hpelzer.com.br
+
+
+
+PARAMETRO = 'MV_SMTPSRV'
+	         
+CONTEUDO = 'smtp.gmail.com:587'
+
+
+MV_SMTPSSL
+
+N
+
+MV_SMTPTLS
+
+S
+
+
+update SPED000
+		set [CONTEUDO] = 'smtp.gmail.com:587'      
+  FROM [dbo].[SPED000]
+  where PARAMETRO = 'MV_SMTPSRV'
+  
+  update SPED000
+		set [CONTEUDO] = 'N'      
+  FROM [dbo].[SPED000]
+  where PARAMETRO = 'MV_SMTPSSL'
+  
+  update SPED000
+		set [CONTEUDO] = 'S'      
+  FROM [dbo].[SPED000]
+  where PARAMETRO = 'MV_SMTPTLS'
+  
+    update SPED000
+		set [CONTEUDO] = 'envio.xmlgrv@hpelzer.com.br'      
+  FROM [dbo].[SPED000]
+  where PARAMETRO = 'MV_SMTPADM'

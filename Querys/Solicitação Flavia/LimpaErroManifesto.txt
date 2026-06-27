@@ -1,0 +1,48 @@
+USE [TSSPROD]
+GO
+
+SELECT [ID_ENT]
+      ,[ID_EVENTO]
+      ,[LOTE]
+      ,[TPEVENTO]
+      ,[SEQEVENTO]
+      ,[NFE_CHV]
+      ,[AMBIENTE]
+      ,[DATE_EVEN]
+      ,[TIME_EVEN]
+      ,[STATUS]
+      ,[DATE_TRANS]
+      ,[TIME_TRANS]
+      ,[DHREGEVEN]
+      ,[VERSAO]
+      ,[VEREVENTO]
+      ,[VERTPEVEN]
+      ,[VERAPLIC]
+      ,[CORGAO]
+      ,[CSTATENV]
+      ,[CMOTENV]
+      ,[CSTATEVEN]
+      ,[CMOTEVEN]
+      ,[XML_ERP]
+      ,[XML_SIG]
+      ,[XML_RET]
+      ,[PROTOCOLO]
+      ,[STATUSMAIL]
+      ,[STATUSCANC]
+      ,[XML_CANC]
+      ,[XML_RETCAN]
+      ,[EVENPROT]
+      ,[TOTVSCOLAB]
+      ,[NUMDOCNEOG]
+      ,[STATDOCNEO]
+      ,[IDENTCOLAB]
+      ,[D_E_L_E_T_]
+      ,[R_E_C_N_O_]
+      ,[R_E_C_D_E_L_]
+	  --delete
+  FROM [dbo].[SPED150]
+  --where NFE_CHV = '35170762986732000150550010000053281580182999'
+  where cstatenv = 225 and DATE_EVEN >='20170707'
+GO
+
+

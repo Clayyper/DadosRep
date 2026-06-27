@@ -1,0 +1,53 @@
+conferencia do embarque
+
+FOR EACH embarque WHERE nr-embarque EQ 34488:
+    FOR EACH it-pre-fat OF embarque:
+        DISP nr-embarque it-codigo SUBSTRING(it-pre-fat.char-2,10,1) SUBSTRING(embarque.char-2,1,12).
+    END.
+    FOR EACH pre-fatur OF embarque:
+        DISP substring(pre-fatur.char-2,10,18) substring(pre-fatur.char-2,30,12).
+    END.
+   
+    
+END.
+
+conferir hora do bloqueio de embarque para exclusao
+FOR EACH embarque WHERE nr-embarque EQ 34453:
+    FOR EACH it-pre-fat OF embarque:
+        DISP nr-embarque it-codigo SUBSTRING(it-pre-fat.char-2,10,1) SUBSTRING(embarque.char-2,1,12).
+        MESSAGE
+            SUBSTRING(embarque.char-2,50,1)
+            SUBSTRING(embarque.char-2,52,12)
+            substring(embarque.char-2,65,35) VIEW-AS ALERT-BOX.
+    END.
+    FOR EACH pre-fatur OF embarque:
+        DISP substring(pre-fatur.char-2,10,18) substring(pre-fatur.char-2,30,12).
+    END.
+   
+    
+END.
+
+
+
+
+Corrigir embarque
+
+FOR EACH embarque WHERE nr-embarque EQ 36083:
+    DISP embarque WITH 1 COLUMN WIDTH 320.
+    ASSIGN situacao = 3.
+    FOR EACH it-pre-fat OF embarque:
+        
+        DISP nr-embarque it-codigo SUBSTRING(it-pre-fat.char-2,10,1) SUBSTRING(embarque.char-2,1,12).
+        MESSAGE
+            SUBSTRING(embarque.char-2,50,1)
+            SUBSTRING(embarque.char-2,52,12)
+            substring(embarque.char-2,65,35) VIEW-AS ALERT-BOX.
+    END.
+    FOR EACH pre-fatur OF embarque:
+        DISP pre-fatur WITH 1 COLUMN WIDTH 320.
+        ASSIGN pre-fatur.cod-sit-pre = 3.
+        DISP substring(pre-fatur.char-2,10,18) substring(pre-fatur.char-2,30,12).
+    END.
+   
+    
+END.

@@ -1,0 +1,29 @@
+DEF TEMP-TABLE tt-itens
+    FIELD cod-emitente   LIKE docum-est.cod-emitente
+    FIELD serie-docto    LIKE docum-est.serie-docto
+	FIELD nro-docto		 LIKE docum-est.nro-docto
+	FIELD CHAVE          AS CHAR FORMAT "x(44)".
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+FOR EACH tt-itens.
+	FOR EACH docum-est EXCLUSIVE-LOCK
+		WHERE      docum-est.nro-docto    = tt-itens.nro-docto
+		AND        docum-est.cod-emitente = tt-itens.cod-emitente
+		AND        docum-est.serie-docto  = tt-itens.serie-docto:
+		assign SUBSTRING(docum-est.char-1,93,44) =tt-itens.chave .
+	END.
+END.

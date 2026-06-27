@@ -1,0 +1,27 @@
+DISABLE TRIGGERS FOR load OF param-nf-estab.
+for each param-nf-estab :
+  ASSIGN param-nf-estab.cod-caminho-xml = "\\192.168.0.247\tss\Xml\tst2\" 
+		 SUBSTRING(param-nf-estab.cod-livre-1,116,39)="\\192.168.0.247\tss\Xml\tst2\historico\"
+		 SUBSTRING(param-nf-estab.cod-livre-1,216,1)="2"
+         param-nf-estab.cod-url-ws-tss = "http://vmadedi:8680"           
+         param-nf-estab.idi-tip-emis-amb-sefaz =2                        
+         param-nf-estab.idi-tip-emis-nf-eletro = 2.                      
+
+
+end.
+QUIT.
+
+
+
+DISABLE TRIGGERS FOR load OF param-nf-estab.
+for each param-nf-estab :
+  ASSIGN param-nf-estab.cod-caminho-xml = "\\192.168.120.33\Datasul\totvssped\403\" 
+		 SUBSTRING(param-nf-estab.cod-livre-1,116,49)="\\192.168.120.33\Datasul\totvssped\403\historico\"
+		 SUBSTRING(param-nf-estab.cod-livre-1,216,1)="2"
+		 SUBSTRING(param-nf-estab.cod-livre-1,1,26)="http://192.168.120.55:8680"
+         param-nf-estab.num-livre-1=2                        
+         param-nf-estab.idi-tip-emis-nf-eletro = 2.                      
+
+
+end.
+QUIT.

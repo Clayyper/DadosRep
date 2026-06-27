@@ -1,0 +1,29 @@
+DEF TEMP-TABLE tt-cont
+       FIELD conta_antiga_ext LIKE trad_cta_ctbl_ext.cod_cta_ctbl_ext
+       FIELD conta_nova_ext   LIKE trad_cta_ctbl_ext.cod_cta_ctbl_ext
+       FIELD conta_ctbl       LIKE trad_cta_ctbl_ext.cod_cta_ctbl.
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-cont.
+     IMPORT DELIMITER ";" tt-cont.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-cont): " CAN-FIND(FIRST tt-cont) VIEW-AS ALERT-BOX.
+        
+FOR EACH tt-cont:
+    FOR EACH trad_cta_ctbl_ext WHERE cod_cta_ctbl_ext EQ tt-cont.conta_antiga_ext
+                                AND  cod_cta_ctbl     EQ tt-cont.conta_ctbl:
+        DISP cod_cta_ctbl_ext cod_cta_ctbl.
+        ASSIGN cod_cta_ctbl_ext = conta_nova_ext.
+    END.
+
+END.

@@ -1,0 +1,57 @@
+FOR EACH habilit_ferias EXCLUSIVE-LOCK
+    WHERE habilit_ferias.cdn_estab="201"
+    AND habilit_ferias.cdn_funcionario:
+    DISPLAYhabilit_ferias    WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH habilit_ferias EXCLUSIVE-LOCK
+    WHERE habilit_ferias.cdn_estab=201
+    AND habilit_ferias.cdn_funcionario=46
+    AND  habilit_ferias.dat_inic_ferias=01/30/2012:
+    DISPLAY  habilit_ferias    WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH habilit_ferias EXCLUSIVE-LOCK
+    WHERE habilit_ferias.cdn_estab=201
+    AND habilit_ferias.cdn_funcionario=46
+    AND  habilit_ferias.dat_inic_ferias=08/26/2013:
+   /* DISPLAY  habilit_ferias    WITH 1 COLUMN WIDTH 320.*/
+    UPDATE habilit_ferias.dat_inic_period_aqst_ferias.
+   /*  UPDATE habilit_ferias.dat_term_period_aqst_ferias.*/
+   
+   FOR EACH period_aqst_ferias EXCLUSIVE-LOCK
+    WHERE  period_aqst_ferias.cdn_estab=201
+    AND period_aqst_ferias.cdn_funcionario=46
+    AND period_aqst_ferias.dat_inic_period_aqst_ferias=07/01/2010:
+    /*UPDATE  period_aqst_ferias.*/
+    DISPLAY period_aqst_ferias    WITH 1 COLUMN WIDTH 320.
+	
+	UPDATE period_aqst_ferias 
+    SET dat_concess_efetd[1]=01/30/2012
+    WHERE  period_aqst_ferias.cdn_estab=201
+    AND period_aqst_ferias.cdn_funcionario=46
+    AND period_aqst_ferias.dat_inic_period_aqst_ferias=07/01/2010:
+    /*UPDATE  period_aqst_ferias.*/
+   /* DISPLAY period_aqst_ferias    WITH 1 COLUMN WIDTH 320.*/
+   
+   UPDATE period_aqst_ferias 
+    SET idi_sit_period_aqst_ferias=0
+    WHERE  period_aqst_ferias.cdn_estab=201
+    AND period_aqst_ferias.cdn_funcionario=46
+    AND period_aqst_ferias.dat_inic_period_aqst_ferias=07/01/2011:
+    /*UPDATE  period_aqst_ferias.*/
+   /* DISPLAY period_aqst_ferias    WITH 1 COLUMN WIDTH 320.*/
+    
+	UPDATE period_aqst_ferias 
+    SET  qtd_dias_direito_period_aqst=0 ,
+         qtd_dias_ferias_concedid=0,
+         dat_concess_efetd[1]=NULL,
+         dat_concess_efetd[2]=NULL,
+         qtd_dias_gozado[1]=0,
+         qtd_dias_gozado[2]=0
+        
+    WHERE  period_aqst_ferias.cdn_estab=201
+    AND period_aqst_ferias.cdn_funcionario=46
+    AND period_aqst_ferias.dat_inic_period_aqst_ferias=07/01/2011:
+    /*UPDATE  period_aqst_ferias.*/
+   /* DISPLAY period_aqst_ferias    WITH 1 COLUMN WIDTH 320.*/

@@ -1,0 +1,30 @@
+    OUTPUT TO VALUE('C:\TEMP\doc14232.TXT').
+    FOR EACH nota-fiscal EXCLUSIVE-LOCK
+		WHERE      nota-fiscal.cod-emitente =14232
+		AND        nota-fiscal.serie  = "143":
+    put UNFORMATTED nota-fiscal.nr-nota-fis "|" char-2 SKIP.
+    PUT UNFORMATTED SUBSTRING(nota-fiscal.char-2,3,44) SKIP.
+END.
+OUTPUT CLOSE.
+
+
+
+
+   
+    FOR EACH nota-fiscal EXCLUSIVE-LOCK
+		WHERE      nota-fiscal.cod-emitente =14232
+		AND        nota-fiscal.serie  = "143"
+        AND        nota-fiscal.nr-nota-fis ="0001315":
+        ASSIGN SUBSTRING(nota-fiscal.char-2,3,44)="35150302441724000368551430000013151816205862".
+        ASSIGN SUBSTRING(nota-fiscal.char-2,65,1)= "1".
+END.
+
+
+CREATE sit-nf-eletro.
+         ASSIGN sit-nf-eletro.cod-estabel  = "403"
+                sit-nf-eletro.cod-serie    = "143"
+                sit-nf-eletro.cod-nota-fis = "0001315"
+                sit-nf-eletro.idi-sit-nf-eletro = 3
+                sit-nf-eletro.dt-emis-nota = 03/05/2015
+             .
+    

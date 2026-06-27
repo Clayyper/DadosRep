@@ -1,0 +1,235 @@
+OUTPUT TO VALUE('C:\TEMP\item.TXT').
+for each  docum-est no-lock WHERE nro-docto ="0062426":
+put unformatted "esp-docto                 " esp-docto                 skip.
+put unformatted "serie-docto               " serie-docto               skip.
+put unformatted "nro-docto                 " nro-docto                 skip.
+put unformatted "cod-emitente              " cod-emitente              skip.
+put unformatted "dt-emissao                " dt-emissao                skip.
+put unformatted "dt-trans                  " dt-trans                  skip.
+put unformatted "dt-atualiza               " dt-atualiza               skip.
+put unformatted "hr-atualiza               " hr-atualiza               skip.
+put unformatted "base-icm                  " base-icm                  skip.
+put unformatted "base-ipi                  " base-ipi                  skip.
+put unformatted "base-iss                  " base-iss                  skip.
+put unformatted "tot-valor                 " tot-valor                 skip.
+put unformatted "nat-operacao              " nat-operacao              skip.
+put unformatted "icm-fonte                 " icm-fonte                 skip.
+put unformatted "embalagem                 " embalagem                 skip.
+put unformatted "tot-peso                  " tot-peso                  skip.
+put unformatted "ct-transit                " ct-transit                skip.
+put unformatted "sc-transit                " sc-transit                skip.
+put unformatted "cod-estabel               " cod-estabel               skip.
+put unformatted "tipo-docto                " tipo-docto                skip.
+put unformatted "cod-observa               " cod-observa               skip.
+put unformatted "uf                        " uf                        skip.
+put unformatted "via-transp                " via-transp                skip.
+put unformatted "cod-ibge                  " cod-ibge                  skip.
+put unformatted "aliquota-icm              " aliquota-icm              skip.
+put unformatted "icm-complem               " icm-complem               skip.
+put unformatted "icm-deb-cre               " icm-deb-cre               skip.
+put unformatted "icm-nao-trib              " icm-nao-trib              skip.
+put unformatted "icm-outras                " icm-outras                skip.
+put unformatted "despesa-nota              " despesa-nota              skip.
+put unformatted "iss-deb-cre               " iss-deb-cre               skip.
+put unformatted "ipi-deb-cre               " ipi-deb-cre               skip.
+put unformatted "ipi-nao-trib              " ipi-nao-trib              skip.
+put unformatted "iss-nao-trib              " iss-nao-trib              skip.
+put unformatted "ipi-outras                " ipi-outras                skip.
+put unformatted "iss-outras                " iss-outras                skip.
+put unformatted "estado                    " estado                    skip.
+put unformatted "aliquota-iss              " aliquota-iss              skip.
+put unformatted "ap-atual                  " ap-atual                  skip.
+put unformatted "ipi-despesa               " ipi-despesa               skip.
+put unformatted "valor-embal               " valor-embal               skip.
+put unformatted "valor-frete               " valor-frete               skip.
+put unformatted "valor-mercad              " valor-mercad              skip.
+put unformatted "valor-outras              " valor-outras              skip.
+put unformatted "valor-seguro              " valor-seguro              skip.
+put unformatted "tot-desconto              " tot-desconto              skip.
+put unformatted "nff                       " nff                       skip.
+put unformatted "of-atual                  " of-atual                  skip.
+put unformatted "estab-de-or               " estab-de-or               skip.
+put unformatted "CE-atual                  " CE-atual                  skip.
+put unformatted "observacao                " observacao                skip.
+put unformatted "base-icm-fas              " base-icm-fas              skip.
+put unformatted "base-ipi-fas              " base-ipi-fas              skip.
+put unformatted "base-iss-fas              " base-iss-fas              skip.
+put unformatted "desp-fasb                 " desp-fasb                 skip.
+put unformatted "icm-cpl-fasb              " icm-cpl-fasb              skip.
+put unformatted "icm-dc-fasb               " icm-dc-fasb               skip.
+put unformatted "icm-fnt-fasb              " icm-fnt-fasb              skip.
+put unformatted "icm-ntr-fasb              " icm-ntr-fasb              skip.
+put unformatted "icm-out-fasb              " icm-out-fasb              skip.
+put unformatted "ipi-dc-fasb               " ipi-dc-fasb               skip.
+put unformatted "ipi-ntr-fasb              " ipi-ntr-fasb              skip.
+put unformatted "ipi-out-fasb              " ipi-out-fasb              skip.
+put unformatted "iss-dc-fasb               " iss-dc-fasb               skip.
+put unformatted "iss-ntr-fasb              " iss-ntr-fasb              skip.
+put unformatted "iss-out-fasb              " iss-out-fasb              skip.
+put unformatted "tot-des-fasb              " tot-des-fasb              skip.
+put unformatted "tot-vl-fasb               " tot-vl-fasb               skip.
+put unformatted "vl-emb-fasb               " vl-emb-fasb               skip.
+put unformatted "vl-fre-fasb               " vl-fre-fasb               skip.
+put unformatted "vl-merc-fasb              " vl-merc-fasb              skip.
+put unformatted "vl-out-fasb               " vl-out-fasb               skip.
+put unformatted "vl-seg-fasb               " vl-seg-fasb               skip.
+put unformatted "cotacao-fasb              " cotacao-fasb              skip.
+put unformatted "vl-imp-impor              " vl-imp-impor              skip.
+put unformatted "pais-origem               " pais-origem               skip.
+put unformatted "usuario                   " usuario                   skip.
+put unformatted "mod-frete                 " mod-frete                 skip.
+put unformatted "valor-irf                 " valor-irf                 skip.
+put unformatted "ok-fornec                 " ok-fornec                 skip.
+put unformatted "estab-fisc                " estab-fisc                skip.
+put unformatted "ok-observ                 " ok-observ                 skip.
+put unformatted "ok-data                   " ok-data                   skip.
+put unformatted "ok-user                   " ok-user                   skip.
+put unformatted "cr-atual                  " cr-atual                  skip.
+put unformatted "dt-venc-iss               " dt-venc-iss               skip.
+put unformatted "dt-venc-ipi               " dt-venc-ipi               skip.
+put unformatted "dt-venc-icm               " dt-venc-icm               skip.
+put unformatted "base-subs                 " base-subs                 skip.
+put unformatted "vl-subs                   " vl-subs                   skip.
+put unformatted "vl-subs-fasb              " vl-subs-fasb              skip.
+put unformatted "base-subs-fasb            " base-subs-fasb            skip.
+put unformatted "acresc-financ             " acresc-financ             skip.
+put unformatted "rateia-frete              " rateia-frete              skip.
+put unformatted "aliq-irf                  " aliq-irf                  skip.
+put unformatted "esp-irf                   " esp-irf                   skip.
+put unformatted "cod-imp-irf               " cod-imp-irf               skip.
+put unformatted "cod-ret-irf               " cod-ret-irf               skip.
+put unformatted "dia-util-irf              " dia-util-irf              skip.
+put unformatted "ind-extrac                " ind-extrac                skip.
+put unformatted "origem                    " origem                    skip.
+put unformatted "c-nr-invoice              " c-nr-invoice              skip.
+put unformatted "i-sequencia               " i-sequencia               skip.
+put unformatted "dt-entr-merc              " dt-entr-merc              skip.
+put unformatted "taxa-conv-imp             " taxa-conv-imp             skip.
+put unformatted "imp-import                " imp-import                skip.
+put unformatted "qt-tot-imp                " qt-tot-imp                skip.
+put unformatted "atual-ft                  " atual-ft                  skip.
+put unformatted "mod-atual                 " mod-atual                 skip.
+put unformatted "estorn-comis              " estorn-comis              skip.
+put unformatted "rec-fisico                " rec-fisico                skip.
+put unformatted "ind-orig-entrada          " ind-orig-entrada          skip.
+put unformatted "ind-via-envio             " ind-via-envio             skip.
+put unformatted "nro-proc-entrada          " nro-proc-entrada          skip.
+put unformatted "nro-proc-saida            " nro-proc-saida            skip.
+put unformatted "nf-emitida-est            " nf-emitida-est            skip.
+put unformatted "conta-transit             " conta-transit             skip.
+put unformatted "tot-taxa                  " tot-taxa                  skip.
+put unformatted "mo-codigo                 " mo-codigo                 skip.
+put unformatted "cotacao-dia               " cotacao-dia               skip.
+put unformatted "valor-frete-me            " valor-frete-me            skip.
+put unformatted "valor-seguro-me           " valor-seguro-me           skip.
+put unformatted "valor-embal-me            " valor-embal-me            skip.
+put unformatted "valor-outras-me           " valor-outras-me           skip.
+put unformatted "tot-desconto-me           " tot-desconto-me           skip.
+put unformatted "tot-valor-me              " tot-valor-me              skip.
+put unformatted "valor-mercad-me           " valor-mercad-me           skip.
+put unformatted "despesa-nota-me           " despesa-nota-me           skip.
+put unformatted "tot-taxa-me               " tot-taxa-me               skip.
+put unformatted "tp-rat-fret               " tp-rat-fret               skip.
+put unformatted "sit-docum                 " sit-docum                 skip.
+put unformatted "sit-edi                   " sit-edi                   skip.
+put unformatted "ind-tipo-rateio           " ind-tipo-rateio           skip.
+put unformatted "ind-rateio                " ind-rateio                skip.
+put unformatted "sit-atual                 " sit-atual                 skip.
+put unformatted "char-1                    " char-1                    skip.
+put unformatted "char-2                    " char-2                    skip.
+put unformatted "dec-1                     " dec-1                     skip.
+put unformatted "dec-2                     " dec-2                     skip.
+put unformatted "int-1                     " int-1                     skip.
+put unformatted "int-2                     " int-2                     skip.
+put unformatted "log-1                     " log-1                     skip.
+put unformatted "log-2                     " log-2                     skip.
+put unformatted "data-1                    " data-1                    skip.
+put unformatted "data-2                    " data-2                    skip.
+put unformatted "check-sum                 " check-sum                 skip.
+put unformatted "tipo-nota                 " tipo-nota                 skip.
+put unformatted "atualiza-cr               " atualiza-cr               skip.
+put unformatted "cod-tax-fre               " cod-tax-fre               skip.
+put unformatted "cod-tax-div               " cod-tax-div               skip.
+put unformatted "perc-tax-fre              " perc-tax-fre              skip.
+put unformatted "perc-tax-div              " perc-tax-div              skip.
+put unformatted "vl-tax-frete              " vl-tax-frete              skip.
+put unformatted "vl-tax-diversos           " vl-tax-diversos           skip.
+put unformatted "esp-fiscal                " esp-fiscal                skip.
+put unformatted "base-pis-subs             " base-pis-subs             skip.
+put unformatted "base-cofins-subs          " base-cofins-subs          skip.
+put unformatted "vl-pis-subs               " vl-pis-subs               skip.
+put unformatted "vl-cofins-subs            " vl-cofins-subs            skip.
+put unformatted "cp-atual                  " cp-atual                  skip.
+put unformatted "embarque                  " embarque                  skip.
+put unformatted "cod-imp-frete             " cod-imp-frete             skip.
+put unformatted "cod-imp-seguro            " cod-imp-seguro            skip.
+put unformatted "cod-imp-embal             " cod-imp-embal             skip.
+put unformatted "cod-imp-outras            " cod-imp-outras            skip.
+put unformatted "vl-imp-frete              " vl-imp-frete              skip.
+put unformatted "vl-imp-seguro             " vl-imp-seguro             skip.
+put unformatted "vl-imp-embalagem          " vl-imp-embalagem          skip.
+put unformatted "vl-imp-outras             " vl-imp-outras             skip.
+put unformatted "vl-imp-frete-me           " vl-imp-frete-me           skip.
+put unformatted "vl-imp-seguro-me          " vl-imp-seguro-me          skip.
+put unformatted "vl-imp-embalagem-me       " vl-imp-embalagem-me       skip.
+put unformatted "vl-imp-outras-me          " vl-imp-outras-me          skip.
+put unformatted "perc-tax-seg              " perc-tax-seg              skip.
+put unformatted "perc-tax-emb              " perc-tax-emb              skip.
+put unformatted "declaracao-import         " declaracao-import         skip.
+put unformatted "log-ft-atual              " log-ft-atual              skip.
+put unformatted "log-cc-atual              " log-cc-atual              skip.
+put unformatted "log-pt-atual              " log-pt-atual              skip.
+put unformatted "ft-atual                  " ft-atual                  skip.
+put unformatted "cc-atual                  " cc-atual                  skip.
+put unformatted "pt-atual                  " pt-atual                  skip.
+put unformatted "cod-rma                   " cod-rma                   skip.
+put unformatted "dat-validade              " dat-validade              skip.
+put unformatted "val-perc-restocagem       " val-perc-restocagem       skip.
+put unformatted "val-restocagem            " val-restocagem            skip.
+put unformatted "dat-aprovacao             " dat-aprovacao             skip.
+put unformatted "desc-motivo-aprov         " desc-motivo-aprov         skip.
+put unformatted "num-seq-cont-emit         " num-seq-cont-emit         skip.
+put unformatted "Fat-despesa               " Fat-despesa               skip.
+put unformatted "log-wms-atual             " log-wms-atual             skip.
+put unformatted "peso-bruto-tot            " peso-bruto-tot            skip.
+put unformatted "peso-liquido-tot          " peso-liquido-tot          skip.
+put unformatted "cod-servico               " cod-servico               skip.
+put unformatted "log-draw-atlzdo           " log-draw-atlzdo           skip.
+put unformatted "idi-nf-simples-remes      " idi-nf-simples-remes      skip.
+put unformatted "log-memorando             " log-memorando             skip.
+put unformatted "cdn-modalid-transp        " cdn-modalid-transp        skip.
+put unformatted "cod-placa                 " cod-placa                 skip.
+put unformatted "cod-uf-placa              " cod-uf-placa              skip.
+put unformatted "nome-transp               " nome-transp               skip.
+put unformatted "cod-entrega               " cod-entrega               skip.
+put unformatted "endereco                  " endereco                  skip.
+put unformatted "bairro                    " bairro                    skip.
+put unformatted "cep                       " cep                       skip.
+put unformatted "cidade                    " cidade                    skip.
+put unformatted "pais                      " pais                      skip.
+put unformatted "log-consid-ender-nf-saida " log-consid-ender-nf-saida skip.
+put unformatted "log-recuper-impto-atlzdo  " log-recuper-impto-atlzdo  skip.
+put unformatted "log-entreg-fut            " log-entreg-fut            skip.
+put unformatted "cod-natur-vincul          " cod-natur-vincul          skip.
+END.
+OUTPUT CLOSE.
+
+
+
+DEF VAR c1 AS CHAR.
+DEF VAR c2 AS CHAR.
+    FOR EACH docum-est EXCLUSIVE-LOCK
+        WHERE nro-docto ="0062426"
+        AND nat-operacao ="1101TO":
+        ASSIGN c1=char-1
+               c2=char-2.
+
+    END.
+
+    FOR EACH docum-est EXCLUSIVE-LOCK
+        WHERE nro-docto ="0062426"
+        AND nat-operacao ="1101TA":
+        ASSIGN char-1=c1
+               char-2=c2.
+
+    END.

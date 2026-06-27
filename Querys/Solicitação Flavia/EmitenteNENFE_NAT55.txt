@@ -1,0 +1,29 @@
+
+Fornecedores nao marcados emitente de NFE
+
+OUTPUT TO VALUE('C:\TEMP\emitente_NE.TXT').
+FOR EACH emitente NO-LOCK
+    WHERE  ind-sit-emitente = 1
+    AND SUBSTRING(char-1,99,1) <> "1":
+
+put unformatted  cod-emitente ";" nome-abrev  ";'" cgc "';" nome-emit      skip.
+
+END.
+    OUTPUT CLOSE.
+
+
+	
+Setando os fornecedores para emitente
+	
+	FOR EACH emitente EXCLUSIVE-LOCK
+    WHERE cod-emitente =1:
+    ASSIGN SUBSTRING(char-1,99,1) = "1" .
+END.
+
+OUTPUT TO VALUE('C:\TEMP\NAturN55.TXT').
+FOR EACH natur-oper NO-LOCK
+    WHERE  SUBSTRING(char-2,120,2) <> "55":
+	
+put unformatted  nat-operacao ";" tipo ";" denominacao                 skip.
+END.
+    OUTPUT CLOSE.

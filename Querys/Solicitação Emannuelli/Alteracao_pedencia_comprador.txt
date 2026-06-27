@@ -1,0 +1,14 @@
+FOR EACH ordem-compra EXCLUSIVE-LOCK
+    WHERE    numero-ordem = 6900 or
+numero-ordem = 7175	or
+numero-ordem = 7176 or
+numero-ordem = 7206 or
+numero-ordem = 7331 or
+numero-ordem = 7453 or
+numero-ordem = 7908 or
+numero-ordem = 8225 or
+numero-ordem = 8664:
+    ASSIGN cod-comprado ="cleber.c".
+END.
+
+http://go.pc112.cc/x5xho

@@ -1,0 +1,6 @@
+OUTPUT TO VALUE('C:\TEMP\placas.TXT').
+    FOR EACH es-licenc-plate :
+    
+    put unformatted num-placa ";" dt-geracao ";" hr-geracao ";" nr-embarque ";" user-geracal SKIP.  
+END.
+OUTPUT CLOSE.
