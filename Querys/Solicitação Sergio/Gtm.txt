@@ -1,0 +1,205 @@
+FOR EACH es-etiq-gtm EXCLUSIVE-LOCK
+    WHERE  gt=801148
+    AND cod-emitente=1729:
+    DISPLAY es-etiq-gtm WITH 1 COLUMN WIDTH 320.
+END.
+
+801148
+
+UPC\tgpel\es028d.p
+
+FOR EACH es-etiq-gtm EXCLUSIVE-LOCK
+    WHERE  nr-gtm>=801148
+	and nr-gtm<=801148
+    AND cod-emitente=1729:
+    delete es-etiq-gtm .
+END.
+
+12:23:19 Looking for F:\Datasul\esp206bG\UPC\tgpel\es028d.p
+Compiling F:\Datasul\esp206bG\UPC\tgpel\es028d.p
+** An open comment string (/*) was found, but no closing string. (134)
+** F:\Datasul\esp206bG\UPC\tgpel\es028d.p Nao entendi a linha 1. (193)
+
+Compilation Finished.
+UPC\tgpel\es028d.p
+
+FOR EACH es-etiq-gtm EXCLUSIVE-LOCK
+    WHERE  nr-gtm>=801148
+	and nr-gtm<=999999
+    AND cod-emitente=1729:
+    delete es-etiq-gtm .
+END.
+
+
+
+/* *********** ES028D.P  *********************************************** */
+/* **** ESTA TRIGGER FOI DESENVOLVIDA PARA NAO PERMITIR QUE AS GTMS **** */ 
+/* **** SEJAM ELIMINADAS QUANDO ESTIVEREM ATUALIZADAS     ************** */                                
+
+TRIGGER PROCEDURE FOR DELETE OF es-etiq-gtm.
+
+{cdp/cdmens.i}
+
+RUN pi-message("NENHUMA GTM PODE MAIS SER ELIMINADA,  FAVOR CANCELAR ESSA GTM !!!" ) .
+RETURN ERROR .
+
+/*
+
+IF es-etiq-gtm.nat-oper EQ "5902" THEN DO:
+
+    RUN pi-message ("AS GTMs de Retorno Simbolico NÃO podem ser deletadas!!!") .
+    RETURN ERROR .
+
+END.
+
+
+IF es-etiq-gtm.atualizado EQ YES  AND es-etiq-gtm.nr-embarque NE 0 THEN DO:
+
+    RUN pi-message ("ESSA GTM NAO PODE SER ELIMINADA POIS JÁ FOI ATUALIZADA NO EMBARQUE !!!") .
+    RETURN ERROR .
+
+END.
+RETURN  .
+*/
+
+
+
+
+/* *********** ES028D.P  *********************************************** */
+/* **** ESTA TRIGGER FOI DESENVOLVIDA PARA NAO PERMITIR QUE AS GTMS **** */ 
+/* **** SEJAM ELIMINADAS QUANDO ESTIVEREM ATUALIZADAS     ************** */                                
+
+TRIGGER PROCEDURE FOR DELETE OF es-etiq-gtm.
+
+{cdp/cdmens.i}
+
+RUN pi-message("NENHUMA GTM PODE MAIS SER ELIMINADA,  FAVOR CANCELAR ESSA GTM !!!" ) .
+RETURN ERROR .
+
+/*
+
+IF es-etiq-gtm.nat-oper EQ "5902" THEN DO:
+
+    RUN pi-message ("AS GTMs de Retorno Simbolico NÃO podem ser deletadas!!!") .
+    RETURN ERROR .
+
+END.
+
+
+IF es-etiq-gtm.atualizado EQ YES  AND es-etiq-gtm.nr-embarque NE 0 THEN DO:
+
+    RUN pi-message ("ESSA GTM NAO PODE SER ELIMINADA POIS JÁ FOI ATUALIZADA NO EMBARQUE !!!") .
+    RETURN ERROR .
+
+END.
+RETURN  .
+*/
+
+
+/* *********** ES028D.P  *********************************************** */
+/* **** ESTA TRIGGER FOI DESENVOLVIDA PARA NAO PERMITIR QUE AS GTMS **** */ 
+/* **** SEJAM ELIMINADAS QUANDO ESTIVEREM ATUALIZADAS     ************** */                                
+
+TRIGGER PROCEDURE FOR DELETE OF es-etiq-gtm.
+
+{cdp/cdmens.i}
+
+RUN pi-message("NENHUMA GTM PODE MAIS SER ELIMINADA,  FAVOR CANCELAR ESSA GTM !!!" ) .
+RETURN ERROR .
+
+/*
+
+IF es-etiq-gtm.nat-oper EQ "5902" THEN DO:
+
+    RUN pi-message ("AS GTMs de Retorno Simbolico NÃO podem ser deletadas!!!") .
+    RETURN ERROR .
+
+END.
+
+
+IF es-etiq-gtm.atualizado EQ YES  AND es-etiq-gtm.nr-embarque NE 0 THEN DO:
+
+    RUN pi-message ("ESSA GTM NAO PODE SER ELIMINADA POIS JÁ FOI ATUALIZADA NO EMBARQUE !!!") .
+    RETURN ERROR .
+
+END.
+RETURN  .
+*/
+
+
+
+
+/* *********** ES028D.P  *********************************************** */
+/* **** ESTA TRIGGER FOI DESENVOLVIDA PARA NAO PERMITIR QUE AS GTMS **** */ 
+/* **** SEJAM ELIMINADAS QUANDO ESTIVEREM ATUALIZADAS     ************** */                                
+
+TRIGGER PROCEDURE FOR DELETE OF es-etiq-gtm.
+
+{cdp/cdmens.i}
+
+RUN pi-message("NENHUMA GTM PODE MAIS SER ELIMINADA,  FAVOR CANCELAR ESSA GTM !!!" ) .
+RETURN ERROR .
+
+/*
+
+IF es-etiq-gtm.nat-oper EQ "5902" THEN DO:
+
+    RUN pi-message ("AS GTMs de Retorno Simbolico NÃO podem ser deletadas!!!") .
+    RETURN ERROR .
+
+END.
+
+
+IF es-etiq-gtm.atualizado EQ YES  AND es-etiq-gtm.nr-embarque NE 0 THEN DO:
+
+    RUN pi-message ("ESSA GTM NAO PODE SER ELIMINADA POIS JÁ FOI ATUALIZADA NO EMBARQUE !!!") .
+    RETURN ERROR .
+
+END.
+RETURN  .
+*/
+
+
+/* *********** ES028D.P  *********************************************** */
+/* **** ESTA TRIGGER FOI DESENVOLVIDA PARA NAO PERMITIR QUE AS GTMS **** */ 
+/* **** SEJAM ELIMINADAS QUANDO ESTIVEREM ATUALIZADAS     ************** */                                
+
+TRIGGER PROCEDURE FOR DELETE OF es-etiq-gtm.
+
+{cdp/cdmens.i}
+
+RUN pi-message("NENHUMA GTM PODE MAIS SER ELIMINADA,  FAVOR CANCELAR ESSA GTM !!!" ) .
+RETURN ERROR .
+
+/*
+
+IF es-etiq-gtm.nat-oper EQ "5902" THEN DO:
+
+    RUN pi-message ("AS GTMs de Retorno Simbolico NÃO podem ser deletadas!!!") .
+    RETURN ERROR .
+
+END.
+
+
+IF es-etiq-gtm.atualizado EQ YES  AND es-etiq-gtm.nr-embarque NE 0 THEN DO:
+
+    RUN pi-message ("ESSA GTM NAO PODE SER ELIMINADA POIS JÁ FOI ATUALIZADA NO EMBARQUE !!!") .
+    RETURN ERROR .
+
+END.
+RETURN  .
+*/
+
+
+alterando o numero da sequencia da GTM
+
+FOR EACH  es-nr-gtm NO-LOCK
+    WHERE cod-emitente=1729:
+    UPDATE nr-ult-fat.                 
+
+END.
+
+
+
+
+

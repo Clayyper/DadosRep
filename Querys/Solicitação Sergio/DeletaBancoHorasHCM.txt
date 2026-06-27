@@ -1,0 +1,46 @@
+DEFINE VARIABLE wh AS WIDGET-HANDLE.
+CREATE WIDGET-POOL "janela" PERSISTENT.
+IF wh = ? OR NOT VALID-HANDLE(wh) THEN
+CREATE WINDOW wh IN WIDGET-POOL "janela"
+assign SENSITIVE = TRUE
+       VISIBLE   = TRUE
+       WIDTH-CHARS = 80
+       height-chars = 15.
+assign THIS-PROCEDURE:CURRENT-WINDOW = wh.
+
+DEF VAR v_emp           AS INT  FORMAT "999"                    LABEL 'Empresa'                NO-UNDO.
+DEF VAR v_estab_ini     AS INT  FORMAT "999"                    LABEL 'Estab ini'              NO-UNDO.
+DEF VAR v_estab_fim     AS INT  FORMAT "999"      INIT 999      LABEL 'Estab fim'              NO-UNDO.
+DEF VAR v_func_ini      AS INT  FORMAT "99999999"               LABEL 'Funcionario ini'        NO-UNDO.
+DEF VAR v_func_fim      AS INT  FORMAT "99999999" INIT 99999999 LABEL 'Funcionario fim'        NO-UNDO.
+DEF VAR v_tp_comp       AS INT  FORMAT "99"       INIT 01       LABEL 'Tipo Compensa?Æo'       NO-UNDO.
+DEF VAR v_qtd_hrs_posit AS INT                                                                 NO-UNDO.
+DEF VAR v_qtd_hrs_negat AS INT                                                                 NO-UNDO.
+DEF VAR v_dat_corr      AS DATE format "99/99/9999"             LABEL 'Data da Elimina?Æo' NO-UNDO.
+
+message "Programa para eliminar o banco de horas"
+       VIEW-AS alert-box.
+
+UPDATE v_emp   
+       v_estab_ini
+       v_estab_fim
+       v_func_ini 
+       v_func_fim 
+       v_tp_comp 
+       v_dat_corr WITH 1 COL.
+
+FOR EACH bco_hrs_compens_func EXCLUSIVE-LOCK WHERE
+         bco_hrs_compens_func.cdn_empresa           = v_emp       AND
+         bco_hrs_compens_func.cdn_estab            >= v_estab_ini AND
+         bco_hrs_compens_func.cdn_estab            <= v_estab_fim AND
+         bco_hrs_compens_func.cdn_funcionario      >= v_func_ini  AND 
+         bco_hrs_compens_func.cdn_funcionario      <= v_func_fim  AND
+         bco_hrs_compens_func.cdn_tip_compcao_hrs   = v_tp_comp   AND
+         bco_hrs_compens_func.dat_atualiz_bco_hora <= v_dat_corr:
+    DELETE bco_hrs_compens_func.
+END.
+                                                      
+message "Fim de Programa" view-as alert-box.
+
+DELETE WIDGET-POOL "janela".
+

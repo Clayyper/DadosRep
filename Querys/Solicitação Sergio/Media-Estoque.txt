@@ -1,0 +1,48 @@
+FOR EACH ITEM WHERE ITEM.ge-codigo >= 50 
+              AND   ITEM.ge-codigo <= 60
+              AND   ITEM.cod-estabel="201"
+              AND   ITEM.cod-obsol EQ 1
+              /* AND   item.it-codigo BEGINS "1010" */
+              NO-LOCK :
+    DISPLAY ITEM.desc-item WITH 2 COLUMN WIDTH 320.
+END.
+
+
+
+
+ DEF VAR de-saldo        LIKE saldo-estoq.qtidade-atu   INIT 0 NO-UNDO COLUMN-LABEL "Saldo Atual" .
+    FOR EACH ITEM WHERE ITEM.ge-codigo >= 50 
+              AND   ITEM.ge-codigo <= 60
+              AND   ITEM.cod-estabel="201"
+              AND   ITEM.cod-obsol EQ 1
+              AND   ITEM.it-codigo="52036236"
+              /* AND   item.it-codigo BEGINS "1010" */
+              NO-LOCK :
+
+    ASSIGN 
+        de-saldo = 0 .
+    FOR EACH saldo-estoq NO-LOCK 
+                         WHERE saldo-estoq.it-codigo   EQ ITEM.it-codigo
+                         BREAK BY saldo-estoq.cod-estabel
+                               BY saldo-estoq.cod-depos
+                               BY saldo-estoq.lote
+                               BY saldo-estoq.cod-localiz
+                               :
+        ASSIGN de-saldo = de-saldo + saldo-estoq.qtidade-atu .
+    END.
+
+    DISPLAY ITEM.desc-item   ITEM.it-codigo  de-saldo saldo-estoq.cod-depos WITH 1 COLUMN WIDTH 320.
+END.
+
+
+FOR EACH saldo-estoq NO-LOCK 
+                         WHERE saldo-estoq.it-codigo   EQ "52036236"
+                         BREAK BY saldo-estoq.cod-estabel
+                               BY saldo-estoq.cod-depos
+                               BY saldo-estoq.lote
+                               BY saldo-estoq.cod-localiz
+                               :
+        
+
+    DISPLAY  saldo-estoq.it-codigo  saldo-estoq.cod-depos saldo-estoq.qtidade-atu WITH 1 COLUMN WIDTH 320.
+END. 

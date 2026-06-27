@@ -1,0 +1,3 @@
+for each docum-est exclusive-lock
+where nat-operacao="":
+assign docum-est.nat-operacao="110101".

@@ -1,0 +1,42 @@
+SELECT [iditem]
+      ,[est_iditem]
+      ,[idtipoitem]
+      ,[iddepartamento]
+      ,[idfamilia]
+      ,[idclasse]
+      ,[idgrupo]
+      ,[idsubgrupo]
+      ,[idcategoria]
+      ,[idunidademedida]
+      ,[idindexadoreconomicofinanceiro]
+      ,[idcontagerencialcompra]
+      ,[idcontagerencialvenda]
+      ,[idcontagerencialusoconsumo]
+      ,[idtipometaunica]
+      ,[codigoitem]
+      ,[descricaoitem]
+      ,[descricaocompleta]
+      ,[precovenda]
+      ,[percentualcomissao]
+      ,[percentualmargemlucro]
+      ,[percentualdescontomaximo]
+      ,[indregistroimportado]
+      ,[codigomercadoriaexterno]
+      ,[datacadastroitem]
+      ,[indutilizadescricaocomplementar]
+      ,[datadesativacao]
+      ,[motivodesativacao]
+      ,[valormetaunica]
+      ,[indativo]
+      ,[idowner]
+      ,[idusuariolog]
+      ,[datahoralog]
+      ,[idorigemregistro]
+  FROM [NG_Estoque].[dbo].[est_item]
+GO
+
+
+update m
+set m.codigomercadoriaexterno='0000000'+m2.codigoitem
+from ng_estoque..est_item as m inner join ng_estoque..est_item as m2 on m.iditem=m2.iditem
+where m.iditem>53

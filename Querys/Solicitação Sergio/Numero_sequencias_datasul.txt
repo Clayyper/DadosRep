@@ -1,0 +1,45 @@
+disp "msgid                               " current-value (msgid                               ).
+disp "seq-call-ford                       " current-value (seq-call-ford                       ).
+disp "seq-carga                           " current-value (seq-carga                           ).
+disp "seq-carpete                         " current-value (seq-carpete                         ).
+disp "seq-carregamento                    " current-value (seq-carregamento 				   ).
+disp "seq-cnt                             " current-value (seq-cnt                             ).
+disp "seq-controle                        " current-value (seq-controle                        ).
+disp "seq-desadv                          " current-value (seq-desadv                          ).
+disp "seq-edi                             " current-value (seq-edi                             ).
+disp "seq-embarque                        " current-value (seq-embarque                        ).
+disp "seq-eps                             " current-value (seq-eps                             ).
+disp "seq-eps-lote                        " current-value (seq-eps-lote                        ).
+disp "seq-etiq                            " current-value (seq-etiq                            ).
+disp "seq-etiq-barras                     " current-value (seq-etiq-barras                     ).
+disp "seq-etiq-cli                        " current-value (seq-etiq-cli                        ).
+disp "seq-gm                              " current-value (seq-gm                              ).
+disp "seq-mensagem                        " current-value (seq-mensagem                        ).
+disp "seq-opre-tbt                        " current-value (seq-opre-tbt                        ).
+disp "seq-ordem-prod                      " current-value (seq-ordem-prod                      ).
+disp "seq-para-choque                     " current-value (seq-para-choque                     ).
+disp "seq-pecas                           " current-value (seq-pecas                           ).
+disp "seq-pps                             " current-value (seq-pps                             ).
+disp "seq-pps-lote                        " current-value (seq-pps-lote                        ).
+disp "seq-processo                        " current-value (seq-processo                        ).
+disp "seq-rack                            " current-value (seq-rack                            ).
+disp "seq-sincronia                       " current-value (seq-sincronia                       ).
+disp "xs-seq-req-nfe                      " current-value (xs-seq-req-nfe                      ).
+
+
+ASSIGN CURRENT-VALUE(seq-cnt)=1.
+
+
+FOR EACH es-container EXCLUSIVE-LOCK WHERE dt-cnt<12/05/2014:
+    DELETE es-container .
+END.
+
+IF i-seq-cnt >= 99999 THEN DO:
+        ASSIGN i-seq-cnt = 1.
+        ASSIGN CURRENT-VALUE(seq-cnt)=1.
+
+        FOR EACH es-container EXCLUSIVE-LOCK:
+             DELETE es-container .
+        END.
+
+    END.

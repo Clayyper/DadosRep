@@ -1,0 +1,9 @@
+    FOR EACH nota-fiscal WHERE   nr-nota-fis = "0052849" AND serie = "402":
+        FOR EACH nota-embal OF nota-fiscal NO-LOCK :
+/*             DISP nota-embal WITH 1 COLUMN WIDTH 320. */
+            UPDATE nota-embal.sigla-emb.
+        END.
+    END.
+    
+
+    

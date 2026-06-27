@@ -1,0 +1,8 @@
+for each usuar_mestre where dat_valid_senha >= today and dat_fim_valid < today:
+ASSIGN dat_fim_valid = 12/31/2016.
+end.
+
+
+for each usuar_mestre where  dat_fim_valid = 12/31/2016:
+ASSIGN dat_fim_valid = 12/31/2017.
+end.

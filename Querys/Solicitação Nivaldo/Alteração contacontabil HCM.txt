@@ -1,0 +1,38 @@
+DEF TEMP-TABLE tt-itens
+    FIELD cod_rh_cta_ctbl       LIKE cta_mdo_efp.cod_rh_cta_ctbl_db
+    FIELD cod_rh_cta_ctbl_new   LIKE cta_mdo_efp.cod_rh_cta_ctbl_db.
+
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+
+FOR EACH tt-itens.
+
+    FOR EACH cta_mdo_efp EXCLUSIVE-LOCK
+        WHERE cod_rh_cta_ctbl_db EQ tt-itens.cod_rh_cta_ctbl:
+        ASSIGN  cod_rh_cta_ctbl_db = tt-itens.cod_rh_cta_ctbl_new.
+    END.
+
+    FOR EACH cta_mdo_efp EXCLUSIVE-LOCK
+        WHERE cod_rh_cta_ctbl_cr EQ tt-itens.cod_rh_cta_ctbl:
+        ASSIGN  cod_rh_cta_ctbl_cr = tt-itens.cod_rh_cta_ctbl_new. 
+    END.
+
+
+END.
+
+

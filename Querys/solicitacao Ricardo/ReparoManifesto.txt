@@ -1,0 +1,85 @@
+mdfe-docto
+
+idi-sit-mdfe
+cod-num-mdfe
+cod-ser-mdfe
+dat-emis-mdfe
+cod-chave-mdfe
+
+
+
+mdfe-nfe
+
+ret-manif-destin
+
+
+docto-manif-destin
+ind-sit-nf-eletro
+idi-sit-manif-destin
+dat-emis-nf-eletro
+cod-docto
+
+
+FOR EACH docto-manif-destin WHERE cod-docto EQ "0113887"
+:
+    UPDATE ind-sit-nf-eletro
+idi-sit-manif-destin
+dat-emis-nf-eletro
+cod-docto .
+END.
+
+SELECT * FROM SPED150 WHERE NFE_CHV ='35170513204698000109550020001138871292264019'
+SELECT * FROM SPED150 WHERE NFE_CHV ='35170559275792000150550040015305291099997470'
+
+UPDATE  SPED150
+SET STATUS='6'
+WHERE NFE_CHV ='35170513204698000109550020001138871292264019'
+
+
+REPARO DO MANIFESTO RE0709
+
+FOR EACH docto-manif-destin WHERE cod-nat-operac <> "" AND dat-emis-nf-eletro >= 02/15/2019
+:
+/*     UPDATE ind-sit-nf-eletro */
+/* idi-sit-manif-destin         */
+/* dat-emis-nf-eletro           */
+/* cod-docto .                  */
+
+    DISP  ind-sit-nf-eletro
+idi-sit-manif-destin
+dat-emis-nf-eletro
+cod-docto cod-nat-operac cod-ult-seqcial-unico WITH 1 COLUMN WIDTH 320.
+END.
+
+FOR EACH docto-manif-destin WHERE cod-nat-operac <> "" AND dat-emis-nf-eletro >= 02/15/2019
+:
+ASSIGN idi-sit-manif-destin = 1.
+
+END.
+
+
+
+
+
+
+FOR EACH docto-manif-destin WHERE cod-nat-operac <> "" AND dat-emis-nf-eletro >= 01/01/2019 AND idi-sit-manif-destin = 6
+:
+ASSIGN idi-sit-manif-destin = 1.
+
+
+/*      DISP  ind-sit-nf-eletro                      */
+/* idi-sit-manif-destin                              */
+/* dat-emis-nf-eletro                                */
+/* cod-docto cod-nat-operac WITH 1 COLUMN WIDTH 320. */
+
+
+END.
+
+
+Operacao nao realizada
+
+FOR EACH docto-manif-destin WHERE REPLACE(cod-ult-seqcial-unico,"0","") = REPLACE("0000037319","0","")
+
+:
+ASSIGN idi-sit-manif-destin = 3.
+END.

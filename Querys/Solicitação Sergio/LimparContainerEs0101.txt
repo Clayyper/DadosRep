@@ -1,0 +1,7 @@
+FOR EACH es-container WHERE es-container.dt-cnt >= 01/01/2015 
+                               AND dt-cnt <= 12/31/2015:
+    DELETE es-container.
+END.
+
+
+limpar container no es0101
