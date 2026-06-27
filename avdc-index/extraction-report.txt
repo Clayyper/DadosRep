@@ -8,8 +8,8 @@ Repositório de dados: Clayyper/LCAUDITT
 Branch dos dados: main
 Repositório de índice: Clayyper/DadosRep
 Branch do índice: main
-Execução: local-1782594208402-ad72bb
-Gerado em: 2026-06-27T21:03:28.583Z
+Execução: local-1782597687906-2b1a76
+Gerado em: 2026-06-27T22:01:28.074Z
 
 Arquivos no catálogo: 630
 Conteúdo extraído: 629
