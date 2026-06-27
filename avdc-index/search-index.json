@@ -1,0 +1,46 @@
+{
+  "avdc": {
+    "version": "3.1.0",
+    "type": "simple-search-index",
+    "note": "Busca simples por nome, caminho e texto extraído. Ainda não usa IA."
+  },
+  "source": {
+    "dataRepository": "Clayyper/DadosRep",
+    "dataDefaultBranch": "main"
+  },
+  "generatedAt": "2026-06-27T06:16:06.353Z",
+  "files": [
+    {
+      "path": "README.md",
+      "name": "README.md",
+      "extension": "md",
+      "githubUrl": "https://github.com/Clayyper/DadosRep/blob/main/README.md",
+      "preview": "# DadosRep Base de dados pessoal dev",
+      "text": "# DadosRep\nBase de dados pessoal dev\n"
+    },
+    {
+      "path": "chats/.gitkeep",
+      "name": ".gitkeep",
+      "extension": "",
+      "githubUrl": "https://github.com/Clayyper/DadosRep/blob/main/chats/.gitkeep",
+      "preview": "",
+      "text": "\n"
+    },
+    {
+      "path": "chats/20260525fedoragpt.json",
+      "name": "20260525fedoragpt.json",
+      "extension": "json",
+      "githubUrl": "https://github.com/Clayyper/DadosRep/blob/main/chats/20260525fedoragpt.json",
+      "preview": "PROJETO FEDORA 44 + KDE PLASMA 6 (TERMUX/PROOT) Objetivo: Estabilizar o KDE Plasma 6 no Fedora 44 rodando via proot-distro + Termux:X11 no Galaxy S22, reproduzindo a instalação que funcionou no S10. STATUS ATUAL - Plasma 6.7.0 funcionando. - kwin_x11 estável. - plasmashell funcionando. - Dolphin, Konsole, Discover e System Settings funcionando. - Datasul abriu normalmente. - Troca de temas sem travar. - Locale ativo:",
+      "text": "PROJETO FEDORA 44 + KDE PLASMA 6 (TERMUX/PROOT)\n\nObjetivo:\nEstabilizar o KDE Plasma 6 no Fedora 44 rodando via proot-distro + Termux:X11 no Galaxy S22, reproduzindo a instalação que funcionou no S10.\n\nSTATUS ATUAL\n- Plasma 6.7.0 funcionando.\n- kwin_x11 estável.\n- plasmashell funcionando.\n- Dolphin, Konsole, Discover e System Settings funcionando.\n- Datasul abriu normalmente.\n- Troca de temas sem travar.\n- Locale ativo:\n  LANG=pt_BR.UTF-8\n  LANGUAGE=pt_BR\n  LC_ALL=pt_BR.UTF-8\n\nSCRIPT UTILIZADO\n- dbus-run-session\n- kwin_x11 --replace\n- plasmashell --no-respawn\n- QT_QUICK_BACKEND=software\n- LIBGL_ALWAYS_SOFTWARE=1\n- MESA_LOADER_DRIVER_OVERRIDE=llvmpipe\n- XDG_SESSION_TYPE=x11\n- KDE_FULL_SESSION=true\n\nPACOTES CONFIRMADOS\n- plasma-desktop\n- plasma-workspace\n- plasma-workspace-x11\n- plasma-systemsettings\n- plasma-discover\n- kdeplasma-addons\n- KF6 completo\n\nIDIOMA\nInstalado:\n- langpacks-pt\n- langpacks-core-pt\n- glibc-langpack-pt\n- kde-l10n-pt_BR\n- kde-i18n-Brazil\n\nMesmo assim:\n- Menu continua mostrando Favorites / All Applications / System Tools.\n- Região, moeda e data aparecem corretamente em português.\n\nCONCLUSÕES\n- Não é problema de LANG.\n- Não é problema do script.\n- Não é problema de locale.\n- Não é falta do Plasma.\n- localectl não funciona porque o Fedora roda em proot sem systemd.\n- fedora-release-identity-kde-desktop entra em conflito com fedora-release-identity-container. NÃO instalar.\n\nDNF5\n- groupinstall não existe.\n- group reinstall também não.\n- usa \"dnf group install\".\n- \"dnf group install KDE Plasma Workspaces\" retornou \"Nenhuma correspondência\".\n\nDESCOBERTA MAIS IMPORTANTE\nComparando com o S10:\n- O S22 possui MUITO MENOS aplicativos no menu.\n- A instalação parece mais enxuta.\n- A hipótese principal passou a ser que o S22 NÃO recebeu exatamente o mesmo conjunto de pacotes do S10.\n\nPRÓXIMO PASSO\nParar de investigar idioma.\nComparar os pacotes instalados entre S10 e S22 ou descobrir exatamente qual grupo/metapacote foi instalado no S10 para reproduzir a instalação completa no S22.\n\nCOMANDOS IMPORTANTES UTILIZADOS\n\nplasmashell --version\n\nlocale\n\necho $LANG\necho $LANGUAGE\n\nrpm -qa | grep -i plasma\n\nrpm -qa | grep -i kf6\n\nrpm -qa | grep -i workspace\n\ndnf search pt_BR\n\ndnf search plasma\n\ndnf search kde\n\nOBSERVAÇÃO FINAL\nA maior descoberta da conversa foi que o problema provavelmente NÃO é tradução. O foco passou a ser reproduzir a instalação completa do KDE que foi feita anteriormente no S10, pois o S22 apresenta uma instalação visualmente menor, com menos aplicativos e componentes disponíveis no menu.\n"
+    },
+    {
+      "path": "chats/20260625sambagpt.json",
+      "name": "20260625sambagpt.json",
+      "extension": "json",
+      "githubUrl": "https://github.com/Clayyper/DadosRep/blob/main/chats/20260625sambagpt.json",
+      "preview": "# Compartilhamento Samba entre dois Linux ## Instalação (Servidor) sudo apt update sudo apt install samba caja-share ## Cliente sudo apt install cifs-utils smbclient gvfs gvfs-backends gvfs-fuse ## Criar pasta mkdir -p ~/cmp chmod 777 ~/cmp ## Arquivo de configuração sudo nano /etc/samba/smb.conf Adicionar: [cmpnew] path = /home/clayyper/Documentos/Cmp browseable = yes writable = yes read only = no guest ok = yes gue",
+      "text": "# Compartilhamento Samba entre dois Linux\n\n## Instalação (Servidor)\n\nsudo apt update\nsudo apt install samba caja-share\n\n## Cliente\n\nsudo apt install cifs-utils smbclient gvfs gvfs-backends gvfs-fuse\n\n## Criar pasta\n\nmkdir -p ~/cmp\nchmod 777 ~/cmp\n\n## Arquivo de configuração\n\nsudo nano /etc/samba/smb.conf\n\nAdicionar:\n\n[cmpnew]\npath = /home/clayyper/Documentos/Cmp\nbrowseable = yes\nwritable = yes\nread only = no\nguest ok = yes\nguest only = yes\nforce user = clayyper\ncreate mask = 0777\ndirectory mask = 0777\n\nNo [global]:\n\nmap to guest = Bad User\nguest account = nobody\nusershare allow guests = yes\n\n## Testar configuração\n\ntestparm\n\nResultado esperado:\n\nLoaded services file OK.\n\n## Reiniciar Samba\n\nsudo systemctl restart smbd\nsudo systemctl restart nmbd\n\n## Verificar serviço\n\nsudo systemctl status smbd\nsudo systemctl status nmbd\n\n## Restaurar smb.conf padrão\n\nsudo cp /usr/share/samba/smb.conf /etc/samba/smb.conf\n\nou\n\nsudo cp /usr/share/doc/samba/examples/smb.conf.default /etc/samba/smb.conf\n\n## Descobrir hostname\n\nhostname\n\n## Testar resolução de nome\n\nping hostname.local\n\n## Instalar Avahi\n\nsudo apt install avahi-daemon\nsudo systemctl enable avahi-daemon\nsudo systemctl start avahi-daemon\n\n## Listar compartilhamentos\n\nsmbclient -L //hostname -N\n\n## Acessar pelo gerenciador de arquivos\n\nsmb://hostname.local/cmpnew\n\nConectar anonimamente.\n\n## Montagem via terminal\n\nsudo mkdir -p /mnt/CMP\n\nsudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest\n\nSe necessário:\n\nsudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest,vers=3.0\n\nou\n\nsudo mount -t cifs //hostname.local/cmpnew /mnt/CMP -o guest,vers=2.1\n\n## Verificar conteúdo\n\nls /mnt/CMP\n\n## Desmontar\n\nsudo umount /mnt/CMP\n\n## Problemas encontrados\n\n- smb.conf corrompido.\n- testparm retornando \"Error loading services\".\n- Recuperação do smb.conf padrão.\n- smbd e nmbd não iniciavam até corrigir a configuração.\n- Compartilhamento passou a aparecer na rede.\n- Cliente pedia autenticação.\n- Configurado guest ok, guest only e map to guest.\n- PCManFM/LXQt apresentou erro ao montar compartilhamento.\n- Logs mostraram problemas relacionados ao FUSE/GVFS.\n- Teste via smbclient e mount -t cifs recomendado por ser mais confiável.\n"
+    }
+  ]
+}
