@@ -19,9 +19,9 @@
     "catalogPath": "avdc-index/catalog.json"
   },
   "run": {
-    "id": 3,
-    "sortMode": "updated_desc",
+    "id": 4,
+    "sortMode": "alpha",
     "filesCount": 4,
-    "createdAt": "2026-06-27T05:51:33.422Z"
+    "createdAt": "2026-06-27T05:51:49.422Z"
   }
 }
