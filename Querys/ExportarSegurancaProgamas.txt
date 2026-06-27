@@ -1,0 +1,89 @@
+OUTPUT TO VALUE('C:\TEMP\prog_dtsul.csv').
+FOR EACH prog_dtsul_segur WHERE cod_grp_usuar EQ "ALA"
+or cod_grp_usuar EQ "ALL"
+or cod_grp_usuar EQ "ATA"
+or cod_grp_usuar EQ "ATV"
+or cod_grp_usuar EQ "BOA"
+or cod_grp_usuar EQ "CCO"
+or cod_grp_usuar EQ "CCT"
+or cod_grp_usuar EQ "CMP"
+or cod_grp_usuar EQ "CNT"
+or cod_grp_usuar EQ "COA"
+or cod_grp_usuar EQ "COM"
+or cod_grp_usuar EQ "CON"
+or cod_grp_usuar EQ "CPE"
+or cod_grp_usuar EQ "CPR"
+or cod_grp_usuar EQ "CTS"
+or cod_grp_usuar EQ "DTS"
+or cod_grp_usuar EQ "ECS"
+or cod_grp_usuar EQ "ENG"
+or cod_grp_usuar EQ "EPC"
+or cod_grp_usuar EQ "EPD"
+or cod_grp_usuar EQ "EPP"
+or cod_grp_usuar EQ "FCB"
+or cod_grp_usuar EQ "FCP"
+or cod_grp_usuar EQ "FCR"
+or cod_grp_usuar EQ "FCS"
+or cod_grp_usuar EQ "FFA"
+or cod_grp_usuar EQ "FIA"
+or cod_grp_usuar EQ "FIN"
+or cod_grp_usuar EQ "FIS"
+or cod_grp_usuar EQ "FRE"
+or cod_grp_usuar EQ "HR" 
+or cod_grp_usuar EQ "LGB"
+or cod_grp_usuar EQ "LGE"
+or cod_grp_usuar EQ "LGP"
+or cod_grp_usuar EQ "LGT"
+or cod_grp_usuar EQ "LGX"
+or cod_grp_usuar EQ "MNT"
+or cod_grp_usuar EQ "PRD"
+or cod_grp_usuar EQ "PRE"
+or cod_grp_usuar EQ "PSU"
+or cod_grp_usuar EQ "QUA"
+or cod_grp_usuar EQ "QUI"
+or cod_grp_usuar EQ "QUL"
+or cod_grp_usuar EQ "QUR"
+or cod_grp_usuar EQ "RCR"
+or cod_grp_usuar EQ "RDI"
+or cod_grp_usuar EQ "RDP"
+or cod_grp_usuar EQ "RDT"
+or cod_grp_usuar EQ "REP"
+or cod_grp_usuar EQ "RES"
+or cod_grp_usuar EQ "RGD"
+or cod_grp_usuar EQ "RHA"
+or cod_grp_usuar EQ "RHB"
+or cod_grp_usuar EQ "RHC"
+or cod_grp_usuar EQ "RHD"
+or cod_grp_usuar EQ "RHF"
+or cod_grp_usuar EQ "RHG"
+or cod_grp_usuar EQ "RHM"
+or cod_grp_usuar EQ "RHO"
+or cod_grp_usuar EQ "RHP"
+or cod_grp_usuar EQ "RHR"
+or cod_grp_usuar EQ "RHS"
+or cod_grp_usuar EQ "RHU"
+or cod_grp_usuar EQ "RMF"
+or cod_grp_usuar EQ "RMS"
+or cod_grp_usuar EQ "RPE"
+or cod_grp_usuar EQ "RPL"
+or cod_grp_usuar EQ "RRA"
+or cod_grp_usuar EQ "RRD"
+or cod_grp_usuar EQ "SPT"
+or cod_grp_usuar EQ "TIN"
+or cod_grp_usuar EQ "WIT"
+or cod_grp_usuar EQ "WIV" :
+   PUT UNFORMATTED cod_grp_usuar ";" cod_prog_dtsul SKIP.
+END.
+OUTPUT CLOSE.
+
+
+
+
+
+
+
+OUTPUT TO VALUE('C:\TEMP\proces_prog.csv').
+FOR EACH proces_prog WHERE idi_proces >= 1 AND idi_proces <= 70:
+  PUT UNFORMATTED proces_prog.idi_proces ";" proces_prog.cod_prog_dtsul ";" proces_prog.num_seq SKIP.
+END.
+OUTPUT CLOSE.

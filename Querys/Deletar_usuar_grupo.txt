@@ -1,0 +1,42 @@
+for each emsfnd.usuar_grp_usuar exclusive-lock
+where cod_grp_usuar="*"
+and cod_usuario <> "elia.r"
+and cod_usuario <> "clayson"
+and cod_usuario <> "super"
+and cod_usuario <> "timeout"
+and cod_usuario <> "toxa":
+delete emsfnd.usuar_grp_usuar.
+
+
+
+
+validade usuario
+
+ FOR EACH usuar_mestre 
+    WHERE  dat_fim_valid=12/31/2014:
+    ASSIGN dat_fim_valid=12/31/2015.
+  END.
+
+  dat_valid_senha
+  
+  
+  FOR EACH usuar_mestre 
+    WHERE  dat_fim_valid=12/31/2018
+	   AND dat_valid_senha >= TODAY:
+     ASSIGN dat_fim_valid=12/31/2019. 
+  END.
+
+for each emsfnd.usuar_grp_usuar exclusive-lock
+where cod_grp_usuar="*"
+and cod_usuario <> "andre.tolosa"
+and cod_usuario <> "csanches"    
+and cod_usuario <> "cloliveira"  
+and cod_usuario <> "jramiro"     
+and cod_usuario <> "lmoraes"     
+and cod_usuario <> "lrezende"    
+and cod_usuario <> "maripereira"
+and cod_usuario <> "priscila.b"  
+and cod_usuario <> "ralves"      
+and cod_usuario <> "andre.a"  
+and cod_usuario <> "super":       
+delete emsfnd.usuar_grp_usuar.

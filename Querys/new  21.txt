@@ -1,0 +1,53 @@
+FOR EACH alternativo NO-LOCK
+    WHERE it-codigo = "20450014":
+    DISP alternativo WITH 1 COLUMN WIDTH 320.
+END.
+
+
+FOR EACH estrutura NO-LOCK
+    WHERE it-codigo = "20450014"
+    AND es-codigo = "10010009":
+    DISP estrutura WITH 1 COLUMN WIDTH 320.
+END.
+
+
+
+FOR EACH estrutura NO-LOCK
+    WHERE es-codigo = "10010009":
+    DISP estrutura WITH 1 COLUMN WIDTH 320.
+
+    CREATE alternativo.
+    ASSIGN ordem = estrutura.sequencia
+        al-codigo = "10010028"
+
+
+    quant-liquid
+END.
+
+
+FOR EACH estrutura NO-LOCK
+    WHERE es-codigo = "10010009":
+    CREATE alternativo.
+    ASSIGN alternativo.it-codigo = estrutura.it-codigo
+           alternativo.sequencia = estrutura.sequencia
+           alternativo.es-codigo = estrutura.es-codigo
+		   ordem = 10
+           al-codigo = "10010028"
+           alternativo.quant-liquid = estrutura.quant-liquid
+		   alternativo.quant-usada  = estrutura.quant-liquid.
+
+    
+END.
+
+
+FOR EACH alternativo EXCLUSIVE-LOCK
+    WHERE al-codigo = "10010028":
+    DELETE alternativo .
+END.
+
+
+FOR EACH alternativo EXCLUSIVE-LOCK
+    WHERE al-codigo = "10010028"
+    AND it-codigo= "20450014":
+    DISP alternativo WITH 1 COLUMN WIDTH 320 .
+END.

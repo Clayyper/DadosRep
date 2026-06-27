@@ -1,0 +1,215 @@
+DEF TEMP-TABLE tt-itens
+    FIELD cod_grp_usuar   LIKE prog_dtsul_segur.cod_grp_usuar
+    FIELD cod_prog_dtsul  LIKE prog_dtsul_segur.cod_prog_dtsul.
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+FOR EACH prog_dtsul_segur:
+    IF prog_dtsul_segur.idi_dtsul > d-aux THEN
+        ASSIGN d-aux = prog_dtsul_segur.idi_dtsul.
+END.
+
+FOR EACH tt-itens.
+
+    FIND prog_dtsul_segur WHERE prog_dtsul_segur.cod_grp_usuar=tt-itens.cod_grp_usuar
+                            AND prog_dtsul_segur.cod_prog_dtsul=tt-itens.cod_prog_dtsul NO-ERROR.
+    IF AVAIL prog_dtsul_segur THEN NEXT.
+    
+    FIND grp_usuar WHERE cod_grp_usuar = tt-itens.cod_grp_usuar NO-ERROR.
+        IF AVAIL grp_usuar THEN DO:
+            FIND prog_dtsul WHERE cod_prog_dtsul = tt-itens.cod_prog_dtsul NO-ERROR.
+            IF AVAIL prog_dtsul THEN DO:
+                MESSAGE tt-itens.cod_grp_usuar tt-itens.cod_prog_dtsul grp_usuar.idi_dtsul prog_dtsul.idi_dtsul  VIEW-AS ALERT-BOX.
+                    CREATE prog_dtsul_segur.
+                    ASSIGN      prog_dtsul_segur.cod_grp_usuar=tt-itens.cod_grp_usuar
+                                prog_dtsul_segur.cod_prog_dtsul=tt-itens.cod_prog_dtsul
+                                prog_dtsul_segur.idi_dtsul_grp_usuar=grp_usuar.idi_dtsul
+                                prog_dtsul_segur.idi_dtsul_prog_dtsul=prog_dtsul.idi_dtsul
+                                prog_dtsul_segur.idi_dtsul = d-aux + 1 .
+                    ASSIGN d-aux = d-aux + 1.
+
+
+
+            END.
+        END.
+
+
+END.
+
+
+
+importando programas para processo menu
+
+
+DEF TEMP-TABLE tt-itens
+    FIELD idi_proces      LIKE proces_prog.idi_proces
+    FIELD cod_prog_dtsul  LIKE proces_prog.cod_prog_dtsul
+    FIELD num_seq         LIKE proces_prog.num_seq.
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(60)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+
+FOR EACH tt-itens.
+    
+    FIND proces_menu WHERE idi_proces = tt-itens.idi_proces NO-ERROR.
+        IF AVAIL proces_menu THEN DO:
+            FIND prog_dtsul WHERE cod_prog_dtsul = tt-itens.cod_prog_dtsul NO-ERROR.
+            IF AVAIL prog_dtsul THEN DO:
+                MESSAGE tt-itens.idi_proces tt-itens.cod_prog_dtsul prog_dtsul.idi_dtsul tt-itens.num_seq  VIEW-AS ALERT-BOX.
+                    CREATE proces_prog.
+                    ASSIGN      proces_prog.idi_proces        = tt-itens.idi_proces         
+                                proces_prog.cod_prog_dtsul    = tt-itens.cod_prog_dtsul  
+                                proces_prog.idi_dtsul         = prog_dtsul.idi_dtsul     
+                                proces_prog.num_seq           = tt-itens.num_seq.        
+                                
+            END.
+        END.
+
+
+END.
+
+
+
+
+
+importando seguranca com os derivados
+
+DEF TEMP-TABLE tt-itens
+    FIELD cod_grp_usuar   LIKE prog_dtsul_segur.cod_grp_usuar
+    FIELD cod_prog_dtsul  LIKE prog_dtsul_segur.cod_prog_dtsul.
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+ INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+FOR EACH prog_dtsul_segur:
+    IF prog_dtsul_segur.idi_dtsul > d-aux THEN
+        ASSIGN d-aux = prog_dtsul_segur.idi_dtsul.
+END.
+
+FOR EACH tt-itens.  
+    
+    FIND grp_usuar WHERE cod_grp_usuar = tt-itens.cod_grp_usuar NO-ERROR.
+        IF AVAIL grp_usuar THEN DO:
+            FOR EACH prog_dtsul WHERE cod_prog_dtsul BEGINS tt-itens.cod_prog_dtsul:
+
+                  FIND prog_dtsul_segur WHERE prog_dtsul_segur.cod_grp_usuar=tt-itens.cod_grp_usuar
+                            AND prog_dtsul_segur.cod_prog_dtsul=prog_dtsul.cod_prog_dtsul NO-ERROR.
+                  IF AVAIL prog_dtsul_segur THEN NEXT.
+
+                MESSAGE tt-itens.cod_grp_usuar prog_dtsul.cod_prog_dtsul grp_usuar.idi_dtsul prog_dtsul.idi_dtsul  VIEW-AS ALERT-BOX.
+                    CREATE prog_dtsul_segur.
+                    ASSIGN      prog_dtsul_segur.cod_grp_usuar=tt-itens.cod_grp_usuar
+                                prog_dtsul_segur.cod_prog_dtsul=prog_dtsul.cod_prog_dtsul
+                                prog_dtsul_segur.idi_dtsul_grp_usuar=grp_usuar.idi_dtsul
+                                prog_dtsul_segur.idi_dtsul_prog_dtsul=prog_dtsul.idi_dtsul
+                                prog_dtsul_segur.idi_dtsul = d-aux + 1 .
+                    ASSIGN d-aux = d-aux + 1.
+
+            END.
+
+           
+        END.
+
+
+END.
+
+
+
+Exportar grupos de segurança
+
+OUTPUT TO VALUE('C:\TEMP\CNT.csv').
+for each grp_usuar WHERE cod_grp_usuar = "CNT":
+    for each prog_dtsul_segur where prog_dtsul_segur.idi_dtsul_grp_usuar EQ grp_usuar.idi_dtsul:
+    put unformatted prog_dtsul_segur.cod_prog_dtsul skip.
+    end.
+end.
+OUTPUT CLOSE.
+
+
+
+
+
+
+
+Importando cadastro do grupo de segurança
+
+
+DEF TEMP-TABLE tt-itens
+    FIELD cod_grp_usuar  like grp_usuar.cod_grp_usuar
+    FIELD desc_grp_usuar like grp_usuar.des_grp_usuar.
+    
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+FOR EACH grp_usuar:
+    IF grp_usuar.idi_dtsul > d-aux THEN
+        ASSIGN d-aux = grp_usuar.idi_dtsul.
+END.
+
+FOR EACH tt-itens:
+    find grp_usuar where grp_usuar.cod_grp_usuar EQ tt-itens.cod_grp_usuar no-error.
+    
+    if not avail grp_usuar then do:
+    
+    Create grp_usuar.
+    assign grp_usuar.cod_grp_usuar =  tt-itens.cod_grp_usuar
+           grp_usuar.des_grp_usuar = tt-itens.desc_grp_usuar
+		   grp_usuar.idi_dtsul= d-aux + 1.
+	ASSIGN d-aux = d-aux + 1.
+    end.
+    
+end.

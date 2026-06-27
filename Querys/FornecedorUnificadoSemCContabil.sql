@@ -1,0 +1,41 @@
+SELECT [iddadosfornecedor]
+      ,[idpessoa]
+      ,[indativo]
+      ,[numbanco]
+      ,[numagencia]
+      ,[numagenciadv]
+      ,[numconta]
+      ,[numcontadv]
+      ,[numidentificacaobanco]
+      ,[descricaotipocobranca]
+      ,[idcondicaopagamento]
+      ,[especie]
+      ,[cp]
+      ,[datacadastramento]
+      ,[idcontacontabil]
+      ,[idhistoricocontabil]
+      ,[indregistroimportado]
+      ,[idregraretencao]
+      ,[indutilizarateio]
+      ,[idrateio]
+      ,[idcentrocusto]
+      ,[idcentroresultado]
+      ,[idunidadeadministrativa]
+      ,[idcontagerencial]
+      ,[idowner]
+      ,[indabaterretencaovalortotalnota]
+      ,[idcontacontabilunicapiscofinscsll]
+      ,[descricaohistoricounicopiscofinscsll]
+      ,[idusuariolog]
+      ,[datahoralog]
+      ,[idOrigemRegistro]
+      ,[indintermediarioservico]
+  FROM [NG].[dbo].[bpm_dadosfornecedor]
+   where idpessoa=14866
+GO
+
+select * from ng..bpm_pessoa where nomepessoa like '%tork%'
+
+update [NG].[dbo].[bpm_dadosfornecedor]
+set idcontacontabil=34995
+where iddadosfornecedor=1455

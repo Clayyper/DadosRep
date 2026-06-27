@@ -1,0 +1,1 @@
+sqlcmd -S (local)\sqlnfe -i D:\Desenvolvimento\Querys\FazerBackupteste.sql 

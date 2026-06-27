@@ -1,0 +1,34 @@
+DEF TEMP-TABLE tt-itens
+    FIELD Nr-Pedcli_ant   LIKE es-ped-venda.Nr-Pedcli
+    FIELD Nr-Pedcli_new   LIKE es-ped-venda.Nr-Pedcli.
+
+DEF VAR d-aux as decimal INIT 0.
+
+DEF VAR c-arquivo AS CHAR FORMAT "x(50)".
+UPDATE c-arquivo.
+
+MESSAGE "SEARCH(c-arquivo): " SEARCH(c-arquivo) VIEW-AS ALERT-BOX.
+
+INPUT FROM VALUE(SEARCH(c-arquivo)).
+REPEAT :
+     CREATE tt-itens.
+     IMPORT DELIMITER ";" tt-itens.
+END.
+INPUT CLOSE.
+
+MESSAGE "CAN-FIND(FIRST tt-itens): " CAN-FIND(FIRST tt-itens) VIEW-AS ALERT-BOX.
+
+
+
+FOR EACH tt-itens.
+
+	FIND es-ped-venda where es-ped-venda.Nr-Pedcli EQ Nr-Pedcli_ant no-error.
+	
+	IF AVAIL es-ped-venda then do:
+	 assign es-ped-venda.Nr-Pedcli = Nr-Pedcli_new.
+	end.   
+    
+
+END.
+
+
