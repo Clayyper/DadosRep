@@ -22,18 +22,18 @@
     "extractionReportPath": null
   },
   "run": {
-    "id": "local-1783942744266-68bd11",
+    "id": "local-1783942912405-4577da",
     "sortMode": "alpha",
     "filesCount": 266,
     "searchableFilesCount": 265,
     "semanticFilesCount": 265,
-    "metadataOnlyFilesCount": 58,
-    "semanticMetadataOnlyFilesCount": 58,
+    "metadataOnlyFilesCount": 57,
+    "semanticMetadataOnlyFilesCount": 57,
     "searchIndexTextLimitPerFile": 12000,
     "searchIndexTextLimitTotal": 4194304,
     "semanticIndexTextLimitPerFile": 12000,
     "semanticIndexTextLimitTotal": 4194304,
     "extractionReportEnabled": false,
-    "createdAt": "2026-07-13T11:39:04.451Z"
+    "createdAt": "2026-07-13T11:41:52.562Z"
   }
 }
