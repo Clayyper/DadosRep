@@ -1,6 +1,6 @@
 {
   "avdc": {
-    "version": "5.0.6",
+    "version": "6.0.18",
     "reservedDirectory": "avdc-index",
     "note": "Arquivos gerados pelo AVDC. Não editar manualmente."
   },
@@ -18,16 +18,22 @@
     "manifestPath": "avdc-index/manifest.json",
     "catalogPath": "avdc-index/catalog.json",
     "searchIndexPath": "avdc-index/search-index.json",
-    "extractionReportPath": "avdc-index/extraction-report.txt"
+    "semanticIndexPath": "avdc-index/semantic-index.json",
+    "extractionReportPath": null
   },
   "run": {
-    "id": "local-1782597791582-129817",
+    "id": "local-1783942350421-a93c0b",
     "sortMode": "alpha",
     "filesCount": 266,
-    "searchableFilesCount": 215,
+    "searchableFilesCount": 265,
+    "semanticFilesCount": 265,
+    "metadataOnlyFilesCount": 55,
+    "semanticMetadataOnlyFilesCount": 55,
     "searchIndexTextLimitPerFile": 12000,
     "searchIndexTextLimitTotal": 4194304,
-    "extractionReportEnabled": true,
-    "createdAt": "2026-06-27T22:03:11.759Z"
+    "semanticIndexTextLimitPerFile": 12000,
+    "semanticIndexTextLimitTotal": 4194304,
+    "extractionReportEnabled": false,
+    "createdAt": "2026-07-13T11:32:30.684Z"
   }
 }
