@@ -1,0 +1,109 @@
+Objetivo
+
+Investigar por que a cópia de arquivos para um HDD de 500 GB via Dock USB apresentava velocidades inconsistentes e validar o desempenho após a reformatação.
+
+Ambiente
+Sistema: Fedora 44
+Origem: SSD NVMe
+Destino: HDD 500 GB em Dock USB
+Ferramentas:
+iostat
+sar
+rsync
+GParted
+Testes realizados
+1. Monitoramento do sistema
+
+Instalação:
+
+sudo dnf install sysstat
+
+Coleta:
+
+iostat -xz 1
+sar -u -r 1
+
+Resultado:
+
+CPU permaneceu praticamente ociosa.
+Memória com baixo consumo.
+Não houve gargalo de processamento.
+
+Conclusão:
+
+CPU e RAM não limitam a velocidade da cópia.
+
+2. Reformatação do HDD
+
+Utilizado:
+
+GParted
+
+Procedimento:
+
+Remoção da tabela antiga.
+Criação de GPT.
+Uma única partição ext4 ocupando todo o disco.
+Label:
+HD500
+
+Resultado:
+
+Disco formatado corretamente.
+3. Correção de permissões
+
+Após a formatação o usuário não possuía permissão de escrita.
+
+Correção:
+
+sudo chown -R "$USER":"$USER" /run/media/$USER/HD500
+
+Resultado:
+
+Escrita funcionando normalmente.
+4. Benchmark da cópia
+
+Durante a cópia foi executado:
+
+iostat -xz 1
+
+Resultado obtido:
+
+Disco (sdd) permaneceu entre 98% e 99% de utilização praticamente durante toda a transferência.
+Escrita sustentada entre aproximadamente 35 e 42 MB/s.
+
+CPU continuou ociosa durante todo o processo.
+
+Observação importante
+
+O gerenciador de arquivos mostrou picos de aproximadamente:
+
+600 MB/s
+
+Isso não representa a velocidade física do HDD.
+
+Trata-se do cache de escrita do Linux (page cache):
+
+Os dados são copiados rapidamente para a RAM.
+O sistema informa uma velocidade muito alta.
+Depois o kernel grava os dados no HDD na velocidade real.
+
+O iostat mostrou a velocidade física correta.
+
+Conclusões
+
+✔ Dock USB funcionando.
+
+✔ Sistema operacional funcionando normalmente.
+
+✔ CPU e memória não são gargalos.
+
+✔ Permissões do disco corrigidas.
+
+✔ Sistema de arquivos ext4 funcionando corretamente.
+
+✔ O HDD sustentou aproximadamente:
+
+35–42 MB/s de gravação real
+
+com utilização próxima de 100%.
